@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { LayoutRoutes } from './layout.routing';
 
 import { HeaderComponent } from './header/header.component';
@@ -19,6 +20,8 @@ import { LinealComponent } from '../lineal/lineal.component';
   imports: [
     CommonModule,
     RouterModule.forChild(LayoutRoutes),
+    FormsModule, ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     HeaderComponent, SidebarComponent,
