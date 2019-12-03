@@ -10,6 +10,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from '../home/home.component';
 import { LinealComponent } from '../lineal/lineal.component';
+import { MathModule } from 'src/app/math/math.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LinealComponent } from '../lineal/lineal.component';
     CommonModule,
     RouterModule.forChild(LayoutRoutes),
     FormsModule, ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MathModule
   ],
   exports: [
     HeaderComponent, SidebarComponent,
