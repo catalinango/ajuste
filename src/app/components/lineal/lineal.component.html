@@ -128,17 +128,16 @@
                                         </div>
                                     </div>
                                     <!-- Sales Chart Canvas -->
-                                    ACA VA EL GRAFICO...
-                                    {{xi1}}
-                                    <h1>inner html</h1>
-                                    <div [appMath]>
-                                        $$\sum_{{'{'}}i=0{{'}'}}^n xi$$
-                                    </div>
+                                    <div #plot></div>
+                                    <app-linear-plot [dots]="dots | async"></app-linear-plot>
+                                   <!--  <h1>inner html</h1>
+                                    
                                     <canvas id="salesChart" height="180"
                                         style="height: 180px; display: block; width: 836px;" width="836"
-                                        class="chartjs-render-monitor"></canvas>
+                                        class="chartjs-render-monitor"></canvas> 
+                                    -->
                                 </div>
-                                <!-- /.chart-responsive -->
+                               <!-- /.chart-responsive -->
                             </div>
                             <!-- /.col -->
                             <div class="col-md-4">
