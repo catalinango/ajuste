@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from "@angular/forms";
-import * as d3 from "d3";
-import { Dot } from '../../components/dot';
-import { Observable } from 'rxjs';
+import { MathContent } from "../../math/math-content";
+
+interface Dot { x: number; y: number; }
 
 @Component({
   selector: 'app-lineal',
@@ -14,7 +14,7 @@ export class LinealComponent implements OnInit {
   showTable = false;
   showChart = false;
   showSppiner = false;
-  dotsData: Observable<Dot[]>;
+
   dots: Dot[];
   dotsNum: number;
   @ViewChild('dform', { static: false }) dFormDirective: NgForm;
@@ -49,9 +49,6 @@ export class LinealComponent implements OnInit {
       y: [0, Validators.required],
     });
   }
-  ngAfterContentInit() {
-    d3.select("#plot").style("color", "red");
-  }
 
   generateTable() {
     this.dots.push(this.dotsForm.value);
@@ -71,7 +68,6 @@ export class LinealComponent implements OnInit {
   }
 
   linearRegression(dots: Dot[]) {
-    this.dotsData.subscribe(data => data = this.dots);
     this.showSppiner = true;
     this.dotsNum = dots.length;
     this.sx = 0;
@@ -95,6 +91,6 @@ export class LinealComponent implements OnInit {
         this.ca1 = this.a1.toFixed(2);
       }
     });
-    console.log ("Dots in linealComponent: " + dots);
+
   }
 }
