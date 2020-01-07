@@ -2,7 +2,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Puntos</h3>
@@ -25,7 +25,7 @@
                                                 <span class="input-group-text">X</span>
                                             </div>
                                             <input formControlName="x" class="form-control" type="text" name="totalDots"
-                                                placeholder="Número entero positivo ...">
+                                                appAutofocus #x>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -34,7 +34,7 @@
                                                 <span class="input-group-text">Y</span>
                                             </div>
                                             <input formControlName="y" class="form-control" type="text" name="totalDots"
-                                                placeholder="Número entero positivo ...">
+                                                #y>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -84,7 +84,7 @@
                 </div>
                 <!-- /.card -->
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="card" *ngIf="showChart">
                     <div class="card-header">
                         <h5 class="card-title">Ajuste Lineal</h5>
@@ -113,12 +113,13 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-8">
+                            <!-- /.col -->
+                            <div class="col-md-12">
                                 <p class="text-center">
                                     <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
                                 </p>
 
-                                <div class="chart">
+                                <div class="chart" *ngIf="data">
                                     <div class="chartjs-size-monitor">
                                         <div class="chartjs-size-monitor-expand">
                                             <div class=""></div>
@@ -127,40 +128,9 @@
                                             <div class=""></div>
                                         </div>
                                     </div>
-                                    <!-- Sales Chart Canvas -->
-                                    ACA VA EL GRAFICO...
-                                    {{xi1}}
-                                    <h1>inner html</h1>
-                                    <div [appMath]>
-                                        $$\sum_{{'{'}}i=0{{'}'}}^n xi$$
-                                    </div>
-                                    <canvas id="salesChart" height="180"
-                                        style="height: 180px; display: block; width: 836px;" width="836"
-                                        class="chartjs-render-monitor"></canvas>
+                                    <app-linear-plot [data]="data"></app-linear-plot>
                                 </div>
                                 <!-- /.chart-responsive -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-md-4">
-                                <p class="text-center">
-                                    <strong>Goal Completion</strong>
-                                </p>
-                                <div class="description-block">
-
-                                    <h5 class="description-header">
-                                        <div [appMath]>$$ \mathcal F (x; a_1; a_2) $$</div>
-                                        <div [appMath]>$$ \mathcal F (x; {{ca1}}; {{ca2}}) $$</div>
-                                    </h5>
-                                    <span class="description-text">
-                                        <div [appMath]>$$ \mathcal y = a_1 + a_2x $$</div>
-                                        <div [appMath]>$$ \mathcal y = a_2x + a_1 $$</div>
-                                    </span>
-                                    <span class="description-percentage text-danger">
-                                        <div [appMath]>$$ \mathcal y = {{ca2}}x + {{ca1}} $$</div>
-                                    </span>
-                                </div>
-
-
                             </div>
                             <!-- /.col -->
                         </div>
@@ -172,7 +142,6 @@
                             <div class="col-sm-6 col-6">
                                 <div class="description-block border-right">
                                     <span class="description-percentage text-success">Cantidad de Puntos</span>
-                                    <h5 class="description-header"> </h5>
                                     <span class="description-text">
                                         <div [appMath]>
                                             $$
@@ -198,10 +167,9 @@
                                 <!-- /.description-block -->
                             </div>
                             <!-- /.col -->
-                            <div class="col-sm-3 col-6">
-                                <div class="description-block border-right">
+                            <div class="col-sm-3 col-3">
+                                <div class="description-block">
                                     <span class="description-percentage text-success">Cantidad de Puntos</span>
-                                    <h5 class="description-header"> </h5>
                                     <span class="description-text">
                                         <div [appMath]>
                                             $$
@@ -211,17 +179,32 @@
                                             \end{{'{'}}bmatrix{{'}'}}
                                             \ast
                                             \begin{{'{'}}bmatrix{{'}'}}
-                                            {{a1}}\\
-                                            {{a2}}\\
+                                            {{ca1}}\\
+                                            {{ca2}}\\
                                             \end{{'{'}}bmatrix{{'}'}}
                                             =
                                             \begin{{'{'}}bmatrix{{'}'}}
                                             {{sy}}\\
                                             {{sxy}}\\
                                             \end{{'{'}}bmatrix{{'}'}}
-
                                             $$
                                         </div>
+                                    </span>
+                                </div>
+                                <!-- /.description-block -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-sm-3 col-3">
+                                <div class="description-block">
+                                    <h5 class="description-header">
+                                        <div [appMath]>$$ \mathcal F (x; a_1; a_2) $$</div>
+                                        <div [appMath]>$$ \mathcal F (x; {{ca1}}; {{ca2}}) $$</div>
+                                    </h5>
+                                    <span class="description-text">
+                                        <div [appMath]>$$ \mathcal y = a_2x + a_1 $$</div>
+                                    </span>
+                                    <span class="description-percentage text-danger">
+                                        <div [appMath]>$$ \mathcal y = {{ca2}}x + {{ca1}} $$</div>
                                     </span>
                                 </div>
                                 <!-- /.description-block -->

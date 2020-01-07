@@ -9,11 +9,13 @@ import { LayoutComponent } from './components/layout/layout.component';
 
 import { LayoutModule } from './components/layout/layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AutofocusDirective } from './directives/autofocus.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent
+    LayoutComponent,
+    AutofocusDirective
   ],
   imports: [
     CommonModule,

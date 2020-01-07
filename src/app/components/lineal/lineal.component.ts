@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from "@angular/forms";
-import { MathContent } from "../../math/math-content";
-
-interface Dot { x: number; y: number; }
+import { Dot } from "../dot";
 
 @Component({
   selector: 'app-lineal',
@@ -37,10 +35,9 @@ export class LinealComponent implements OnInit {
   sx2: number;
   sy: number;
   sxy: number;
+  data: any;
 
-  constructor(
-    private fb: FormBuilder
-  ) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.dots = new Array<Dot>();
@@ -53,10 +50,13 @@ export class LinealComponent implements OnInit {
   generateTable() {
     this.dots.push(this.dotsForm.value);
     this.showTable = true;
+    this.dFormDirective.reset({x: 0, y: 0});
+  
   }
 
   deleteTable() {
     this.dots = new Array<Dot>();
+    this.dFormDirective.reset({x: 0, y: 0});
     this.showTable = false;
     this.showChart = false;
   }
@@ -64,33 +64,50 @@ export class LinealComponent implements OnInit {
   workOut() {
     this.linearRegression(this.dots);
     this.showSppiner = false;
-    this.showChart = true;
   }
 
   linearRegression(dots: Dot[]) {
     this.showSppiner = true;
-    this.dotsNum = dots.length;
+    this.dotsNum = Number(dots.length);
     this.sx = 0;
     this.sx2 = 0;
-    this.sy = 0
+    this.sy = 0;
     this.sxy = 0;
-
+ 
     dots.forEach(d => {
-      this.sx = this.sx + Number(d.x);
-      this.sx2 = this.sx2 + (Number(d.x) * Number(d.x));
-      this.sy = this.sy + Number(d.y);
-      this.sxy = this.sxy + (Number(d.x) * Number(d.y));
-      let aux = ((this.sx2 / this.sx) - (this.sx / this.dotsNum));
-      if (this.dotsNum == 0 || this.sx == 0 || aux == 0) {
-        this.a1 = 0;
-        this.a2 = 0;
-      } else {
-        this.a2 = ((this.sxy / this.sx) - ((this.sy / this.dotsNum)) / aux);
-        this.ca2 = this.a2.toFixed(2);
-        this.a1 = (this.sy - (this.sx * this.a2)) / this.dotsNum;
-        this.ca1 = this.a1.toFixed(2);
-      }
+      d.x = Number(d.x);
+      d.y = Number(d.y);
+      this.sx = this.sx + d.x;
+      this.sx2 = this.sx2 + (d.x * d.x);
+      this.sy = this.sy + d.y;
+      this.sxy = this.sxy + (d.x * d.y);
     });
 
+    if (this.dotsNum == 0 || this.sx == 0) {
+      this.a1 = 0;
+      this.a2 = 0;
+    } else {
+      let aux = (this.sx2 - ((this.sx * this.sx) / this.dotsNum));
+      this.a2 = (this.sxy - ((this.sx * this.sy) / this.dotsNum)) / aux;
+      this.a1 = (this.sy - (this.sx * this.a2)) / this.dotsNum;
+      this.ca2 = this.a2.toFixed(3);
+      this.ca1 = this.a1.toFixed(3);
+    }
+  
+    
+    let dt = [];
+    dots.forEach(d => {
+      dt.push({
+        "yhat": ((this.a2 * d.x) + this.a1),
+        "y": d.y,
+        "x": d.x
+      });
+    //  console.log("f(x): (" + this.a2 + " * " + d.x + ") + " + this.a1);
+    });
+
+    console.log("A1 = " + this.a1 + "; A2 = " + this.a2);
+    this.data = JSON.stringify(dt);
+    console.log("Data in LinearComponent: " + JSON.stringify(dt));
+    this.showChart = true;
   }
 }
