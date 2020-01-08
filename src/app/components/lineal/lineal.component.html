@@ -116,7 +116,7 @@
                             <!-- /.col -->
                             <div class="col-md-12">
                                 <p class="text-center">
-                                    <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                                    <strong>Gráfica de Ajuste lineal f(x) = {{fx}}</strong>
                                 </p>
 
                                 <div class="chart" *ngIf="data">
@@ -128,7 +128,7 @@
                                             <div class=""></div>
                                         </div>
                                     </div>
-                                    <app-linear-plot [data]="data"></app-linear-plot>
+                                    <app-linear-plot [data]="data" [fx]="fx"></app-linear-plot>
                                 </div>
                                 <!-- /.chart-responsive -->
                             </div>
@@ -143,25 +143,26 @@
                                 <div class="description-block border-right">
                                     <span class="description-percentage text-success">Cantidad de Puntos</span>
                                     <span class="description-text">
-                                        <div [appMath]>
-                                            $$
-                                            \begin{{'{'}}bmatrix{{'}'}}
-                                            n & \sum_{{'{'}}i=0{{'}'}}^n xi \\
-                                            \sum_{{'{'}}i=0{{'}'}}^n xi & \sum_{{'{'}}i=0{{'}'}}^n xi^2 \\
-                                            \end{{'{'}}bmatrix{{'}'}}
-                                            \ast
-                                            \begin{{'{'}}bmatrix{{'}'}}
-                                            a1\\
-                                            a2\\
-                                            \end{{'{'}}bmatrix{{'}'}}
-                                            =
-                                            \begin{{'{'}}bmatrix{{'}'}}
-                                            \sum_{{'{'}}i=0{{'}'}}^n xi\\
-                                            \sum_{{'{'}}i=0{{'}'}}^n xiyi\\
-                                            \end{{'{'}}bmatrix{{'}'}}
-
-                                            $$
-                                        </div>
+                                        <small>
+                                            <div [appMath]>
+                                                $$
+                                                \begin{{'{'}}bmatrix{{'}'}}
+                                                n & \sum_{{'{'}}i=0{{'}'}}^n xi \\
+                                                \sum_{{'{'}}i=0{{'}'}}^n xi & \sum_{{'{'}}i=0{{'}'}}^n xi^2 \\
+                                                \end{{'{'}}bmatrix{{'}'}}
+                                                \ast
+                                                \begin{{'{'}}bmatrix{{'}'}}
+                                                a1\\
+                                                a2\\
+                                                \end{{'{'}}bmatrix{{'}'}}
+                                                =
+                                                \begin{{'{'}}bmatrix{{'}'}}
+                                                \sum_{{'{'}}i=0{{'}'}}^n xi\\
+                                                \sum_{{'{'}}i=0{{'}'}}^n xiyi\\
+                                                \end{{'{'}}bmatrix{{'}'}}
+                                                $$
+                                            </div>
+                                        </small>
                                     </span>
                                 </div>
                                 <!-- /.description-block -->
@@ -171,24 +172,26 @@
                                 <div class="description-block">
                                     <span class="description-percentage text-success">Cantidad de Puntos</span>
                                     <span class="description-text">
-                                        <div [appMath]>
-                                            $$
-                                            \begin{{'{'}}bmatrix{{'}'}}
-                                            {{dotsNum}} & {{sx}} \\
-                                            {{sx}} & {{sx2}} \\
-                                            \end{{'{'}}bmatrix{{'}'}}
-                                            \ast
-                                            \begin{{'{'}}bmatrix{{'}'}}
-                                            {{ca1}}\\
-                                            {{ca2}}\\
-                                            \end{{'{'}}bmatrix{{'}'}}
-                                            =
-                                            \begin{{'{'}}bmatrix{{'}'}}
-                                            {{sy}}\\
-                                            {{sxy}}\\
-                                            \end{{'{'}}bmatrix{{'}'}}
-                                            $$
-                                        </div>
+                                        <small>
+                                            <div [appMath]>
+                                                $$
+                                                \begin{{'{'}}bmatrix{{'}'}}
+                                                {{dotsNum}} & {{csx}} \\
+                                                {{csx}} & {{csx2}} \\
+                                                \end{{'{'}}bmatrix{{'}'}}
+                                                \ast
+                                                \begin{{'{'}}bmatrix{{'}'}}
+                                                {{ca1}}\\
+                                                {{ca2}}\\
+                                                \end{{'{'}}bmatrix{{'}'}}
+                                                =
+                                                \begin{{'{'}}bmatrix{{'}'}}
+                                                {{csy}}\\
+                                                {{csxy}}\\
+                                                \end{{'{'}}bmatrix{{'}'}}
+                                                $$
+                                            </div>
+                                        </small>
                                     </span>
                                 </div>
                                 <!-- /.description-block -->

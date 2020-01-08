@@ -26,16 +26,15 @@ export class LinealComponent implements OnInit {
     }
   };
 
-  a1: number;
   ca1: string;
-  a2: number;
   ca2: string;
-  xi: number;
-  sx: number;
-  sx2: number;
-  sy: number;
-  sxy: number;
+  cxi: string;
+  csx: string;
+  csx2: string;
+  csy: string;
+  csxy: string;
   data: any;
+  fx: string;
 
   constructor(private fb: FormBuilder) { }
 
@@ -69,43 +68,48 @@ export class LinealComponent implements OnInit {
   linearRegression(dots: Dot[]) {
     this.showSppiner = true;
     this.dotsNum = Number(dots.length);
-    this.sx = 0;
-    this.sx2 = 0;
-    this.sy = 0;
-    this.sxy = 0;
- 
+    let sx = 0;
+    let sx2 = 0;
+    let sy = 0;
+    let sxy = 0;
+    let a1 = 0;
+    let a2 = 0;
+
     dots.forEach(d => {
       d.x = Number(d.x);
       d.y = Number(d.y);
-      this.sx = this.sx + d.x;
-      this.sx2 = this.sx2 + (d.x * d.x);
-      this.sy = this.sy + d.y;
-      this.sxy = this.sxy + (d.x * d.y);
+      sx = sx + d.x;
+      sx2 = sx2 + (d.x * d.x);
+      sy = sy + d.y;
+      sxy = sxy + (d.x * d.y);
     });
 
-    if (this.dotsNum == 0 || this.sx == 0) {
-      this.a1 = 0;
-      this.a2 = 0;
+    if (this.dotsNum == 0 || sx == 0) {
+      a1 = 0;
+      a2 = 0;
     } else {
-      let aux = (this.sx2 - ((this.sx * this.sx) / this.dotsNum));
-      this.a2 = (this.sxy - ((this.sx * this.sy) / this.dotsNum)) / aux;
-      this.a1 = (this.sy - (this.sx * this.a2)) / this.dotsNum;
-      this.ca2 = this.a2.toFixed(3);
-      this.ca1 = this.a1.toFixed(3);
+      let aux = (sx2 - ((sx * sx) / this.dotsNum));
+      a2 = (sxy - ((sx * sy) / this.dotsNum)) / aux;
+      a1 = (sy - (sx * a2)) / this.dotsNum;
+      this.ca2 = a2.toFixed(3);
+      this.ca1 = a1.toFixed(3);
+      this.csx = sx.toFixed(3);
+      this.csx2 = sx.toFixed(3);
+      this.csy = sy.toFixed(3);
+      this.csxy = sxy.toFixed(3);
+      this.fx = this.ca2 + "x + " + this.ca1; 
     }
-  
     
     let dt = [];
     dots.forEach(d => {
       dt.push({
-        "yhat": ((this.a2 * d.x) + this.a1),
+        "yhat": ((a2 * d.x) + a1),
         "y": d.y,
         "x": d.x
       });
-    //  console.log("f(x): (" + this.a2 + " * " + d.x + ") + " + this.a1);
     });
 
-    console.log("A1 = " + this.a1 + "; A2 = " + this.a2);
+    console.log("A1 = " + this.ca1 + "; A2 = " + this.ca2);
     this.data = JSON.stringify(dt);
     console.log("Data in LinearComponent: " + JSON.stringify(dt));
     this.showChart = true;

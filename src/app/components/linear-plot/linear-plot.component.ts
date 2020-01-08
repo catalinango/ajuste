@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, ElementRef, AfterContentInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, ElementRef, Renderer2 } from '@angular/core';
 import * as D3 from 'd3';
 
 @Component({
@@ -7,15 +7,17 @@ import * as D3 from 'd3';
   styleUrls: ['./linear-plot.component.scss']
 })
 
-export class LinearPlotComponent implements OnInit, OnChanges, AfterContentInit {
+export class LinearPlotComponent implements OnInit, OnChanges {
 
   private htmlElement: HTMLElement;
   @Input() data: any;
+  @Input() fx: any;
 
   constructor(
-    elementRef: ElementRef
+    elementRef: ElementRef,
+    public _renderer: Renderer2
   ) {
-    this.htmlElement = elementRef.nativeElement;  // reference to <app-linear-plot> element from the main template
+    this.htmlElement = elementRef.nativeElement;  // reference to <app-linear-plot> element from the main template 
     console.log(this.htmlElement);
     console.log(D3);
   }
@@ -44,15 +46,25 @@ export class LinearPlotComponent implements OnInit, OnChanges, AfterContentInit 
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // format the data
+    let linePoints = [];
     let dt = this.data
     dt.forEach(function (d) {
       d.x = +d.x;
       d.y = +d.y;
       d.yhat = +d.yhat;
-    });
 
-    x.domain(d3.extent(dt, function (d) { return d.x; }));
-    y.domain(d3.extent(dt, function (d) { return d.y; }));
+      linePoints.push({
+        "x": d.x,
+        "y": d.yhat
+      });
+    });
+    let yAux = dt.map(function (d) { return d.y });
+    let yhatAux = dt.map(function (d) { return d.yhat });
+    let yValues = yAux.concat(yhatAux);
+
+    //console.log("yValues = " + yValues);
+    x.domain([1.1 * d3.min(dt, function (d) { return d.x }), 1.2 * d3.max(dt, function (d) { return d.x })]);
+    y.domain([1.1 * d3.min(yValues), 1.2 * d3.max(yValues)]);
 
     // add the X Axis
     svg.append("g")
@@ -87,7 +99,7 @@ export class LinearPlotComponent implements OnInit, OnChanges, AfterContentInit 
       .append('circle')
       .style("fill", "none")
       .attr("stroke", "black")
-      .attr('r', 8.5)
+      .attr('r', 6.5)
       .style("opacity", 0)
 
     // create the text that travels along the curve of chart
@@ -95,43 +107,37 @@ export class LinearPlotComponent implements OnInit, OnChanges, AfterContentInit 
       .append('g')
       .append('text')
       .style("opacity", 0)
-      .attr("text-anchor", "left")
+      .attr("text-anchor", "right")
       .attr("alignment-baseline", "middle")
 
     // what happens when the mouse move -> show the annotations at the right positions.
-    let mouseover = function () {
-      focus.style("opacity", 1)
-      focusText.style("opacity", 1)
-    }
-
-    let mousemove = function () {
-      // recover coordinate we need
-      let x0 = x.invert(d3.mouse(this)[0]);
-      let i = bisect(this.data, x0, 1);
-      let selectedData = this.data[i]
-      focus
-        .attr("cx", x(selectedData.x))
-        .attr("cy", y(selectedData.y))
-      focusText
-        .html("x:" + selectedData.x + "  -  " + "y:" + selectedData.y)
-        .attr("x", x(selectedData.x) + 15)
-        .attr("y", y(selectedData.y))
-    }
-
-    let mouseout = function () {
-      focus.style("opacity", 0)
-      focusText.style("opacity", 0)
-    }
-
     // create a rect on top of the svg area: this rectangle recovers mouse position
     svg.append('rect')
       .style("fill", "none")
       .style("pointer-events", "all")
       .attr('width', width)
       .attr('height', height)
-      .on('mouseover', mouseover)
-      .on('mousemove', mousemove)
-      .on('mouseout', mouseout);
+      .on('mouseover', function () {
+        focus.style("opacity", 1);
+        focusText.style("opacity", 1);
+      })
+      .on('mousemove', (d, j, n) => {
+        // recover coordinate we need
+        let x0 = x.invert(d3.mouse(n[j])[0]);  //<-- to replace x.invert(d3.mouse(this))
+        //let i = bisect(this.data, x0, 1);
+        let selectedData = this.data[0];
+        focus
+           .attr("cx", x(selectedData.x))
+           .attr("cy", y(selectedData.yhat));
+        focusText
+          .html("f(x): " + this.fx)
+          .attr("x", x(selectedData.x))
+          .attr("y", y(selectedData.yhat));
+      })
+      .on('mouseout', function () {
+        focus.style("opacity", 0);
+        focusText.style("opacity", 0);
+      });
 
     // add the scatterplot
     svg.selectAll(".dot")
@@ -143,7 +149,9 @@ export class LinearPlotComponent implements OnInit, OnChanges, AfterContentInit 
       .attr("cy", function (d) { return y(d.y); })
       .style("fill", "#2471A3");
 
-    // add the line path.
+    // add the line path. SVG Paths represent the outline of a shape that can be stroked,
+    //  filled, used as a clipping path, or any combination of all three.
+    // We can draw rectangles, circles, ellipses, polylines, polygons, straight lines, and curves through path
     svg.append("path")
       .datum(this.data)
       .attr("class", "line")
@@ -161,7 +169,7 @@ export class LinearPlotComponent implements OnInit, OnChanges, AfterContentInit 
       return d3.axisLeft(y)
         .ticks(5)
     }
-    
+
     svg.append("g")
       .attr("class", "grid")
       .attr("transform", "translate(0," + height + ")")
@@ -181,18 +189,12 @@ export class LinearPlotComponent implements OnInit, OnChanges, AfterContentInit 
 
   ngOnInit() {
     this.data = JSON.parse(this.data);
-    console.log('Data in plotComponent :' + JSON.stringify(this.data));
-
+   // console.log('Data in plotComponent :' + JSON.stringify(this.data));
     this.create_plot();
   }
 
   ngOnChanges(): void {
     if (!this.data) { return; }
-  }
-
-  ngAfterContentInit(): void {
-    // console.log('Data in plotComponent :' + JSON.stringify(this.data));
-    //   throw new Error("Method not implemented.");
   }
 
 }
