@@ -12,12 +12,17 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from '../home/home.component';
 import { LinealComponent } from '../lineal/lineal.component';
 import { LinearPlotComponent } from '../linear-plot/linear-plot.component';
+import { AutofocusDirective } from '../../directives/autofocus.directive';
+import { LinearComponent } from '../../components/linear/linear.component';
+import { PolynomialComponent } from '../../components/polynomial/polynomial.component';
 
 @NgModule({
   declarations: [
     HeaderComponent, SidebarComponent, 
     FooterComponent, HomeComponent,
-    LinealComponent, LinearPlotComponent
+    LinealComponent, LinearPlotComponent,
+    LinearComponent, PolynomialComponent, 
+    AutofocusDirective
   ],
   imports: [
     CommonModule,
@@ -29,7 +34,8 @@ import { LinearPlotComponent } from '../linear-plot/linear-plot.component';
   exports: [
     HeaderComponent, SidebarComponent,
     FooterComponent, HomeComponent,
-    LinealComponent, LinearPlotComponent
+    LinealComponent, LinearPlotComponent,
+    LinearComponent
   ]
 })
 export class LayoutModule { }

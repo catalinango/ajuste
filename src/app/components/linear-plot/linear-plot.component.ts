@@ -60,11 +60,15 @@ export class LinearPlotComponent implements OnInit, OnChanges {
     });
     let yAux = dt.map(function (d) { return d.y });
     let yhatAux = dt.map(function (d) { return d.yhat });
-    let yValues = yAux.concat(yhatAux);
+    let yValues:[] = yAux.concat(yhatAux);
 
-    //console.log("yValues = " + yValues);
-    x.domain([1.1 * d3.min(dt, function (d) { return d.x }), 1.2 * d3.max(dt, function (d) { return d.x })]);
-    y.domain([1.1 * d3.min(yValues), 1.2 * d3.max(yValues)]);
+    /* console.log("yValues = " + yValues);
+    console.log ("yMax: " +  d3.max(yValues) + "yMin: " + d3.min(yValues));
+    console.log ("xMax: " +  d3.max(dt, function (d) { return d.x }) + "yMin: " + d3.min(dt, function (d) { return d.x }));
+    */
+   
+    x.domain([d3.min(dt, function (d) { return d.x }), d3.max(dt, function (d) { return d.x })]);
+    y.domain([d3.min(yValues), d3.max(yValues)]);
 
     // add the X Axis
     svg.append("g")
