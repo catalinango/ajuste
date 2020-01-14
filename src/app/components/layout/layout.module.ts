@@ -15,6 +15,9 @@ import { LinearPlotComponent } from '../linear-plot/linear-plot.component';
 import { AutofocusDirective } from '../../directives/autofocus.directive';
 import { LinearComponent } from '../../components/linear/linear.component';
 import { PolynomialComponent } from '../../components/polynomial/polynomial.component';
+import { ExponentialComponent } from '../../components/exponential/exponential.component';
+import { PotentialComponent } from '../../components/potential/potential.component';
+import { GoodnessOfFitComponent } from '../../components/goodness-of-fit/goodness-of-fit.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { PolynomialComponent } from '../../components/polynomial/polynomial.comp
     FooterComponent, HomeComponent,
     LinealComponent, LinearPlotComponent,
     LinearComponent, PolynomialComponent, 
-    AutofocusDirective
+    AutofocusDirective, ExponentialComponent,
+    PotentialComponent, GoodnessOfFitComponent
   ],
   imports: [
     CommonModule,

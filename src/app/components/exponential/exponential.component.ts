@@ -3,11 +3,11 @@ import { Dot } from "../dot";
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-polynomial',
-  templateUrl: './polynomial.component.html',
-  styleUrls: ['./polynomial.component.scss']
+  selector: 'app-exponential',
+  templateUrl: './exponential.component.html',
+  styleUrls: ['./exponential.component.scss']
 })
-export class PolynomialComponent implements OnInit {
+export class ExponentialComponent implements OnInit {
   showChart = false;
   showSppiner = false;
  

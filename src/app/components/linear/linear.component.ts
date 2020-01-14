@@ -60,7 +60,7 @@ export class LinearComponent implements OnInit {
       this.ca2 = a2.toFixed(3);
       this.ca1 = a1.toFixed(3);
       this.csx = sx.toFixed(3);
-      this.csx2 = sx.toFixed(3);
+      this.csx2 = sx2.toFixed(3);
       this.csy = sy.toFixed(3);
       this.csxy = sxy.toFixed(3);
       this.fx = this.ca2 + "x + " + this.ca1; 
