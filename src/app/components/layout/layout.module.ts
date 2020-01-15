@@ -6,12 +6,12 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { LayoutRoutes } from './layout.routing';
 
 import { MathModule } from 'src/app/math/math.module';
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { FooterComponent } from './footer/footer.component';
-import { HomeComponent } from '../home/home.component';
-import { LinearPlotComponent } from '../linear-plot/linear-plot.component';
 import { AutofocusDirective } from '../../directives/autofocus.directive';
+
+import { HomeComponent } from '../home/home.component';
+import { InfoComponent } from '../../components/info/info.component';
+import { DocsComponent } from '../../components/docs/docs.component';
+import { LinearPlotComponent } from '../linear-plot/linear-plot.component';
 import { DotsInputComponent } from '../../components/dots-input/dots-input.component';
 import { LinearComponent } from '../../components/linear/linear.component';
 import { PolynomialComponent } from '../../components/polynomial/polynomial.component';
@@ -21,12 +21,12 @@ import { GoodnessOfFitComponent } from '../../components/goodness-of-fit/goodnes
 
 @NgModule({
   declarations: [ 
-    AutofocusDirective, HeaderComponent, 
-    SidebarComponent, FooterComponent,
+    AutofocusDirective, DocsComponent, 
     HomeComponent, DotsInputComponent, 
     LinearPlotComponent, LinearComponent, 
     PolynomialComponent, ExponentialComponent,
-    PotentialComponent, GoodnessOfFitComponent
+    PotentialComponent, GoodnessOfFitComponent,
+    InfoComponent
   ],
   imports: [
     CommonModule,
@@ -36,12 +36,12 @@ import { GoodnessOfFitComponent } from '../../components/goodness-of-fit/goodnes
     MathModule
   ],
   exports: [
-    AutofocusDirective, HeaderComponent, 
-    SidebarComponent, FooterComponent,
+    AutofocusDirective, DocsComponent, 
     HomeComponent, DotsInputComponent, 
     LinearPlotComponent, LinearComponent, 
     PolynomialComponent, ExponentialComponent,
-    PotentialComponent, GoodnessOfFitComponent
+    PotentialComponent, GoodnessOfFitComponent,
+    InfoComponent
   ]
 })
 export class LayoutModule { }

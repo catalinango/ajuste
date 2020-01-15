@@ -10,7 +10,8 @@ import { DataService } from 'src/app/services/data.service';
 export class LinearComponent implements OnInit {
   showChart = false;
   showSppiner = false;
- 
+  
+  dots: Dot[];
   dotsNum: number;
   ca1: string;
   ca2: string;
@@ -28,6 +29,7 @@ export class LinearComponent implements OnInit {
     let ds = new Array<Dot>();
     this.dataService.getDots().subscribe(d => ds = d);
     console.log("Dots in Linear: " + JSON.stringify(ds));
+    this.dots = ds;
     this.linearRegression(ds);
   }
 
