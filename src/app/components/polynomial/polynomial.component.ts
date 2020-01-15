@@ -53,20 +53,16 @@ export class PolynomialComponent implements OnInit {
       d.x = Number(d.x);
       d.y = Number(d.y);
       sx = sx + d.x;
-      sx2 = sx2 + (d.x * d.x);
-      sx3 = sx3 + (d.x * d.x * d.x);
-      sx4 = sx4 + (d.x * d.x * d.x * d.x);
+      sx2 = sx2 + (d.x ** 2);
+      sx3 = sx3 + (d.x ** 3);
+      sx4 = sx4 + (d.x ** 4);
       sy = sy + d.y;
       syx = syx + (d.y * d.x);
-      syx2 = syx2 + (d.y * (d.x * d.x));
+      syx2 = syx2 + (d.y * (d.x ** 2));
     });
 
     let delta = (this.n * (sx2 * sx4 - sx3 * sx3)) - (sx * (sx * sx4 - sx2 * sx3)) + (sx2 * (sx * sx3 - sx2 * sx2));
-    if (delta == 0) {
-      a1 = 0;
-      a2 = 0;
-      a3 = 0;
-    } else {
+    if (delta != 0) {
       a1 = ((sy * (sx2 * sx4 - sx3 * sx3)) - (sx * (syx * sx4 - syx2 * sx3)) + (sx2 * (syx * sx3 - syx2 * sx2))) / delta;
       a2 = ((this.n * (syx * sx4 - syx2 * sx3)) - (sy * (sx * sx4 - sx2 * sx3)) + (sx2 * (sx * syx2 - sx2 * syx))) / delta;
       a3 = ((this.n * (sx2 * syx2 - sx3 * syx)) - (sx * (sx * syx2 - sx2 * syx)) + (sy * (sx * sx3 - sx2 * sx2))) / delta;

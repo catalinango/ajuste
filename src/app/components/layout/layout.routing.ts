@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
+import { DotsInputComponent } from '../dots-input/dots-input.component';
 import { LinearComponent } from '../linear/linear.component';
 import { PolynomialComponent } from '../polynomial/polynomial.component';
 import { ExponentialComponent } from '../exponential/exponential.component';
@@ -8,6 +9,7 @@ import { GoodnessOfFitComponent } from '../goodness-of-fit/goodness-of-fit.compo
 
 export const LayoutRoutes: Routes = [
     { path: 'home',  component: HomeComponent },
+    { path: 'puntos', component: DotsInputComponent},
     { path: 'lineal',  component: LinearComponent },
     { path: 'polinomico', component: PolynomialComponent },
     { path: 'exponencial', component: ExponentialComponent },

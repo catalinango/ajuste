@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LinealComponent } from './lineal.component';
+import { DotsInputComponent } from './dots-input.component';
 
-describe('LinealComponent', () => {
-  let component: LinealComponent;
-  let fixture: ComponentFixture<LinealComponent>;
+describe('DotsInputComponent', () => {
+  let component: DotsInputComponent;
+  let fixture: ComponentFixture<DotsInputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LinealComponent ]
+      declarations: [ DotsInputComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LinealComponent);
+    fixture = TestBed.createComponent(DotsInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

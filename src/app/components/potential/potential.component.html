@@ -56,21 +56,18 @@
                       <div [appMath]>
                         $$
                         \begin{{'{'}}bmatrix{{'}'}}
-                        n & \sum_{{'{'}}i=0{{'}'}}^n xi & \sum_{{'{'}}i=0{{'}'}}^n xi^2 \\
-                        \sum_{{'{'}}i=0{{'}'}}^n xi & \sum_{{'{'}}i=0{{'}'}}^n xi^2 & \sum_{{'{'}}i=0{{'}'}}^n xi^3\\
-                        \sum_{{'{'}}i=0{{'}'}}^n xi^2 & \sum_{{'{'}}i=0{{'}'}}^n xi^3 & \sum_{{'{'}}i=0{{'}'}}^n xi^4\\
+                        n & \sum_{{'{'}}i=0{{'}'}}^n lnx_i \\
+                        \sum_{{'{'}}i=0{{'}'}}^n lnx_i & \sum_{{'{'}}i=0{{'}'}}^n lnx_i^2 \\
                         \end{{'{'}}bmatrix{{'}'}}
                         \ast
                         \begin{{'{'}}bmatrix{{'}'}}
-                        a1\\
+                        lna1\\
                         a2\\
-                        a3\\
                         \end{{'{'}}bmatrix{{'}'}}
                         =
                         \begin{{'{'}}bmatrix{{'}'}}
-                        \sum_{{'{'}}i=0{{'}'}}^n xi\\
-                        \sum_{{'{'}}i=0{{'}'}}^n yixi\\
-                        \sum_{{'{'}}i=0{{'}'}}^n yixi^2\\
+                        \sum_{{'{'}}i=0{{'}'}}^n lny_i\\
+                        \sum_{{'{'}}i=0{{'}'}}^n lny_i*lnx_i\\
                         \end{{'{'}}bmatrix{{'}'}}
                         $$
                       </div>
@@ -88,21 +85,18 @@
                       <div [appMath]>
                         $$
                         \begin{{'{'}}bmatrix{{'}'}}
-                        {{n}} & {{csx}} & {{csx2}} \\
-                        {{csx}} & {{csx2}} & {{csx3}} \\
-                        {{csx2}} & {{csx3}} & {{csx4}} \\
+                        {{n}} & {{csx}}\\
+                        {{csx}} & {{csx2}}\\
                         \end{{'{'}}bmatrix{{'}'}}
                         \ast
                         \begin{{'{'}}bmatrix{{'}'}}
-                        {{ca1}}\\
+                        {{lnca1}}\\
                         {{ca2}}\\
-                        {{ca3}}\\
                         \end{{'{'}}bmatrix{{'}'}}
                         =
                         \begin{{'{'}}bmatrix{{'}'}}
                         {{csy}}\\
                         {{csyx}}\\
-                        {{csyx2}}\\
                         \end{{'{'}}bmatrix{{'}'}}
                         $$
                       </div>
@@ -115,14 +109,14 @@
               <div class="col-sm-3 col-3">
                 <div class="description-block">
                   <h5 class="description-header">
-                    <div [appMath]>$$ \mathcal F (x; a_1; a_2; a_3) $$</div>
-                    <div [appMath]>$$ \mathcal F (x; {{ca1}}; {{ca2}}; {{ca3}}) $$</div>
+                    <div [appMath]>$$ \mathcal F (x; a_1; a_2) $$</div>
+                    <div [appMath]>$$ \mathcal F (x; {{ca1}}; {{ca2}}$$</div>
                   </h5>
                   <span class="description-text">
-                    <div [appMath]>$$ \mathcal y = a_3x^2 + a_2x + a_1 $$</div>
+                    <div [appMath]>$$ \mathcal y = a_1x^a_2x$$</div>
                   </span>
                   <span class="description-percentage text-danger">
-                    <div [appMath]>$$ \mathcal y = {{ca3}}x^2 + {{ca2}}x + {{ca1}} $$</div>
+                    <div [appMath]>$$ \mathcal y = {{ca1}}x^{{'{'}}{{ca2}}{{'}'}} $$</div>
                   </span>
                 </div>
                 <!-- /.description-block -->

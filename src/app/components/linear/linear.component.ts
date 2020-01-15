@@ -50,10 +50,7 @@ export class LinearComponent implements OnInit {
       sxy = sxy + (d.x * d.y);
     });
 
-    if (this.dotsNum == 0 || sx == 0) {
-      a1 = 0;
-      a2 = 0;
-    } else {
+    if (this.dotsNum != 0 || sx != 0) {
       let aux = (sx2 - ((sx * sx) / this.dotsNum));
       a2 = (sxy - ((sx * sy) / this.dotsNum)) / aux;
       a1 = (sy - (sx * a2)) / this.dotsNum;

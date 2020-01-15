@@ -1,9 +1,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-        <img src="" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Análisis Numérico</span>
+    <a href="https://www.ucalp.edu.ar/" target="_blank" class="brand-link">
+       <img src="../../../../assets/img/ucalp-logo-2017.png" alt="" class="brand-image elevation-3">
+       <span class="brand-text font-weight-light"><b>&nbsp;</b></span>
     </a>
 
     <!-- Sidebar -->
@@ -24,8 +24,8 @@
                         <div class="image">
                          <!--   <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
                         </div>
-                        <div class="info">
-                            <a href="#" class="d-block">Catalina Guerrero</a>
+                       <div class="info">
+                            <a class="d-block">ANALISIS NUMERICO</a> 
                         </div>
                     </div>
 
@@ -67,8 +67,14 @@
                             </li>
                             -->
                             <li class="nav-item">
+                            <a href="#" [routerLink] = "['/puntos']" class="nav-link">
+                                <i class="nav-icon fas fa-pencil-alt"></i>
+                                <p>  Ingresar Datos </p>
+                            </a>
+                        </li>
+                            <li class="nav-item">
                                 <a href="#" [routerLink] = "['/lineal']" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
+                                    <i class="nav-icon fas fa-chart-bar"></i>
                                     <p>  Lineal 
                                       <!--  <span class="right badge badge-danger">New</span> -->
                                     </p>
@@ -76,25 +82,25 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#" [routerLink] = "['/polinomico']" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
+                                    <i class="nav-icon fas fa-chart-line"></i>
                                     <p>  Polinómico  </p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" [routerLink] = "['/exponencial']" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
+                                    <i class="nav-icon fas fa-chart-bar"></i>
                                     <p>  Exponencial  </p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" [routerLink] = "['/potencial']" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
+                                    <i class="nav-icon fas fa-chart-line"></i>
                                     <p>  Potencial  </p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" [routerLink] = "['/bondad']" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
+                                    <i class="nav-icon fas fa-calculator"></i>
                                     <p>  Bondad del Ajuste  </p>
                                 </a>
                             </li>

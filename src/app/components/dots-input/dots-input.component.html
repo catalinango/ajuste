@@ -1,0 +1,100 @@
+<!-- Main content -->
+<section class="content">
+
+  <div class="container-fluid">
+      <div class="px-5">
+          <!-- Default box -->
+          <div class="card">
+              <div class="card-header">
+                  <h3 class="card-title">Puntos</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-6">
+                          <div class="product-info">
+                              <span class="product-description">
+                                  <span class="fas fa-ellipsis-v"></span>
+                                  <span class="fas fa-ellipsis-v"></span>
+                                  <span class="fas fa-ellipsis-v"></span>
+                                  &nbsp; Ingresar Puntos
+                              </span>
+                              <form novalidate [formGroup]="dotsForm" #dform="ngForm" (ngSubmit)="generateTable()">
+                                  <div class="row">
+                                      <div class="col-4">
+                                          <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                  <span class="input-group-text">X</span>
+                                              </div>
+                                              <input formControlName="x" class="form-control" type="text"
+                                                  name="totalDots" appAutofocus #x>
+                                          </div>
+                                      </div>
+                                      <div class="col-4">
+                                          <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                  <span class="input-group-text">Y</span>
+                                              </div>
+                                              <input formControlName="y" class="form-control" type="text"
+                                                  name="totalDots" #y>
+                                          </div>
+                                      </div>
+                                      <div class="col-4">
+                                          <button type="submit" class="btn btn-info">Enviar</button>
+                                      </div>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-6">
+                          <div *ngIf="showTable">
+                              <table class="table table-bordered">
+                                  <thead>
+                                      <tr>
+                                          <th style="width: 10px">#</th>
+                                          <th class="text-center">X</th>
+                                          <th class="text-center">Y</th>
+                                          <th class="text-center" style="width: 10px"><small>EDITAR</small>
+                                          </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor="let dot of dots; let i = index">
+                                          <td>{{ i + 1  }}</td>
+                                          <td class="text-center">
+                                              <span>{{ dot.x }}</span>
+                                          </td>
+                                          <td class="text-center">
+                                              <span>{{ dot.y }}</span>
+                                          </td>
+                                          <td class="text-center">
+                                              <small><i class="fas fa-edit"></i></small>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+
+                              <button (click)="saveDots()" type="button" class="btn btn-info float-right">
+                                  Guardar
+                              </button>
+
+                              <button (click)="deleteTable()" type="button" class="btn btn-secondary float-right"
+                                  style="margin-right: 5px;">
+                                  Borrar Puntos
+                              </button>
+                          </div>
+                      </div>
+                      <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
+              </div>
+              <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+      </div>
+      <!-- /.p-5 -->
+  </div>
+  <!-- ./container-fluid -->
+</section>
+<!-- /.content -->
