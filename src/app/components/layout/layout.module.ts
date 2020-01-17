@@ -18,6 +18,7 @@ import { PolynomialComponent } from '../../components/polynomial/polynomial.comp
 import { ExponentialComponent } from '../../components/exponential/exponential.component';
 import { PotentialComponent } from '../../components/potential/potential.component';
 import { GoodnessOfFitComponent } from '../../components/goodness-of-fit/goodness-of-fit.component';
+import { ErrorComponent } from '../error/error.component';
 
 @NgModule({
   declarations: [ 
@@ -26,7 +27,7 @@ import { GoodnessOfFitComponent } from '../../components/goodness-of-fit/goodnes
     LinearPlotComponent, LinearComponent, 
     PolynomialComponent, ExponentialComponent,
     PotentialComponent, GoodnessOfFitComponent,
-    InfoComponent
+    InfoComponent, ErrorComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +42,7 @@ import { GoodnessOfFitComponent } from '../../components/goodness-of-fit/goodnes
     LinearPlotComponent, LinearComponent, 
     PolynomialComponent, ExponentialComponent,
     PotentialComponent, GoodnessOfFitComponent,
-    InfoComponent
+    InfoComponent, ErrorComponent
   ]
 })
 export class LayoutModule { }

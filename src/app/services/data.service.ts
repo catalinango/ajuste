@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Dot } from '../components/dot';
 
 @Injectable({
@@ -14,7 +14,8 @@ export class DataService {
   }
 
   public getDots(): Observable<Dot[]> {
-    return this.dotsBSubject.asObservable();
+   return this.dotsBSubject.asObservable();
+   // return throwError(new Error('Probando algun mensaje de ERROR'));
   }
 
   public setDots(d: Dot[]) {

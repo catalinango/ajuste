@@ -1,16 +1,16 @@
 <!-- Main content -->
 <section class="content px-2">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" *ngIf="dots && !errMsg">
             <div class="col-6">
                 <div class="card card-secondary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title">Ingresar P (x , y)</h3>
+                        <h3 class="card-title">Ingresar <em>P (x , y)</em></h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="product-info">
-                            <form novalidate [formGroup]="dotsForm" #dform="ngForm" (ngSubmit)="generateTable()">
+                            <form novalidate [formGroup]="dotsForm" #dform="ngForm" (ngSubmit)="saveDots()">
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="input-group mb-3">
@@ -18,7 +18,7 @@
                                                 <span class="input-group-text">X</span>
                                             </div>
                                             <input formControlName="x" class="form-control" type="text" name="totalDots"
-                                                appAutofocus #x>
+                                            appAutofocus #x>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -27,7 +27,7 @@
                                                 <span class="input-group-text">Y</span>
                                             </div>
                                             <input formControlName="y" class="form-control" type="text" name="totalDots"
-                                                #y>
+                                            #y>
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -42,7 +42,7 @@
                 <!-- /.card -->
             </div>
             <!-- /.col -->
-
+            
             <div class="col-6" *ngIf="showTable">
                 <div class="card card-info card-outline">
                     <div class="card-header">
@@ -76,22 +76,24 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                        <button (click)="saveDots()" type="button" class="btn btn-info float-right">
-                            Guardar
-                        </button>
-                        <button (click)="deleteTable()" type="button" class="btn btn-secondary float-right"
-                            style="margin-right: 5px;">
-                            Borrar Puntos
-                        </button>
-                    </div>
-                    <!-- /.card-body -->
+                        <button (click)="deleteDots()" type="button" class="btn btn-secondary float-right"
+                        style="margin-right: 5px;">
+                        Borrar Puntos
+                    </button>
                 </div>
-                <!-- /.card -->
+                <!-- /.card-body -->
             </div>
-            <!-- /.col -->
+            <!-- /.card -->
         </div>
-        <!-- /.row -->
+        <!-- /.col -->
     </div>
-    <!-- ./container-fluid -->
+    <!-- /.row -->
+    
+    <app-error [error]="errMsg" [hidden]="dots"></app-error>
+    <!-- ./error-page -->
+    
+</div>
+<!-- ./container-fluid -->
+
 </section>
 <!-- /.content -->

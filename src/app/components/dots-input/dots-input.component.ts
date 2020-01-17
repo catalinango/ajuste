@@ -9,55 +9,112 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./dots-input.component.scss']
 })
 export class DotsInputComponent implements OnInit {
-
+  
   showTable = false;
-  dotsNum: number;
+  noDots: boolean;
+  n: number;
   dots: Dot[];
+  errMsg: string;
   @Output() emitEvent: EventEmitter<Dot[]> = new EventEmitter<Dot[]>();
   @ViewChild('dform', { static: false }) dFormDirective: NgForm;
   dotsForm: FormGroup;
   formErrors = {
-    'dotsNumber': ''
+    'x': '',
+    'y': ''
   };
   validationMessages = {
-    'author': {
-      'required': 'Debe ingresar la cantidad de puntos'
+    'x': {
+      'required': 'Debe ingresar un valor para x',
+    },
+    'y': {
+      'required': 'Debe ingresar un valor para y',
     }
   };
   constructor(
     private fb: FormBuilder,
     private dataService: DataService
     ) { }
+    
+    ngOnInit() {
+      let ds = new Array<Dot>();
+      this.dataService.getDots()
+      .subscribe(
+        d => {
+          ds = d
+        },
+        err => {
+          this.errMsg = err;
+        });
 
-  ngOnInit() {
-    this.dots = new Array<Dot>();
-    this.dotsForm = this.fb.group({
-      x: [0, Validators.required],
-      y: [0, Validators.required],
-    });
-    this.saveDots()
+      if(ds === undefined) {
+        this.dots = new Array<Dot>()
+        this.createForm();
+      } else {
+        this.dots = ds;
+        this.showTable = true;
+        this.createForm();
+      }
+    }
+    
+    createForm() {
+      this.dotsForm = this.fb.group({
+        x: [0, Validators.required],
+        y: [0, Validators.required],
+      });
+      this.dotsForm.valueChanges.subscribe(data => this.onValueChanged(data));
+      this.onValueChanged();
+    }
+
+    saveDots() {
+      this.dots.push(this.dotsForm.value);
+      this.showTable = true;
+      this.dFormDirective.reset({ x: 0, y: 0 });
+      this.dataService.setDots(this.dots);
+      //this.dataService.getDots().subscribe(d => console.log("Dots in DataService: " + JSON.stringify(d)));
+    }
+    
+    deleteDots() {
+      this.dots = new Array<Dot>();
+      this.dFormDirective.reset({ x: 0, y: 0 });
+      this.showTable = false;
+      this.dataService.setDots(this.dots);
+    }
+
+    onValueChanged(data?: any) {
+      if (!this.dotsForm) {
+        return;
+      }
+      const form = this.dotsForm;
+      for (const field in this.formErrors) {
+        if (this.formErrors.hasOwnProperty(field)) {
+          this.formErrors[field] = '';
+          const control = form.get(field);
+          if (control && control.dirty && control.invalid) {
+            const messages = this.validationMessages[field];
+            for (const key in control.errors) {
+              if (control.errors.hasOwnProperty(key)) {
+                this.formErrors[field] += messages[key] + ' ';
+              }
+            }
+          }
+        }
+      }
+    }
   }
-
-  generateTable() {
-    this.dots.push(this.dotsForm.value);
-    this.showTable = true;
-    this.dFormDirective.reset({ x: 0, y: 0 });
-
-  }
-  deleteTable() {
-    this.dots = new Array<Dot>();
-    this.dFormDirective.reset({ x: 0, y: 0 });
-    this.showTable = false;
-  }
-  saveDots() {
-    this.dataService.setDots(this.dots);
-    this.dataService.getDots().subscribe(d => console.log("Dots in DataService: " + JSON.stringify(d)));
-  /*  let fResponse: any;
-    if (!this.dots) { fResponse = false } else { fResponse = this.dots };
-    this.dots = fResponse;
-    this.emitEvent.emit(fResponse);
-    return fResponse;*/
-
-
-  }
-}
+  /*
+  this.dishService.putDish(this.dishcopy)
+      .subscribe(
+        dish => {
+          this.dish = dish;
+          this.dishcopy = dish;
+        },
+        errMsg => {
+          this.dish = null;
+          this.dishcopy = null;
+          this.errMsg = <any>errMsg;
+        });
+    this.commentFormDirective.resetForm({
+      author: '',
+      comment: '',
+      rating: '5'
+    });*/

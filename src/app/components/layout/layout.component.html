@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-dark navbar-info">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -14,103 +14,90 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link" [routerLink]="['/info']">Información del Sistema</a>
         </li>
+        <!-- /. only xs -->
+        <li class="nav-item d-block d-inline d-sm-none">
+            <a href="#" class="nav-link" [routerLink]="['/']"><i class="fas fa-home"></i></a>
+        </li>
+        <li class="nav-item d-block d-inline d-sm-none">
+            <a href="#" class="nav-link" [routerLink]="['/docs']"><i class="fas fa-file-invoice"></i></a>
+        </li>
+        <li class="nav-item d-block d-inline d-sm-none">
+            <a href="#" class="nav-link" [routerLink]="['/info']"><i class="fas fa-info-circle"></i></a>
+        </li>
+        <!-- /. only xs -->
     </ul>
 </nav>
 <!-- /.navbar -->
 
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar elevation-4 sidebar-light-navy">
     <!-- Brand Logo -->
     <a href="https://www.ucalp.edu.ar/" target="_blank" class="brand-link">
-        <img src="../../../../assets/img/ucalp-logo-2017.png" alt="" class="brand-image elevation-3">
-        <span class="brand-text font-weight-light"><b>&nbsp;</b></span>
+        <img src="../../../../assets/img/ucalp.png" alt="" class="brand-image img-circle elevation-2">
+        <span class="brand-text font-weight-light text-navy"><strong>&nbsp;U C A L P</strong></span>
     </a>
-
+    
     <!-- Sidebar -->
-    <div
-        class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition">
-        <div class="os-resize-observer-host">
-            <div class="os-resize-observer observed" style="left: 0px; right: auto;"></div>
-        </div>
-        <div class="os-size-auto-observer" style="height: calc(100% + 1px); float: left;">
-            <div class="os-resize-observer observed"></div>
-        </div>
-        <div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 533px;"></div>
-        <div class="os-padding">
-            <div class="os-viewport os-viewport-native-scrollbars-invisible" style="overflow-y: scroll;">
-                <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
-                    <!-- Sidebar user (optional) -->
-                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
-                            <!--   <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
-                        </div>
-                        <div class="info">
-                            <a class="d-block">ING. EN SISTEMAS</a>
-                            <a class="d-block">DE INFORMACION</a>
-                        </div>
-                    </div>
-
-                    <!-- Sidebar Menu -->
-                    <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                            data-accordion="false">
-                            <li class="nav-item">
-                                <a href="#" [routerLink]="['/puntos']" class="nav-link">
-                                    <i class="nav-icon fas fa-edit"></i>
-                                    <p> Ingresar Datos </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" [routerLink]="['/lineal']" class="nav-link">
-                                    <i class="nav-icon fas fa-chart-bar"></i>
-                                    <p> Lineal
-                                        <!--  <span class="right badge badge-danger">New</span> -->
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" [routerLink]="['/polinomico']" class="nav-link">
-                                    <i class="nav-icon fas fa-chart-line"></i>
-                                    <p> Polinómico </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" [routerLink]="['/exponencial']" class="nav-link">
-                                    <i class="nav-icon fas fa-chart-bar"></i>
-                                    <p> Exponencial </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" [routerLink]="['/potencial']" class="nav-link">
-                                    <i class="nav-icon fas fa-chart-line"></i>
-                                    <p> Potencial </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" [routerLink]="['/bondad']" class="nav-link">
-                                    <i class="nav-icon fas fa-calculator"></i>
-                                    <p> Bondad del Ajuste </p>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- /.sidebar-menu -->
-                </div>
+    <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <!--   <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
+            </div>
+            <div class="info">
+                <a class="d-block"><span class="brand-text font-weight-light text-navy">ING. EN SISTEMAS</span></a>
+                <a class="d-block"><span class="brand-text font-weight-light text-navy">DE INFORMACION</span></a>
             </div>
         </div>
-        <div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden">
-            <div class="os-scrollbar-track">
-                <div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px);"></div>
-            </div>
-        </div>
-        <div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden">
-            <div class="os-scrollbar-track">
-                <div class="os-scrollbar-handle" style="height: 38.4173%; transform: translate(0px);"></div>
-            </div>
-        </div>
-        <div class="os-scrollbar-corner"></div>
-    </div>
-    <!-- /.sidebar -->
+        
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu"
+            data-accordion="false">
+            <li class="nav-item">
+                <a href="#" [routerLink]="['/puntos']" class="nav-link active">
+                    <i class="nav-icon fas fa-edit"></i>
+                    <p> Ingresar Datos </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" [routerLink]="['/lineal']" class="nav-link">
+                    <i class="nav-icon fas fa-chart-bar"></i>
+                    <p> Ajuste Lineal
+                        <!--  <span class="right badge badge-danger">New</span> -->
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" [routerLink]="['/polinomico']" class="nav-link">
+                    <i class="nav-icon fas fa-chart-line"></i>
+                    <p> Ajuste Polinómico </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" [routerLink]="['/exponencial']" class="nav-link">
+                    <i class="nav-icon fas fa-chart-bar"></i>
+                    <p> Ajsute Exponencial </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" [routerLink]="['/potencial']" class="nav-link">
+                    <i class="nav-icon fas fa-chart-line"></i>
+                    <p> Ajsute Potencial </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" [routerLink]="['/bondad']" class="nav-link">
+                    <i class="nav-icon fas fa-calculator"></i>
+                    <p> Bondad del Ajuste </p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+    
+</div>
+<!-- /.sidebar -->
 </aside>
 
 <!-- Content Wrapper. Contains page content -->
@@ -120,13 +107,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>ANALISIS NUMÉRICO</h1>
-                    <span>Ajuste por Mínimos Cuadrados</span>
+                    <h1><span class="brand-text font-weight-light text-navy">ANALISIS NUMÉRICO</span></h1>
+                    <span class="brand-text font-weight-light text-navy">AJUSTE POR MINIMOS CUADRADOS</span>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
+    
     <router-outlet></router-outlet>
     
 </div>
@@ -134,9 +121,9 @@
 
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-        <strong> Alumna: </strong> Catalina Guerrero
+        <span class="brand-text font-weight-light text-navy"> <strong> ALUMNA: </strong> GUERRERO CATALINA</span>
     </div>
-    <strong>Docente: </strong> Ing. Chancel Myrian  
+    <span class="brand-text font-weight-light text-navy"> <strong>DOCENTE: </strong> ING. CHANCEL MYRIAN  </span>
 </footer>
 
 <div id="sidebar-overlay"></div>

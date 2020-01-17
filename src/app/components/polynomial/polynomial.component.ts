@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Dot } from "../dot";
 import { DataService } from 'src/app/services/data.service';
 
@@ -7,10 +7,11 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './polynomial.component.html',
   styleUrls: ['./polynomial.component.scss']
 })
-export class PolynomialComponent implements OnInit {
-  showChart = false;
-  showSppiner = false;
- 
+export class PolynomialComponent implements OnInit, OnDestroy {
+  
+  noDots: boolean;
+  errMsg: string;
+  dots: Dot[];
   n: number;
   ca1: string;
   ca2: string;
@@ -30,14 +31,32 @@ export class PolynomialComponent implements OnInit {
 
   ngOnInit() {
     let ds = new Array<Dot>();
-    this.dataService.getDots().subscribe(d => ds = d);
-    console.log("Dots in Linear: " + JSON.stringify(ds));
-    this.calculateFx(ds);
+    this.dataService.getDots()
+    .subscribe(
+      d => {
+        ds = d
+      },
+      err => {
+        this.errMsg = err;
+      });
+
+    if (ds === undefined) {
+      this.noDots = true;
+    }
+    else {
+      console.log("Dots in Linear: " + JSON.stringify(ds));
+      this.dots = ds;
+      this.n = Number(this.dots.length);
+      this.calculateFx(ds);
+    }
   }
 
+  ngOnDestroy(){
+    
+  }
+  
   calculateFx(dots: Dot[]) {
 
-    this.n = Number(dots.length);
     let sx = 0;
     let sx2 = 0;
     let sx3 = 0;
@@ -89,8 +108,6 @@ export class PolynomialComponent implements OnInit {
     });
 
     console.log("A1 = " + this.ca1 + "; A2 = " + this.ca2 + "; A3 = " + this.ca3);
-    this.data = JSON.stringify(dt);
-    console.log("Data in LinearComponent: " + JSON.stringify(dt));
-    this.showChart = true;
+    this.data = JSON.stringify(dt); 
   }
 }
