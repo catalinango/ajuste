@@ -68,9 +68,9 @@ export class ExponentialComponent implements OnInit, OnDestroy {
       d.y = Number(d.y);
       sx = sx + d.x;
       sx2 = sx2 + (d.x * d.x);
-      sy = sy + Math.log(d.y);
-      syx = syx + Math.log(d.y * d.x);
-     // console.log("sy :" + sy + "; syx: " + syx);
+      sy = (d.y == 0) ? sy + 1 : sy + Math.log(d.y);
+      syx = (d.y == 0 || d.x == 0) ? syx + 1 : syx + Math.log(d.y * d.x);
+      //console.log("sy :" + sy + "; syx: " + syx);
     });
 
     if (sx != 0) {
