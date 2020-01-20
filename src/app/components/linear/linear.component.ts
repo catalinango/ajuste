@@ -19,7 +19,7 @@ export class LinearComponent implements OnInit, OnDestroy {
   csx: string;
   csx2: string;
   csy: string;
-  csxy: string;
+  csyx: string;
   data: any;
   fx: string;
 
@@ -56,7 +56,7 @@ export class LinearComponent implements OnInit, OnDestroy {
     let sx = 0;
     let sx2 = 0;
     let sy = 0;
-    let sxy = 0;
+    let syx = 0;
     let a1 = 0;
     let a2 = 0;
     
@@ -66,19 +66,19 @@ export class LinearComponent implements OnInit, OnDestroy {
       sx = sx + d.x;
       sx2 = sx2 + (d.x * d.x);
       sy = sy + d.y;
-      sxy = sxy + (d.x * d.y);
+      syx = syx + (d.x * d.y);
     });
     
     if (this.n != 0 || sx != 0) {
       let aux = (sx2 - ((sx * sx) / this.n));
-      a2 = (sxy - ((sx * sy) / this.n)) / aux;
+      a2 = (syx - ((sx * sy) / this.n)) / aux;
       a1 = (sy - (sx * a2)) / this.n;
       this.ca2 = a2.toFixed(3);
       this.ca1 = a1.toFixed(3);
       this.csx = sx.toFixed(3);
       this.csx2 = sx2.toFixed(3);
       this.csy = sy.toFixed(3);
-      this.csxy = sxy.toFixed(3);
+      this.csyx = syx.toFixed(3);
       this.fx = this.ca2 + "x + " + this.ca1; 
     }
     

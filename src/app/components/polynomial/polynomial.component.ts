@@ -34,7 +34,7 @@ export class PolynomialComponent implements OnInit, OnDestroy {
     this.dataService.getDots()
     .subscribe(
       d => {
-        ds = d
+        ds = d;
       },
       err => {
         this.errMsg = err;
@@ -42,9 +42,10 @@ export class PolynomialComponent implements OnInit, OnDestroy {
 
     if (ds === undefined) {
       this.noDots = true;
+      console.log("ds undefined")
     }
     else {
-      console.log("Dots in Linear: " + JSON.stringify(ds));
+      console.log("Dots in Polynomial: " + JSON.stringify(ds));
       this.dots = ds;
       this.n = Number(this.dots.length);
       this.calculateFx(ds);

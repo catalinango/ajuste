@@ -8,6 +8,7 @@ import { Dot } from '../components/dot';
 export class RegressionService {
   
   private dots: Dot[];
+
   constructor() { }
 
   getDots(): Dot[] {
