@@ -10,7 +10,7 @@
             <div class="col-6">
               <div [appMath] class="row">
                 $$
-                \mathcal f (x, a_1, a_2) \Rightarrow y = a_1^{{'{'}}a_2x{{'}'}}
+                \mathcal f (x, a_1, a_2) \Rightarrow y = a_1e^{{'{'}}a_2x{{'}'}}
                 $$
                 <span>En este caso la función no es lineal por lo cual debemos linealizarla</span>
                 $$
@@ -26,7 +26,7 @@
               </span>
               <div [appMath] class="row">
                 \begin{{'{'}}align{{'}'}}
-                y= a_1 + a_2x && ln \ a_1 + a_2x\\
+                y= a_1 + a_2x && ln \ y = ln \ a_1 + a_2x\\
                 y \Rightarrow ln \ y && a_2 \Rightarrow a_2\\
                 a_1 \Rightarrow ln \ a_1 && x \Rightarrow x
                 \end{{'{'}}align{{'}'}}
@@ -46,7 +46,7 @@
                 =
                 \begin{{'{'}}bmatrix{{'}'}}
                 \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i\\
-                \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i \cdot y_i\\
+                \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot x_i \\
                 \end{{'{'}}bmatrix{{'}'}}
                 $$
               </div>
@@ -86,12 +86,8 @@
                 \begin{{'{'}}bmatrix{{'}'}}
                 \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i\\
                 \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot x_i
-                \end{{'{'}}bmatrix{{'}'}}
-                $$
-              </div>
-              <span>Entonces:</span>
-              <div [appMath] class="col-6 col-xs-12">
-                $$
+                \end{{'{'}}bmatrix{{'}'}}\\
+                \Rightarrow
                 \begin{{'{'}}bmatrix{{'}'}}
                 {{n}} & {{csx}} \\
                 {{csx}} & {{csx2}}
@@ -108,14 +104,17 @@
                 \end{{'{'}}bmatrix{{'}'}}
                 $$
               </div>
-              <span>Armamos un sistema de ecuaciones y lo resolvemos:</span>
-              <div [appMath] class="col-6 col-xs-12">
+              <span>Armamos un sistema de ecuaciones:</span>
+              <div [appMath] class="row">
                 $$
                 \begin{{'{'}}cases{{'}'}}
-                {{n}}ln \ a_1 + {{csx}}a_2 = {{csy}}\\
-                {{csx}}ln \ a_1 + {{csx2}}a_2 = {{csyx}}
+                {{n}} \ ln \ a_1 + {{csx}}a_2 = {{csy}}\\
+                {{csx}} \ ln \ a_1 + {{csx2}}a_2 = {{csyx}}
                 \end{{'{'}}cases{{'}'}}\\
                 $$
+              </div>
+              <span>Resolviendo el sistema nos queda:</span>
+              <div [appMath] class="row">
                 $$
                 a_2 = {{ca2}}\\
                 ln \ a_1=\frac{{'{'}}{{csy}}-({{csx}} \cdot {{ca2}}){{'}'}}{{'{'}}{{n}}{{'}'}}
@@ -127,7 +126,7 @@
                 $$
                 \bbox[5px,border:3px solid red]
                 {{'{'}}
-                \mathcal y = {{ca1}} \cdot e^{{'{'}}{{ca2}}x{{'}'}}
+                \mathcal y(x) = {{ca1}} \cdot e^{{'{'}}{{ca2}}x{{'}'}}
                 {{'}'}}
                 $$
               </div>

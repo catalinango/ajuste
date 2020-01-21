@@ -10,12 +10,12 @@
             <div class="col-6">
               <div [appMath] class="row">
                 $$ 
-                \mathcal f (x, a_1, a_2) \Rightarrow y = a_2x + a_1 \Rightarrow \text{{'{'}}Ecuaci&oacute;n de
+                \mathcal f (x, a_1, a_2) \Rightarrow y = a_2x + a_1 \Rightarrow \text{{'{'}}ecuaci&oacute;n de
                 la recta{{'}'}} \\
                 \mathcal Entonces: \phi _1 (x)=1 \land \phi _2(x)=x 
                 $$
                 <span>
-                  Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> Ver análisis inicial</a>.
+                  Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> (Ver análisis inicial)</a>.
                   Para este caso tenemos:
                 </span>
               </div>
@@ -25,7 +25,7 @@
                 \ a_1  \cdot \sum_{{'{'}}i=1{{'}'}}^n 1 + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i = \sum_{{'{'}}i=1{{'}'}}^n y_i  \\
                 \ a_1 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^2 =  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i 
                 \end{{'{'}}cases{{'}'}}\\
-                \mathcal Entonces:\\ 
+                \Rightarrow
                 \begin{{'{'}}bmatrix{{'}'}}
                 \ n & \sum_{{'{'}}i=1{{'}'}}^n x_i \\
                 \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 \\
@@ -38,7 +38,7 @@
                 =
                 \begin{{'{'}}bmatrix{{'}'}}
                 \sum_{{'{'}}i=1{{'}'}}^n y_i\\
-                \sum_{{'{'}}i=1{{'}'}}^n x_i \cdot y_i\\
+                \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i\\
                 \end{{'{'}}bmatrix{{'}'}}
                 $$
               </div>
@@ -66,7 +66,7 @@
               <div [appMath] class="row" style="padding: 0; margin: 0; border: 0;">
                 $$
                 \begin{{'{'}}bmatrix{{'}'}}
-                \ n & \sum_{{'{'}}i=1{{'}'}}^n x_i \\
+                n & \sum_{{'{'}}i=1{{'}'}}^n x_i \\
                 \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2
                 \end{{'{'}}bmatrix{{'}'}}
                 \cdot
@@ -78,7 +78,7 @@
                 \begin{{'{'}}bmatrix{{'}'}}
                 \sum_{{'{'}}i=1{{'}'}}^n y_i\\
                 \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i
-                \end{{'{'}}bmatrix{{'}'}}
+                \end{{'{'}}bmatrix{{'}'}}\\
                 \Rightarrow
                 \begin{{'{'}}bmatrix{{'}'}}
                 {{n}} & {{csx}} \\
@@ -100,8 +100,8 @@
               <div [appMath] class="col-6 col-xs-12">
                 $$
                 \begin{{'{'}}cases{{'}'}}
-                {{n}}a_1 + {{csx}}a_1 = {{csy}}\\
-                {{csx}} + {{csx2}}a_2 = {{csyx}}
+                {{n}}a_1 + {{csx}}a_2 = {{csy}}\\
+                {{csx}}a_1 + {{csx2}}a_2 = {{csyx}}
                 \end{{'{'}}cases{{'}'}}\\
                 $$
                 $$
@@ -114,7 +114,7 @@
                 $$ 
                 \bbox[5px,border:3px solid red]
                 {{'{'}}
-                \mathcal y = {{ca2}}x + {{ca1}} 
+                \mathcal y(x) = {{ca2}}x + {{ca1}} 
                 {{'}'}}
                 $$
               </div>

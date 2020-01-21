@@ -66,10 +66,10 @@ export class PotentialComponent implements OnInit, OnDestroy {;
     dots.forEach(d => {
       d.x = Number(d.x);
       d.y = Number(d.y);
-      sx = sx + Math.log(d.x);
-      sx2 = sx2 + Math.log(d.x ** 2);
-      sy = sy + Math.log(d.y);
-      syx = syx + (Math.log(d.y) * Math.log(d.x));
+      sx = (d.x == 0) ? sx + 1 : sx + Math.log(d.x);
+      sx2 = (d.x == 0) ? sx2 + 1 : sx2 + Math.log(d.x**2);
+      sy = (d.y == 0) ? sy + 1 : sy + Math.log(d.y);
+      syx = (d.y == 0 || d.x == 0) ? syx + 1 : syx +  (Math.log(d.y) * Math.log(d.x));
     });
 
   

@@ -15,7 +15,7 @@
                 $$
               </div>
               <span>
-                Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> Ver análisis inicial</a>.
+                Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> (Ver análisis inicial)</a>.
                 Para este caso tenemos:
               </span>
               <div [appMath] class="row">
@@ -25,7 +25,7 @@
                 \ a_1 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^2 + a_3 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^3 =  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i \\
                 \ a_1 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^2 + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^3 + a_3 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^4 =  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2 
                 \end{{'{'}}cases{{'}'}}\\
-                \mathcal Entonces:\\ 
+                \Rightarrow
                 \begin{{'{'}}bmatrix{{'}'}}
                 \ n & \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 \\
                 \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 & \sum_{{'{'}}i=1{{'}'}}^n x_i^3 \\
@@ -33,20 +33,20 @@
                 \end{{'{'}}bmatrix{{'}'}}
                 \cdot
                 \begin{{'{'}}bmatrix{{'}'}}
-                a1\\
-                a2\\
-                a3
+                a_1\\
+                a_2\\
+                a_3
                 \end{{'{'}}bmatrix{{'}'}}
                 =
                 \begin{{'{'}}bmatrix{{'}'}}
                 \sum_{{'{'}}i=1{{'}'}}^n y_i\\
-                \sum_{{'{'}}i=1{{'}'}}^n x_i \cdot y_i\\
+                \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i\\
                 \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2\\
                 \end{{'{'}}bmatrix{{'}'}}
                 $$
               </div>            
               <p>Tomamos como ejemplo la tabla de valores ingresada (Ver en gráfica). 
-              <br>Ajustamos a un polinomio de segundo grado: <em>y = a<sub>1</sub> + a<sub>2</sub>x + a<sub>1</sub>x<sup>2</sup></em></p>
+              <br>Ajustamos a un polinomio de segundo grado: <em>y = a<sub>1</sub> + a<sub>2</sub>x + a<sub>1</sub>x<sup>3</sup></em></p>
               <div class="row">
                 <div [appMath] class="col-md-3 col-xs-12">
                   $$ 
@@ -81,9 +81,9 @@
                 \sum_{{'{'}}i=1{{'}'}}^n x_i^2 & \sum_{{'{'}}i=1{{'}'}}^n x_i^3 & \sum_{{'{'}}i=1{{'}'}}^n x_i^4
                 \end{{'{'}}bmatrix{{'}'}} \cdot
                 \begin{{'{'}}bmatrix{{'}'}}
-                a1\\
-                a2\\
-                a2
+                a_1\\
+                a_2\\
+                a_3
                 \end{{'{'}}bmatrix{{'}'}}
                 =
                 \begin{{'{'}}bmatrix{{'}'}}
@@ -91,11 +91,7 @@
                 \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i\\
                 \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2
                 \end{{'{'}}bmatrix{{'}'}} \\
-                $$
-              </div>
-              <span><em>Entonces:</em></span>
-              <div [appMath] class="row">
-                $$
+                \Rightarrow
                 \begin{{'{'}}bmatrix{{'}'}}
                 {{n}} & {{csx}} & {{csx2}}\\
                 {{csx}} & {{csx2}} & {{csx3}} \\
@@ -119,9 +115,9 @@
               <div [appMath] class="col-6 col-xs-12">
                 $$
                 \begin{{'{'}}cases{{'}'}}
-                {{n}}a_1 + {{csx}}a_1 = {{csy}}\\
-                {{csx}} + {{csx2}}a_2 = {{csyx}}\\
-                {{csx2}} + {{csx3}}a_3 = {{csyx2}}
+                {{n}}a_1 + {{csx}}a_2 + {{csx2}}a_3 = {{csy}}\\
+                {{csx}}a_1 + {{csx2}}a_2 + {{csx3}}a_3 = {{csyx}}\\
+                {{csx2}}a_1 + {{csx3}}a_2 + {{csx4}}a_3 = {{csyx2}}
                 \end{{'{'}}cases{{'}'}}\\
                 $$
               </div>
