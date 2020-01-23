@@ -2,13 +2,13 @@
 <section class="content px-2">
   <div class="container-fluid">
     <div class="row" *ngIf="dots && n > 1 && !errMsg">
-      <div class="col-12">
+      <div class="col-lg-12">
         <div class="callout callout-info px-5">
           <h5 class="text-navy"> ANALISIS </h5>
           <span>La función empírica es una recta:</span>
           <div class="row">
             <div class="col-6">
-              <div [appMath] class="row">
+              <div [appMath]>
                 $$ 
                 \mathcal f (x, a_1, a_2) \Rightarrow y = a_2x + a_1 \Rightarrow \text{{'{'}}ecuaci&oacute;n de
                 la recta{{'}'}} \\
@@ -19,7 +19,7 @@
                   Para este caso tenemos:
                 </span>
               </div>
-              <div [appMath] class="col-md-8 col-xs-12">
+              <div [appMath]>
                 $$
                 \begin{{'{'}}cases{{'}'}}
                 \ a_1  \cdot \sum_{{'{'}}i=1{{'}'}}^n 1 + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i = \sum_{{'{'}}i=1{{'}'}}^n y_i  \\
@@ -43,7 +43,8 @@
                 $$
               </div>
               <p>Tomamos como ejemplo la tabla de valores ingresada (Ver en gráfica).
-              <br>Ajustamos a una recta: <em>y = a<sub>1</sub> + a<sub>2</sub>x</em> </p>
+                <br>Ajustamos a una recta: <em>y = a<sub>1</sub> + a<sub>2</sub>x</em> 
+              </p>
               <div class="row" style="padding: 0; margin: 0; border: 0;">
                 <div [appMath] class="col-md-3 col-xs-12" style="padding: 0; margin: 0; border: 0;">
                   $$ 
@@ -125,53 +126,56 @@
         </div>
         <!-- /.callout -->
       </div>
-      <!-- /.col -->
-      <div class="col-12">
+      <!-- /.col-lg-12 -->
+      
+      <div class="col-lg-9">
         <div class="card card-success card-outline">
           <div class="card-header">
             <h3 class="card-title text-navy"> GRAFICA <em> f(x) = {{fx}}</em></h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <div class="row">
-              
-              <div class="col-10">
-                <app-linear-plot [data]="data" [fx]="fx"></app-linear-plot>
-              </div>
-              <!-- /.col -->
-
-              <div class="col-2 text-left">
-                <p class="text-left">Puntos Analizados</p>
-                <table #dotsTable class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th class="text-center">x</th>
-                      <th class="text-center">y(x)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let d of dots; let i = index">
-                      <td>{{ i + 1  }}</td>
-                      <td class="text-center">
-                        <span>{{ d.x }}</span>
-                      </td>
-                      <td class="text-center">
-                        <span>{{ d.y }}</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
+              <app-plot [data]="data"></app-plot>
           </div>
           <!-- ./card-body -->
         </div>
         <!-- /.card -->
       </div>
-      <!-- /.col -->
+      <!-- /.col-lg-9 -->
+
+      <div class="col-lg-3">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy"> Datos Analizados</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table #dotsTable class="table table-bordered">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th class="text-center">x</th>
+                  <th class="text-center">y(x)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of dots; let i = index">
+                  <td>{{ i + 1  }}</td>
+                  <td class="text-center">
+                    <span>{{ d.x }}</span>
+                  </td>
+                  <td class="text-center">
+                    <span>{{ d.y }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- ./card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col-lg-3 -->
       
     </div>
     <!-- ./row-->

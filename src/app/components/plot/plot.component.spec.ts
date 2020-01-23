@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LinearPlotComponent } from './linear-plot.component';
+import { PlotComponent } from './plot.component';
 
-describe('LinearPlotComponent', () => {
-  let component: LinearPlotComponent;
-  let fixture: ComponentFixture<LinearPlotComponent>;
+describe('PlotComponent', () => {
+  let component: PlotComponent;
+  let fixture: ComponentFixture<PlotComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LinearPlotComponent ]
+      declarations: [ PlotComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LinearPlotComponent);
+    fixture = TestBed.createComponent(PlotComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -22,8 +22,11 @@ export class LinearComponent implements OnInit, OnDestroy {
   csyx: string;
   data: any;
   fx: string;
+  plotType: string = "linear";
 
-  constructor(private dataService: DataService) { }
+  constructor(
+    private dataService: DataService
+    ) { }
   
   ngOnInit() {
     let ds = new Array<Dot>();
@@ -82,12 +85,15 @@ export class LinearComponent implements OnInit, OnDestroy {
       this.fx = this.ca2 + "x + " + this.ca1; 
     }
     
-    let dt = [];
+    let dt = {"scatterDots" : [], "lineDots": [], "fx": this.fx};
     dots.forEach(d => {
-      dt.push({
-        "yhat": ((a2 * d.x) + a1),
-        "y": d.y,
-        "x": d.x
+      dt.scatterDots.push({
+        "x": d.x,
+        "y": d.y
+      });
+      dt.lineDots.push({
+        "x": d.x,
+        "y": ((a2 * d.x) + a1),
       });
     });
     console.log("A1 = " + this.ca1 + "; A2 = " + this.ca2);

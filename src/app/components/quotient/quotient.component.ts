@@ -2,20 +2,20 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Dot } from "../dot";
 import { DataService } from 'src/app/services/data.service';
 
+
 @Component({
-  selector: 'app-exponential',
-  templateUrl: './exponential.component.html',
-  styleUrls: ['./exponential.component.scss']
+  selector: 'app-quotient',
+  templateUrl: './quotient.component.html',
+  styleUrls: ['./quotient.component.scss']
 })
-export class ExponentialComponent implements OnInit, OnDestroy {
+export class QuotientComponent implements OnInit {
   
   noDots: boolean;
   errMsg: string;
   dots: Dot[];
   n: number;
-  ca1: string;
-  lnca1: string;
-  ca2: string;
+  ca: string;
+  cb: string;
   cxi: string;
   csx: string;
   csx2: string;
@@ -23,7 +23,6 @@ export class ExponentialComponent implements OnInit, OnDestroy {
   csyx: string;
   data: any;
   fx: string;
-  plotType: string = "logarithmic";
   
   constructor(private dataService: DataService) { }
   
@@ -59,37 +58,35 @@ export class ExponentialComponent implements OnInit, OnDestroy {
       let sx2 = 0;
       let sy = 0;
       let syx = 0;
-      let a1 = 0;
-      let a2 = 0;
-      let auxA1 = 0;
-      let auxA2 = 0;
+      let a = 0;
+      let b = 0;
       
       dots.forEach(d => {
         d.x = Number(d.x);
         d.y = Number(d.y);
-        sx = sx + d.x;
-        sx2 = sx2 + (d.x * d.x);
-        sy = (d.y == 0) ? sy + 1 : sy + Math.log(d.y);
-        syx = (d.y == 0 || d.x == 0) ? syx + 1 : syx + Math.log(d.y * d.x);
-        //console.log("sy :" + sy + "; syx: " + syx);
+        if (d.x != 0){
+          sx = sx + (1 / d.x);
+          sx2 = sx2 + ((1 / d.x)**2);
+        }
+        sy = (d.y != 0) ? (sy + (1 / d.y)) : 0;
+        syx = (d.x != 0 && d.y != 0)?  (syx + ((1 / d.x) * (1 / d.y))): 0; 
       });
       
       if (sx != 0) {
-        auxA2 = -this.n * sx2 / sx + sx;
-      }
-      
-      if (auxA2 != 0) {
-        a2 = (sy - this.n * syx / sx) / auxA2;
-        auxA1 = (syx / sx) - (sx2 / sx * a2);
-        a1 = Math.E ** auxA1;
-        this.lnca1 = auxA1.toFixed(3);
-        this.ca1 = a1.toFixed(3);
-        this.ca2 = a2.toFixed(3);
+        let delta = this.n * sx2 - sx * sx;
+        if (delta != 0){
+          a = (sy * sx2 - sx * syx) / delta;
+          a = 1 / a;
+          b = (this.n * syx - sy * sx) / delta;
+          b = b * a;
+        }
+        this.ca = a.toFixed(3);
+        this.cb = b.toFixed(3);
         this.csx = sx.toFixed(3);
         this.csx2 = sx2.toFixed(3);
         this.csy = sy.toFixed(3);
         this.csyx = syx.toFixed(3);
-        this.fx = this.ca1 + "* e^" + this.ca2 + "x" ; 
+        this.fx = this.ca + "x / (x + " + this.cb + ')'; 
       }
       
       let dt = {"scatterDots" : [], "lineDots": [], "fx": this.fx};
@@ -100,11 +97,10 @@ export class ExponentialComponent implements OnInit, OnDestroy {
         });
         dt.lineDots.push({
           "x": d.x,
-          "y": a1 * Math.E ** (a2 * d.x),
+          "y": ((a * d.x) / (d.x + b)),
         });
       });
-      
-      console.log("A1 = " + this.ca1 + "; A2 = " + this.ca2);
+      console.log("A = " + this.ca + "; B = " + this.cb);
       this.data = JSON.stringify(dt);
     }
   }

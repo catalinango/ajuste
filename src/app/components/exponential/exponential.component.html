@@ -15,9 +15,9 @@
                 <span>En este caso la función no es lineal por lo cual debemos linealizarla</span>
                 $$
                 \begin{{'{'}}align{{'}'}}
-                 ln \ y = ln \ a_1 + ln \ e^{{'{'}}a_2x{{'}'}} && \Rightarrow ln \ y = ln \ a_1 + a_2x \ \underbrace
+                ln \ y = ln \ a_1 + ln \ e^{{'{'}}a_2x{{'}'}} && \Rightarrow ln \ y = ln \ a_1 + a_2x \ \underbrace
                 {{'{'}}ln \ e{{'}'}}_1\\
-                 &&  \Rightarrow ln \ y = ln \ a_1 + a_2x
+                &&  \Rightarrow ln \ y = ln \ a_1 + a_2x
                 \end{{'{'}}align{{'}'}}
                 $$
               </div>
@@ -52,145 +52,148 @@
               </div>
               <p>Tomamos como ejemplo la tabla de valores ingresada (Ver en gráfica).
                 <br>Ajustamos a una exponencial: <em>y = a<sub>1</sub> + e <sup>a<sub>2</sub>x</sup></em> </p>
-              <div class="row" style="padding: 0; margin: 0; border: 0;">
-                <div [appMath] class="col-md-3 col-xs-12" style="padding: 0; margin: 0; border: 0;">
-                  $$
-                  \ n = {{n}} \\
-                  \sum_{{'{'}}i=1{{'}'}}^n x_i = {{csx}}\\
-                  \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{csx2}}
-                  $$
+                <div class="row" style="padding: 0; margin: 0; border: 0;">
+                  <div [appMath] class="col-md-3 col-xs-12" style="padding: 0; margin: 0; border: 0;">
+                    $$
+                    \ n = {{n}} \\
+                    \sum_{{'{'}}i=1{{'}'}}^n x_i = {{csx}}\\
+                    \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{csx2}}
+                    $$
+                  </div>
+                  <div [appMath] class="col-md-3 col-xs-12">
+                    $$
+                    \ \\
+                    \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i = {{csy}}\\[2ex]
+                    \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot x_i = {{csyx}}
+                    $$
+                  </div>
                 </div>
-                <div [appMath] class="col-md-3 col-xs-12">
-                  $$
-                  \ \\
-                  \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i = {{csy}}\\[2ex]
-                  \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot x_i = {{csyx}}
-                  $$
-                </div>
-              </div>
-            </div>
-            <!-- /.col -->
-            <div class="col-6" style="padding: 0; margin: 0; border: 0;">
-              <div [appMath] class="row">
-                $$
-                \begin{{'{'}}bmatrix{{'}'}}
-                \ n & \sum_{{'{'}}i=1{{'}'}}^n x_i \\
-                \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2
-                \end{{'{'}}bmatrix{{'}'}}
-                \cdot
-                \begin{{'{'}}bmatrix{{'}'}}
-                ln \ a_1\\
-                a_2
-                \end{{'{'}}bmatrix{{'}'}}
-                =
-                \begin{{'{'}}bmatrix{{'}'}}
-                \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i\\
-                \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot x_i
-                \end{{'{'}}bmatrix{{'}'}}\\
-                \Rightarrow
-                \begin{{'{'}}bmatrix{{'}'}}
-                {{n}} & {{csx}} \\
-                {{csx}} & {{csx2}}
-                \end{{'{'}}bmatrix{{'}'}}
-                \cdot
-                \begin{{'{'}}bmatrix{{'}'}}
-                ln \ a_1\\
-                a_2
-                \end{{'{'}}bmatrix{{'}'}}
-                =
-                \begin{{'{'}}bmatrix{{'}'}}
-                {{csy}}\\
-                {{csyx}}
-                \end{{'{'}}bmatrix{{'}'}}
-                $$
-              </div>
-              <span>Armamos un sistema de ecuaciones:</span>
-              <div [appMath] class="row">
-                $$
-                \begin{{'{'}}cases{{'}'}}
-                {{n}} \ ln \ a_1 + {{csx}}a_2 = {{csy}}\\
-                {{csx}} \ ln \ a_1 + {{csx2}}a_2 = {{csyx}}
-                \end{{'{'}}cases{{'}'}}\\
-                $$
-              </div>
-              <span>Resolviendo el sistema nos queda:</span>
-              <div [appMath] class="row">
-                $$
-                a_2 = {{ca2}}\\
-                ln \ a_1=\frac{{'{'}}{{csy}}-({{csx}} \cdot {{ca2}}){{'}'}}{{'{'}}{{n}}{{'}'}}
-                \Rightarrow ln \ a_1={{lnca1}}\\
-                a_1=e^{{'{'}}{{lnca1}} {{'}'}}\Rightarrow a_1 = {{ca1}}
-                $$
-              </div>
-              <div [appMath]>
-                $$
-                \bbox[5px,border:3px solid red]
-                {{'{'}}
-                \mathcal y(x) = {{ca1}} \cdot e^{{'{'}}{{ca2}}x{{'}'}}
-                {{'}'}}
-                $$
-              </div>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.callout -->
-      </div>
-      <!-- /.col-12 -->
-      <div class="col-12">
-        <div class="card card-secondary card-outline">
-          <div class="card-header">
-            <h5 class="card-title">f(x) = {{fx}}</h5>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <div class="row">
-
-              <div class="col-10">
-                <h5>Gráfica</h5>
-                <app-linear-plot [data]="data" [fx]="fx"></app-linear-plot>
               </div>
               <!-- /.col -->
-              <div class="col-2 text-left">
-                <p class="text-left">Puntos Analizados</p>
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th class="text-center">x</th>
-                      <th class="text-center">y(x)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let d of dots; let i = index">
-                      <td>{{ i + 1  }}</td>
-                      <td class="text-center">
-                        <span>{{ d.x }}</span>
-                      </td>
-                      <td class="text-center">
-                        <span>{{ d.y }}</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class="col-6" style="padding: 0; margin: 0; border: 0;">
+                <div [appMath] class="row">
+                  $$
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  \ n & \sum_{{'{'}}i=1{{'}'}}^n x_i \\
+                  \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \cdot
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  ln \ a_1\\
+                  a_2
+                  \end{{'{'}}bmatrix{{'}'}}
+                  =
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i\\
+                  \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot x_i
+                  \end{{'{'}}bmatrix{{'}'}}\\
+                  \Rightarrow
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  {{n}} & {{csx}} \\
+                  {{csx}} & {{csx2}}
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \cdot
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  ln \ a_1\\
+                  a_2
+                  \end{{'{'}}bmatrix{{'}'}}
+                  =
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  {{csy}}\\
+                  {{csyx}}
+                  \end{{'{'}}bmatrix{{'}'}}
+                  $$
+                </div>
+                <span>Armamos un sistema de ecuaciones:</span>
+                <div [appMath] class="row">
+                  $$
+                  \begin{{'{'}}cases{{'}'}}
+                  {{n}} \ ln \ a_1 + {{csx}}a_2 = {{csy}}\\
+                  {{csx}} \ ln \ a_1 + {{csx2}}a_2 = {{csyx}}
+                  \end{{'{'}}cases{{'}'}}\\
+                  $$
+                </div>
+                <span>Resolviendo el sistema nos queda:</span>
+                <div [appMath] class="row">
+                  $$
+                  a_2 = {{ca2}}\\
+                  ln \ a_1=\frac{{'{'}}{{csy}}-({{csx}} \cdot {{ca2}}){{'}'}}{{'{'}}{{n}}{{'}'}}
+                  \Rightarrow ln \ a_1={{lnca1}}\\
+                  a_1=e^{{'{'}}{{lnca1}} {{'}'}}\Rightarrow a_1 = {{ca1}}
+                  $$
+                </div>
+                <div [appMath]>
+                  $$
+                  \bbox[5px,border:3px solid red]
+                  {{'{'}}
+                  \mathcal y(x) = {{ca1}} \cdot e^{{'{'}}{{ca2}}x{{'}'}}
+                  {{'}'}}
+                  $$
+                </div>
               </div>
               <!-- /.col -->
             </div>
             <!-- /.row -->
           </div>
-          <!-- /.card-body -->
+          <!-- /.callout -->
+        </div> 
+        <!-- /.col-12 -->
+        
+        <div class="col-lg-9">
+          <div class="card card-success card-outline">
+            <div class="card-header">
+              <h3 class="card-title text-navy"> GRAFICA <em> f(x) = {{fx}}</em></h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <app-plot [data]="data"></app-plot>
+            </div>
+            <!-- ./card-body -->
+          </div>
+          <!-- /.card -->
         </div>
-        <!-- /.card -->
+        <!-- /.col-lg-9 -->
+  
+        <div class="col-lg-3">
+          <div class="card card-success card-outline">
+            <div class="card-header">
+              <h3 class="card-title text-navy"> Datos Analizados</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table #dotsTable class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th class="text-center">x</th>
+                    <th class="text-center">y(x)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let d of dots; let i = index">
+                    <td>{{ i + 1  }}</td>
+                    <td class="text-center">
+                      <span>{{ d.x }}</span>
+                    </td>
+                    <td class="text-center">
+                      <span>{{ d.y }}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- ./card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col-lg-3 -->
+          
+        </div>
+        <!-- ./row-->
+        
+        <app-error [error]="errMsg" [noDots]="noDots"></app-error>
+        <!-- /.error-page -->
+        
       </div>
-      <!-- /.col -->
-
-    </div>
-    <!-- ./row-->
-
-    <app-error [error]="errMsg" [noDots]="noDots"></app-error>
-    <!-- /.error-page -->
-
-  </div>
-  <!-- /.container-fluid-->
-</section>
+      <!-- /.container-fluid-->
+    </section>

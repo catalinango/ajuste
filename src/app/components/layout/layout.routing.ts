@@ -7,6 +7,7 @@ import { LinearComponent } from '../linear/linear.component';
 import { PolynomialComponent } from '../polynomial/polynomial.component';
 import { ExponentialComponent } from '../exponential/exponential.component';
 import { PotentialComponent } from '../potential/potential.component';
+import { QuotientComponent } from '../quotient/quotient.component';
 import { GoodnessOfFitComponent } from '../goodness-of-fit/goodness-of-fit.component';
 
 export const LayoutRoutes: Routes = [
@@ -18,5 +19,6 @@ export const LayoutRoutes: Routes = [
     { path: 'polinomico', component: PolynomialComponent },
     { path: 'exponencial', component: ExponentialComponent },
     { path: 'potencial', component: PotentialComponent },
+    { path: 'cociente', component: QuotientComponent },
     { path: 'bondad', component: GoodnessOfFitComponent }
 ]

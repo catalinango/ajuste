@@ -1,0 +1,177 @@
+<!-- Main content -->
+<section class="content px-2">
+    <div class="container-fluid">
+        <div class="row" *ngIf="dots && n > 1 && !errMsg">
+            <div class="col-lg-12">
+                <div class="callout callout-info px-5">
+                    <h5 class="text-navy"> ANALISIS </h5>
+                    <span>La función empírica es un cociente:</span>
+                    <div class="row">
+                        <div class="col-6">
+                            <div [appMath]>
+                                $$ 
+                                y = \frac{{'{'}}Ax{{'}'}}{{'{'}}x + B{{'}'}}\\
+                                \text{{'{'}}Reformulamos la función: {{'}'}} \\
+                                \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}x + B{{'}'}}{{'{'}}Ax{{'}'}}
+                                \Rightarrow 
+                                \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}x{{'}'}}{{'{'}}Ax{{'}'}} + \frac{{'{'}}B{{'}'}}{{'{'}}Ax{{'}'}}
+                                \Rightarrow  \\
+                                \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}x{{'}'}}{{'{'}}Ax{{'}'}} + \frac{{'{'}}B{{'}'}}{{'{'}}Ax{{'}'}}
+                                \Rightarrow  
+                                \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}1{{'}'}}{{'{'}}A{{'}'}} + \frac{{'{'}}B{{'}'}}{{'{'}}A{{'}'}}\cdot\frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}}\\
+                                \text{{'{'}}Comparando con la recta nos queda: {{'}'}} \\
+                                \begin{{'{'}}align{{'}'}}
+                                y = ax + b && \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}1{{'}'}}{{'{'}}A{{'}'}} + \frac{{'{'}}B{{'}'}}{{'{'}}A{{'}'}}\cdot\frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}}\\
+                                y \Rightarrow \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} && b \Rightarrow  \frac{{'{'}}1{{'}'}}{{'{'}}A{{'}'}}\\
+                                a \Rightarrow  \frac{{'{'}}B{{'}'}}{{'{'}}A{{'}'}} && x \Rightarrow  \frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}}
+                                \end{{'{'}}align{{'}'}}\\
+                                $$
+                                <span>
+                                    Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> (Ver análisis inicial)</a>.
+                                    El sistema de ecuaciones resulta: 
+                                </span>
+                            </div>
+                            <div [appMath]>
+                                $$
+                                \begin{{'{'}}bmatrix{{'}'}}
+                                n & \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}} \\
+                                \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_1{{'}'}} & \sum_{{'{'}}i=1{{'}'}}^n \left( \frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}} \right)^2 \\
+                                \end{{'{'}}bmatrix{{'}'}}
+                                \cdot
+                                \begin{{'{'}}bmatrix{{'}'}}
+                                \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}}\\
+                                \frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}}
+                                \end{{'{'}}bmatrix{{'}'}}
+                                =
+                                \begin{{'{'}}bmatrix{{'}'}}
+                                \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}y_i{{'}'}}\\
+                                \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}y_i{{'}'}} \cdot \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}}\\
+                                \end{{'{'}}bmatrix{{'}'}}\\
+                                $$
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-6" style="padding: 0; margin: 0; border: 0;">
+                            <span>Tomamos como ejemplo la tabla de valores ingresada. Ajustamos a una potencial:</span>
+                            <div [appMath] class="col-6 col-xs-12">
+                                $$
+                                \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}1{{'}'}}{{'{'}}A{{'}'}} + \frac{{'{'}}B{{'}'}}{{'{'}}A{{'}'}}\cdot\frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}}\\
+                                \begin{{'{'}}align{{'}'}}
+                                n = {{n}} && \ \\
+                                \sum_{{'{'}}i=1{{'}'}}^n x_i = {{csx}} && \sum_{{'{'}}i=1{{'}'}}^n y_i = {{csy}}\\
+                                \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{csx2}} && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i = {{csyx}}
+                                \end{{'{'}}align{{'}'}}\\
+                                \begin{{'{'}}bmatrix{{'}'}}
+                                n & \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}} \\
+                                \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_1{{'}'}} & \sum_{{'{'}}i=1{{'}'}}^n \left( \frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}} \right)^2 \\
+                                \end{{'{'}}bmatrix{{'}'}}
+                                \cdot
+                                \begin{{'{'}}bmatrix{{'}'}}
+                                \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}}\\
+                                \frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}}
+                                \end{{'{'}}bmatrix{{'}'}}
+                                =
+                                \begin{{'{'}}bmatrix{{'}'}}
+                                \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}y_i{{'}'}}\\
+                                \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}y_i{{'}'}} \cdot \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}}\\
+                                \end{{'{'}}bmatrix{{'}'}}\\
+                                \Rightarrow
+                                \begin{{'{'}}bmatrix{{'}'}}
+                                {{n}} & {{csx}} \\
+                                {{csx}} & {{csx2}} 
+                                \end{{'{'}}bmatrix{{'}'}}
+                                \cdot
+                                \begin{{'{'}}bmatrix{{'}'}}
+                                \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}}\\
+                                \frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}}
+                                \end{{'{'}}bmatrix{{'}'}}
+                                =
+                                \begin{{'{'}}bmatrix{{'}'}}
+                                {{csy}}\\
+                                {{csyx}}
+                                \end{{'{'}}bmatrix{{'}'}}
+                                $$
+                            </div>
+                            <span>Armamos un sistema de ecuaciones y lo resolvemos:</span>
+                            <div [appMath] class="col-6 col-xs-12">
+                                $$
+                                \begin{{'{'}}cases{{'}'}}
+                                {{n}} \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}} + {{csx}}\frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}} = {{csy}}\\
+                                {{csx}} \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}} + {{csx2}}\frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}} = {{csyx}}
+                                \end{{'{'}}cases{{'}'}}\\
+                                \begin{{'{'}}align{{'}'}}
+                                a = {{ca}}  && ; && b = {{cb}}
+                                \end{{'{'}}align{{'}'}}\\
+                                \bbox[5px,border:3px solid red]
+                                {{'{'}}
+                                \mathcal y(x) = \frac{{'{'}}{{ca}}x{{'}'}}{{'{'}}x + {{cb}}{{'}'}}
+                                {{'}'}}
+                                $$
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.callout -->
+            </div>
+            <!-- /.col-lg-12 -->
+            
+            <div class="col-lg-9">
+                <div class="card card-success card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title text-navy"> GRAFICA <em> f(x) = {{fx}}</em></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <app-plot [data]="data"></app-plot>
+                    </div>
+                    <!-- ./card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col-lg-9 -->
+            
+            <div class="col-lg-3">
+                <div class="card card-success card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title text-navy"> Datos Analizados</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table #dotsTable class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th class="text-center">x</th>
+                                    <th class="text-center">y(x)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let d of dots; let i = index">
+                                    <td>{{ i + 1  }}</td>
+                                    <td class="text-center">
+                                        <span>{{ d.x }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span>{{ d.y }}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- ./card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col-lg-3 -->
+            
+        </div>
+        <!-- ./row-->
+        
+        <app-error [error]="errMsg" [noDots]="noDots"></app-error>
+        <!-- /.error-page -->
+        
+    </div>
+    <!-- /.container-fluid-->
+</section>
