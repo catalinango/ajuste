@@ -1,24 +1,126 @@
 <!-- Main content -->
 <section class="content px-2">
   <div class="container-fluid">
-       <div class="card card-secondary card-outline" *ngIf="dots && n > 1 && !errMsg">
+    <div class="row" *ngIf="dots && n > 1 && !errMsg">
+      <div class="col-lg-12">
+        <div class="callout callout-info px-5">
+          <h5 class="text-navy"> BONDAD DEL AJUSTE </h5>
+          <div class="row">
+            <div class="col-6">
+              <p>Es un parámetro que nos permite estimar si el ajuste realizado con respecto a los datos experimentales
+                que
+                teníamos ha sido efectivo o no. Se podría obtener arbitrariamente, por ejemplo, un ajuste lineal para
+                una
+                nube de puntos dada, y sin embargo podría suceder que los valores no tuvieran precisamente una
+                distribución
+                lineal, entonces con el cálculo de la bondad del ajuste se puede verificar si el ajuste realizado ha
+                sido
+                realmente efectivo. <br>
+              </p>
+              <p>Cálculo del error cometido:
+                <span [appMath]> $ \ \varepsilon = (y - y') \Rightarrow y = y' + \varepsilon$</span>
+              </p>
+              <p class="my-0">Hay tres métodos para estimar los errores</p>
+              <ol>
+                <li>Suma de los errores <span [appMath]> $ \ SE = \sum \varepsilon_i \Rightarrow \sum (y-y')</span></li>
+                <li>Suma de los valores absolutos de los errores <span [appMath]>$ \ SAE = \sum | \varepsilon_i
+                    |$</span></li>
+                <li>Suma de los cuadrados de los errores <span [appMath]>$ \ SCE = \sum | \varepsilon_i |^2 =
+                    SC_{{'{'}}yx{{'}'}}$</span></li>
+              </ol>
+              <p class="my-0">Esta suma oscila entre cero y cualquier valor positivo, cuanto más ses acerque a cero
+                mejor será el
+                ajuste, como no tenemos un techo, este índice puede resultar dificil de interpretar en la práctica.
+              </p>
+              <p class="my-0">Un índice derivado del anterior es el obtenido como media aritmética del cuadrado de los
+                errores de
+                predicción, esto es, el resultado de dividir la SCE por n, el cual se denomina varianza de los errores
+                (S<sub>yx</sub><sup>2</sup>) de nuevo este índice tiene el mismo problema que el SCE.
+              </p>
+              <div [appMath] class="text-center">
+                $ S_{{'{'}}yx{{'}'}}^2 = \frac{{'{'}}\sum (y - y')^2{{'}'}}{{'{'}}n{{'}'}}$
+              </div>
+
+            </div>
+            <!-- /.col-6 -->
+            <div class="col-6">
+              <p class="my-0">
+                Otro índice que supera este problema es el que se conoce como igualdad de la
+                descomposición de la
+                varianza de Y, la cual se deriva del axioma que establece que la puntuación observada en la variable de
+                respuesta es igual a la predicha según el modelo de ajuste más el error de predicción cometido: <span
+                  [appMath]> $y_i = y_i + \varepsilon_i$</span> a partir de esta igualdad se puede derivar
+                algebraicamente lo siguiente: SC<sub>y</sub> = SC<sub>y'</sub> + SC<sub>yx</sub> o lo que es lo mismo:
+                <br>
+                <span class="text-center"></span>
+              </p>
+              <div [appMath] class="text-center">
+                $ \sum (y_i - \overline y )^2 = \sum (y_i' - \overline y)^2 + \sum (y_i - y_i^2)^2 con \overline y =
+                \sum \frac{{'{'}}y_i{{'}'}}{{'{'}}n{{'}'}}$
+              </div>
+              <p class="my-0">
+                Si dividimos cada término por n tenemos la misma igualdad en forma de varianza.
+              </p>
+              <div [appMath] class="text-center"> $ S_y^2 = S_{{'{'}}y'{{'}'}}^2 + S_{{'{'}}yx{{'}'}}^2$</div>
+              <p class="my-0">
+                Como consecuencia de la igualdad de descomposición de las varianzas, se puede plantear un índice de la
+                bondad de ajuste como razón de la varianza aplicada por el modelo de ajuste
+                <span [appMath]>$ \ S_{{'{'}}y'{{'}'}}^2 $</span> respecto a la varianza total
+                <span [appMath]>$ \ S_{{'{'}}y{{'}'}}^2$</span>
+              </p>
+              <p class="my-0">
+                Esta razón es conocida como coeficiente de determinación R<sup>2</sup>. Este coeficiente oscila entre
+                cero y uno, de modo que cuanto más próximo sea a uno, indicará mejor bondad de ajuste, y si es igual a
+                uno, el ajuste será perfecto.
+              </p>
+              <div [appMath] class="text-center">
+                $ R^2 = \frac{{'{'}} S_{{'{'}}y'{{'}'}}^2 {{'}'}}{{'{'}} S_{{'{'}}y{{'}'}}^2{{'}'}}$
+              </div>
+            </div>
+            <!-- /.col-6 -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.callout -->
+      </div>
+      <!-- /.col-lg-12 -->
+
+      <div class="col-lg-9">
+        <div class="card card-success card-outline">
           <div class="card-header">
-            <h5 class="card-title">Bondad del Ajuste</h5>
+            <h3 class="card-title text-navy"> GRAFICA <em> f(x) = {{fx}}</em></h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            
+            <app-plot [data]="data"></app-plot>
           </div>
           <!-- ./card-body -->
-          <div class="card-footer">
-           
-          </div>
-          <!-- /.card-footer -->
         </div>
         <!-- /.card -->
+      </div>
+      <!-- /.col-lg-9 -->
 
-        <app-error [error]="errMsg" [noDots]="noDots"></app-error>
-        <!-- /.error-page -->
-        
+      <div class="col-lg-3">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy"> Datos Analizados</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+
+          </div>
+          <!-- ./card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col-lg-3 -->
+
+    </div>
+    <!-- ./row-->
+
+    <app-error [error]="errMsg" [noDots]="noDots"></app-error>
+    <!-- /.error-page -->
+
   </div>
+  <!-- /.container-fluid-->
 </section>
