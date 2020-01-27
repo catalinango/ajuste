@@ -4,120 +4,109 @@
     <div class="row" *ngIf="dots !== undefined && n > 1 && !errMsg">
       <div class="col-12">
         <div class="callout callout-info">
-          <h5> Análisis:</h5>
-          <p>La función empírica es una potencial:</p>
+          <h5 class="text-navy"> ANALISIS - CUANDO LA FUNCION EMPIRICA ES POTENCIAL</h5>
           <div class="row">
-            <div class="col-6">
-              <div [appMath]>
-                $$ 
-                \mathcal f (x; a_1; a_2) \Rightarrow y = a_1x^{{'{'}}a_2{{'}'}} \ \text{{'{'}}debemos linealizar{{'}'}} \\
-                ln \ y = ln \ a_1 + ln \ x^{{'{'}}a_2{{'}'}} \Rightarrow ln \ y = ln \ a_1 + a_2 \ ln \ x
-                $$
-              </div>
-              <span>Comparando con la recta nos queda:</span>
-              <div [appMath]>
-              $$
-              \begin{{'{'}}align{{'}'}}
-              y = a_1 + a_2x && ln \ y = ln \ a_1 + a_2 \ln \ x \\
-              y \Rightarrow ln \ y && a_2 = a_2\\
-              a_1 \Rightarrow ln \ a_1 && x \Rightarrow ln \ x
-              \end{{'{'}}align{{'}'}}
-              $$
-              </div>
+            <div class="col-12 col-md-5">
               <p>
-                Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> (Ver análisis inicial)</a>.
-                Resulta:
+                <span [appMath]>
+                  $ \mathcal f (x; a_1; a_2) \Rightarrow y = a_1x^{{'{'}}a_2{{'}'}} $
+                </span>
               </p>
-              <div [appMath]>
-                $$
-                \begin{{'{'}}bmatrix{{'}'}}
-                n & \sum_{{'{'}}i=0{{'}'}}^n ln \ x_i \\
-                \sum_{{'{'}}i=0{{'}'}}^n ln \ x_i & \sum_{{'{'}}i=0{{'}'}}^n ln \ x_i^2 \\
-                \end{{'{'}}bmatrix{{'}'}}
-                \cdot
-                \begin{{'{'}}bmatrix{{'}'}}
-                ln \ a_1\\
-                a_2\\
-                \end{{'{'}}bmatrix{{'}'}}
-                =
-                \begin{{'{'}}bmatrix{{'}'}}
-                \sum_{{'{'}}i=0{{'}'}}^n ln \ y_i\\
-                \sum_{{'{'}}i=0{{'}'}}^n ln \ y_i \cdot ln \ x_i\\
-                \end{{'{'}}bmatrix{{'}'}}
-                $$
-              </div>
-              <p>Tomamos como ejemplo la tabla de valores ingresada (Ver en gráfica).
-                <br>Ajustamos a una exponencial: <em>y = a<sub>1</sub> x <sup>a<sub>2</sub></sup></em> </p>
-                <div class="row" style="padding: 0; margin: 0; border: 0;">
-                  <div [appMath] class="col-md-3 col-xs-12" style="padding: 0; margin: 0; border: 0;">
-                    $$
-                    \ n = {{n}} \\
-                    \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i = {{csx}}\\
-                    \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i^2 = {{csx2}}
-                    $$
-                  </div>
-                  <div [appMath] class="col-md-3 col-xs-12">
-                    $$
-                    \ \\
-                    \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i = {{csy}}\\[2ex]
-                    \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot ln \ x_i = {{csyx}}
-                    $$
-                  </div>
-                </div>
+              <p>
+                En este caso la función no es lineal por lo cual debemos linealizarla: <br>
+                <span [appMath]>
+                  $ ln \ y = ln \ a_1 + ln \ x^{{'{'}}a_2{{'}'}} \Rightarrow ln \ y = ln \ a_1 + a_2 \ ln \ x $
+                </span>
+              </p>
+              <p>
+                Comparando la expresión anterior con la fórmula empírica de la recta nos queda: <br>
+                <span [appMath]>
+                  $ \begin{{'{'}}align{{'}'}}
+                  y = a_1 + a_2x && ln \ y = ln \ a_1 + a_2 \ln \ x \\
+                  y \Rightarrow ln \ y && a_2 = a_2\\
+                  a_1 \Rightarrow ln \ a_1 && x \Rightarrow ln \ x
+                  \end{{'{'}}align{{'}'}} $
+                </span>
+              </p>
+              <p>
+                Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> (Ver análisis
+                  inicial)</a>. Resulta: <br>
+                <span [appMath]>
+                  $ \begin{{'{'}}bmatrix{{'}'}}
+                  n & \sum_{{'{'}}i=0{{'}'}}^n ln \ x_i \\
+                  \sum_{{'{'}}i=0{{'}'}}^n ln \ x_i & \sum_{{'{'}}i=0{{'}'}}^n ln \ x_i^2 \\
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \cdot
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  ln \ a_1\\
+                  a_2\\
+                  \end{{'{'}}bmatrix{{'}'}}
+                  =
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  \sum_{{'{'}}i=0{{'}'}}^n ln \ y_i\\
+                  \sum_{{'{'}}i=0{{'}'}}^n ln \ y_i \cdot ln \ x_i\\
+                  \end{{'{'}}bmatrix{{'}'}} $
+                </span>
+              </p>
+              <p>
+                Tomamos como ejemplo la tabla de valores ingresada. <br>
+                Ajustamos a una exponencial: <span [appMath]> $ y = a_1 x^{{'{'}}a_2{{'}'}} $</span>
+               </p>
             </div>
-            <!-- /.col -->
-            <div class="col-6">
-              <div [appMath] class="row">
-                $$
-                \begin{{'{'}}bmatrix{{'}'}}
-                \ n & \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i \\
-                \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i & \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i^2
-                \end{{'{'}}bmatrix{{'}'}}
-                \cdot
-                \begin{{'{'}}bmatrix{{'}'}}
-                ln \ a_1\\
-                a_2
-                \end{{'{'}}bmatrix{{'}'}}
-                =
-                \begin{{'{'}}bmatrix{{'}'}}
-                \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i\\
-                \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot ln \ x_i
-                \end{{'{'}}bmatrix{{'}'}}\\
-                \Rightarrow
-                \begin{{'{'}}bmatrix{{'}'}}
-                {{n}} & {{csx}} \\
-                {{csx}} & {{csx2}}
-                \end{{'{'}}bmatrix{{'}'}}
-                \cdot
-                \begin{{'{'}}bmatrix{{'}'}}
-                ln \ a_1\\
-                a_2
-                \end{{'{'}}bmatrix{{'}'}}
-                =
-                \begin{{'{'}}bmatrix{{'}'}}
-                {{csy}}\\
-                {{csyx}}
-                \end{{'{'}}bmatrix{{'}'}}
-                $$
-              </div>
-              <span>Armamos un sistema de ecuaciones:</span>
-              <div [appMath] class="row">
-                $$
-                \begin{{'{'}}cases{{'}'}}
-                {{n}} \ ln \ a_1 + {{csx}}a_2 = {{csy}}\\
-                {{csx}} \ ln \ a_1 + {{csx2}}a_2 = {{csyx}}
-                \end{{'{'}}cases{{'}'}}\\
-                $$
-              </div>
-              <span>Resolviendo el sistema nos queda:</span>
-              <div [appMath] class="row">
-                $$
-                a_2 = {{ca2}}\\
-                ln \ a_1=\frac{{'{'}}{{csy}}-({{csx}} \cdot {{ca2}}){{'}'}}{{'{'}}{{n}}{{'}'}}
-                \Rightarrow ln \ a_1={{lnca1}}\\
-                a_1=e^{{'{'}}{{lnca1}} {{'}'}}\Rightarrow a_1 = {{ca1}}
-                $$
-              </div>
+            <!-- /.col-md-5 -->
+            <div class="col-12 col-md-7">
+              <p>
+              <span [appMath]>
+                  $ \begin{{'{'}}align{{'}'}}
+                  n = {{n}} && \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i = {{csx}} && \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i^2 =
+                  {{csx2}}
+                  && \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i = {{csy}} && \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot ln \ x_i =
+                  {{csyx}}
+                  \end{{'{'}}align{{'}'}} \\
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  \ n & \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i \\
+                  \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i & \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i^2
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \cdot
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  ln \ a_1\\
+                  a_2
+                  \end{{'{'}}bmatrix{{'}'}}
+                  =
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i\\
+                  \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot ln \ x_i
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \Rightarrow
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  {{n}} & {{csx}} \\
+                  {{csx}} & {{csx2}}
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \cdot
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  ln \ a_1\\
+                  a_2
+                  \end{{'{'}}bmatrix{{'}'}}
+                  =
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  {{csy}}\\
+                  {{csyx}}
+                  \end{{'{'}}bmatrix{{'}'}} $
+                </span>
+              </p>
+              <p>
+                Armamos un sistema de ecuaciones y lo resolvemos:<br>
+                <span [appMath]>
+                  $ \begin{{'{'}}cases{{'}'}}
+                  {{n}} \ ln \ a_1 + {{csx}}a_2 = {{csy}}\\
+                  {{csx}} \ ln \ a_1 + {{csx2}}a_2 = {{csyx}}
+                  \end{{'{'}}cases{{'}'}} \\
+                  a_2 = {{ca2}}\\
+                  ln \ a_1=\frac{{'{'}}{{csy}}-({{csx}} \cdot {{ca2}}){{'}'}}{{'{'}}{{n}}{{'}'}}
+                  \Rightarrow ln \ a_1={{lnca1}}\\
+                  a_1=e^{{'{'}}{{lnca1}} {{'}'}}\Rightarrow a_1 = {{ca1}} $
+                </span>
+              </p>
               <div [appMath]>
                 $$
                 \bbox[5px,border:3px solid red]
@@ -127,14 +116,14 @@
                 $$
               </div>
             </div>
-            <!-- /.col -->
+            <!-- /.col-md-7 -->
           </div>
           <!-- /.row -->
         </div>
         <!-- /.callout -->
       </div>
       <!-- /.col-12 -->
-           
+
       <div class="col-lg-9">
         <div class="card card-success card-outline">
           <div class="card-header">
@@ -142,7 +131,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-              <app-plot [data]="data"></app-plot>
+            <app-plot [data]="data"></app-plot>
           </div>
           <!-- ./card-body -->
         </div>
@@ -183,13 +172,13 @@
         <!-- /.card -->
       </div>
       <!-- /.col-lg-3 -->
-      
+
     </div>
     <!-- ./row-->
-    
+
     <app-error [error]="errMsg" [noDots]="noDots"></app-error>
     <!-- /.error-page -->
-      
-    </div>
-    <!-- /.container-fluid-->
-  </section>
+
+  </div>
+  <!-- /.container-fluid-->
+</section>

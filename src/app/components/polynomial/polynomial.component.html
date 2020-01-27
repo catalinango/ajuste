@@ -4,133 +4,120 @@
     <div class="row" *ngIf="dots && n > 1 && !errMsg">
       <div class="col-12">
         <div class="callout callout-info px-5">
-          <h5 class="text-navy"> ANALISIS</h5>
+          <h5 class="text-navy"> ANALISIS - CUANDO LA FUNCION EMPIRICA ES UN POLINOMIO DE SEGUNDO GRADO</h5>
           <div class="row">
-            <div class="col-6">
-              <span>La función empírica es un polinomio de segundo grado:</span>
-              <div [appMath] class="row">
-                $$
-                \mathcal f (x, a_1, a_2, a_3) \Rightarrow y = a_1 + a_2x + a_3x^2 \Rightarrow \text{{'{'}}ecuación cuadrática{{'}'}} \\
-                \mathcal Entonces: \phi _1 (x)=1 \land \phi _2(x)=x \land \phi _3 (x)=x^2 
-                $$
-              </div>
-              <span>
+            <div class="col-12 col-md-9">
+              <p>
+                <span [appMath]>
+                  $ \mathcal f (x, a_1, a_2, a_3) \Rightarrow y = a_1 + a_2x + a_3x^2 \Rightarrow $
+                </span>
+                Ecuación cuadrática <br>
+                Entonces:
+                <span [appMath]> $ \phi _1 (x)=1 \land \phi _2(x)=x \land \phi _3 (x)=x^2 $ </span>
+              </p>
+              <p>
                 Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> (Ver análisis inicial)</a>.
-                Para este caso tenemos:
-              </span>
-              <div [appMath] class="row">
-                $$
-                \begin{{'{'}}cases{{'}'}}
-                \ a_1  \cdot \sum_{{'{'}}i=1{{'}'}}^n 1 + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i + a_3 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = \sum_{{'{'}}i=1{{'}'}}^n y_i  \\
-                \ a_1 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^2 + a_3 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^3 =  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i \\
-                \ a_1 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^2 + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^3 + a_3 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^4 =  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2 
-                \end{{'{'}}cases{{'}'}}\\
-                \Rightarrow
-                \begin{{'{'}}bmatrix{{'}'}}
-                \ n & \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 \\
-                \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 & \sum_{{'{'}}i=1{{'}'}}^n x_i^3 \\
-                \sum_{{'{'}}i=1{{'}'}}^n x_i^2 & \sum_{{'{'}}i=1{{'}'}}^n x_i^3 & \sum_{{'{'}}i=1{{'}'}}^n x_i^4
-                \end{{'{'}}bmatrix{{'}'}}
-                \cdot
-                \begin{{'{'}}bmatrix{{'}'}}
-                a_1\\
-                a_2\\
-                a_3
-                \end{{'{'}}bmatrix{{'}'}}
-                =
-                \begin{{'{'}}bmatrix{{'}'}}
-                \sum_{{'{'}}i=1{{'}'}}^n y_i\\
-                \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i\\
-                \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2\\
-                \end{{'{'}}bmatrix{{'}'}}
-                $$
-              </div>            
-              <p>Tomamos como ejemplo la tabla de valores ingresada (Ver en gráfica). 
-              <br>Ajustamos a un polinomio de segundo grado: <em>y = a<sub>1</sub> + a<sub>2</sub>x + a<sub>1</sub>x<sup>3</sup></em></p>
-              <div class="row">
-                <div [appMath] class="col-md-3 col-xs-12">
-                  $$ 
-                  n = {{n}} \\[2ex]
-                  \sum_{{'{'}}i=1{{'}'}}^n x_i = {{csx}}\\
-                  \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{csx2}}\\
-                  $$                 
-                </div>
-                <div [appMath] class="col-md-3 col-xs-12">
-                  $$
-                  \sum_{{'{'}}i=1{{'}'}}^n x_i^4 = {{csx4}}\\
-                  \sum_{{'{'}}i=1{{'}'}}^n y_i = {{csy}}\\
-                  \sum_{{'{'}}i=1{{'}'}}^n x_i^4 = {{csx4}}\\
-                  $$
-                </div>
-                <div [appMath] class="col-md-3 col-xs-12">
-                  $$
-                  \sum_{{'{'}}i=1{{'}'}}^n y_i = {{csy}}\\
+                Para este caso tenemos: <br>
+                <span [appMath]>
+                  $ \begin{{'{'}}cases{{'}'}}
+                  \ a_1 \cdot \sum_{{'{'}}i=1{{'}'}}^n 1 + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i + a_3 \cdot
+                  \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = \sum_{{'{'}}i=1{{'}'}}^n y_i \\
+                  \ a_1 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^2 + a_3 \cdot
+                  \sum_{{'{'}}i=1{{'}'}}^n x_i^3 = \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i \\
+                  \ a_1 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^2 + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^3 + a_3 \cdot
+                  \sum_{{'{'}}i=1{{'}'}}^n x_i^4 = \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2
+                  \end{{'{'}}cases{{'}'}}
+                  \Rightarrow
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  \ n & \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 \\
+                  \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 & \sum_{{'{'}}i=1{{'}'}}^n x_i^3 \\
+                  \sum_{{'{'}}i=1{{'}'}}^n x_i^2 & \sum_{{'{'}}i=1{{'}'}}^n x_i^3 & \sum_{{'{'}}i=1{{'}'}}^n x_i^4
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \cdot
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  a_1\\
+                  a_2\\
+                  a_3
+                  \end{{'{'}}bmatrix{{'}'}}
+                  =
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i\\
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i\\
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2\\
+                  \end{{'{'}}bmatrix{{'}'}} $
+                </span>
+              </p>
+              <p>Tomamos como ejemplo la tabla de valores ingresada (Ver en gráfica).
+                <br>Ajustamos a un polinomio de segundo grado:
+                <span [appMath]>y = a_3 + a_2x + a_1 x^3</span><br>
+                <span [appMath]>
+                  $ \begin{{'{'}}align{{'}'}}
+                  n = {{n}} && \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{csx2}} && \sum_{{'{'}}i=1{{'}'}}^n x_i^4 = {{csx4}} &&
                   \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i = {{csyx}}\\
-                  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2 = {{csyx2}}
-                  $$
-                </div>
-              </div>
+                  \sum_{{'{'}}i=1{{'}'}}^n x_i = {{csx}} && \sum_{{'{'}}i=1{{'}'}}^n x_i^3 = {{csx3}} &&
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i = {{csy}} && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2 =
+                  {{csyx2}}
+                  \end{{'{'}}align{{'}'}} \\
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  \ n & \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 \\
+                  \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 & \sum_{{'{'}}i=1{{'}'}}^n x_i^3 \\
+                  \sum_{{'{'}}i=1{{'}'}}^n x_i^2 & \sum_{{'{'}}i=1{{'}'}}^n x_i^3 & \sum_{{'{'}}i=1{{'}'}}^n x_i^4
+                  \end{{'{'}}bmatrix{{'}'}} \cdot
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  a_1\\
+                  a_2\\
+                  a_3
+                  \end{{'{'}}bmatrix{{'}'}}
+                  =
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i\\
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i\\
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \Rightarrow
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  {{n}} & {{csx}} & {{csx2}}\\
+                  {{csx}} & {{csx2}} & {{csx3}} \\
+                  {{csx2}} & {{csx3}} & {{csx4}}
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \cdot
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  a_1\\
+                  a_2\\
+                  a_3
+                  \end{{'{'}}bmatrix{{'}'}}
+                  =
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  {{csy}}\\
+                  {{csyx}}\\
+                  {{csyx2}}
+                  \end{{'{'}}bmatrix{{'}'}} $
+                </span>
+              </p>
             </div>
-            <!-- /.col -->
-            <div class="col-6">
-              <div [appMath] class="row py-0">
-                $$
-                \begin{{'{'}}bmatrix{{'}'}}
-                \ n & \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 \\
-                \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 & \sum_{{'{'}}i=1{{'}'}}^n x_i^3 \\
-                \sum_{{'{'}}i=1{{'}'}}^n x_i^2 & \sum_{{'{'}}i=1{{'}'}}^n x_i^3 & \sum_{{'{'}}i=1{{'}'}}^n x_i^4
-                \end{{'{'}}bmatrix{{'}'}} \cdot
-                \begin{{'{'}}bmatrix{{'}'}}
-                a_1\\
-                a_2\\
-                a_3
-                \end{{'{'}}bmatrix{{'}'}}
-                =
-                \begin{{'{'}}bmatrix{{'}'}}
-                \sum_{{'{'}}i=1{{'}'}}^n y_i\\
-                \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i\\
-                \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2
-                \end{{'{'}}bmatrix{{'}'}} \\
-                \Rightarrow
-                \begin{{'{'}}bmatrix{{'}'}}
-                {{n}} & {{csx}} & {{csx2}}\\
-                {{csx}} & {{csx2}} & {{csx3}} \\
-                {{csx2}} & {{csx3}} & {{csx4}} 
-                \end{{'{'}}bmatrix{{'}'}}
-                \cdot
-                \begin{{'{'}}bmatrix{{'}'}}
-                a_1\\
-                a_2\\
-                a_3
-                \end{{'{'}}bmatrix{{'}'}}
-                =
-                \begin{{'{'}}bmatrix{{'}'}}
-                {{csy}}\\
-                {{csyx}}\\
-                {{csyx2}}
-                \end{{'{'}}bmatrix{{'}'}}
-                $$
-              </div>
-              <span>Armamos un sistema de ecuaciones y lo resolvemos:</span>
-              <div [appMath] class="col-6 col-xs-12">
-                $$
-                \begin{{'{'}}cases{{'}'}}
-                {{n}}a_1 + {{csx}}a_2 + {{csx2}}a_3 = {{csy}}\\
-                {{csx}}a_1 + {{csx2}}a_2 + {{csx3}}a_3 = {{csyx}}\\
-                {{csx2}}a_1 + {{csx3}}a_2 + {{csx4}}a_3 = {{csyx2}}
-                \end{{'{'}}cases{{'}'}}\\
-                $$
-              </div>
-              <span>Resolviendo el sistema nos queda:</span>
-              <div [appMath] class="row">
-                $$
-                a_1={{ca1}}\\
-                a_2={{ca2}}\\
-                a_3={{ca3}}
-                $$
-              </div>
+            <!-- /. col-md-8 -->
+            <div class="col-12 col-md-3">
+              <p>
+                Armamos un sistema de ecuaciones y lo resolvemos: <br>
+
+                <span [appMath]>
+                  $ \begin{{'{'}}cases{{'}'}}
+                  {{n}}a_1 + {{csx}}a_2 + {{csx2}}a_3 = {{csy}}\\
+                  {{csx}}a_1 + {{csx2}}a_2 + {{csx3}}a_3 = {{csyx}}\\
+                  {{csx2}}a_1 + {{csx3}}a_2 + {{csx4}}a_3 = {{csyx2}}
+                  \end{{'{'}}cases{{'}'}}\\ $
+                </span>
+              </p>
+              <p>
+                Resolviendo el sistema nos queda: <br>
+                <span [appMath] class="row">
+                  $ a_1={{ca1}}\\
+                  a_2={{ca2}}\\
+                  a_3={{ca3}} $
+                </span>
+              </p>
               <div [appMath]>
-                $$ 
+                $$
                 \bbox[5px,border:3px solid red]
                 {{'{'}}
                 \mathcal y(x) = {{ca3}}x^2 + {{ca2}}x + {{ca1}}
@@ -138,14 +125,14 @@
                 $$
               </div>
             </div>
-            <!-- /.col -->
+            <!-- /.col-md-4 -->
           </div>
           <!-- /.row -->
         </div>
         <!-- /.callout -->
       </div>
       <!-- /.col-12 -->
-           
+
       <div class="col-lg-9">
         <div class="card card-success card-outline">
           <div class="card-header">
@@ -153,7 +140,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-              <app-plot [data]="data"></app-plot>
+            <app-plot [data]="data"></app-plot>
           </div>
           <!-- ./card-body -->
         </div>
@@ -194,13 +181,13 @@
         <!-- /.card -->
       </div>
       <!-- /.col-lg-3 -->
-      
+
     </div>
     <!-- /.row -->
-    
+
     <app-error [error]="errMsg" [noDots]="noDots"></app-error>
     <!-- /.error-page -->
-    
+
   </div>
   <!-- /.container-fluid-->
 </section>

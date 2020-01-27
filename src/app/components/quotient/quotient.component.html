@@ -4,104 +4,135 @@
         <div class="row" *ngIf="dots && n > 1 && !errMsg">
             <div class="col-lg-12">
                 <div class="callout callout-info px-5">
-                    <h5 class="text-navy"> ANALISIS </h5>
-                    <span>La función empírica es un cociente:</span>
+                    <h5 class="text-navy"> ANALISIS - CUANDO LA FUNCION EMPIRICA ES UN COCIENTE </h5>
                     <div class="row">
-                        <div class="col-6">
-                            <div [appMath]>
-                                $$ 
-                                y = \frac{{'{'}}Ax{{'}'}}{{'{'}}x + B{{'}'}}\\
-                                \text{{'{'}}Reformulamos la función: {{'}'}} \\
-                                \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}x + B{{'}'}}{{'{'}}Ax{{'}'}}
-                                \Rightarrow 
-                                \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}x{{'}'}}{{'{'}}Ax{{'}'}} + \frac{{'{'}}B{{'}'}}{{'{'}}Ax{{'}'}}
-                                \Rightarrow  \\
-                                \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}x{{'}'}}{{'{'}}Ax{{'}'}} + \frac{{'{'}}B{{'}'}}{{'{'}}Ax{{'}'}}
-                                \Rightarrow  
-                                \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}1{{'}'}}{{'{'}}A{{'}'}} + \frac{{'{'}}B{{'}'}}{{'{'}}A{{'}'}}\cdot\frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}}\\
-                                \text{{'{'}}Comparando con la recta nos queda: {{'}'}} \\
-                                \begin{{'{'}}align{{'}'}}
-                                y = ax + b && \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}1{{'}'}}{{'{'}}A{{'}'}} + \frac{{'{'}}B{{'}'}}{{'{'}}A{{'}'}}\cdot\frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}}\\
-                                y \Rightarrow \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} && b \Rightarrow  \frac{{'{'}}1{{'}'}}{{'{'}}A{{'}'}}\\
-                                a \Rightarrow  \frac{{'{'}}B{{'}'}}{{'{'}}A{{'}'}} && x \Rightarrow  \frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}}
-                                \end{{'{'}}align{{'}'}}\\
-                                $$
-                                <span>
-                                    Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> (Ver análisis inicial)</a>.
-                                    El sistema de ecuaciones resulta: 
+                        <div class="col-12 col-md-5">
+                            <p>
+                                <span [appMath]>
+                                    $$ y = \frac{{'{'}}Ax{{'}'}}{{'{'}}x + B{{'}'}} $$
                                 </span>
-                            </div>
+                                Reformulamos la función: <br>
+                                <span [appMath]>
+                                    $ \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}x + B{{'}'}}{{'{'}}Ax{{'}'}}
+                                    \Rightarrow
+                                    \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}x{{'}'}}{{'{'}}Ax{{'}'}} +
+                                    \frac{{'{'}}B{{'}'}}{{'{'}}Ax{{'}'}}
+                                    \Rightarrow
+                                    \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}x{{'}'}}{{'{'}}Ax{{'}'}} +
+                                    \frac{{'{'}}B{{'}'}}{{'{'}}Ax{{'}'}}
+                                    \Rightarrow
+                                    \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}1{{'}'}}{{'{'}}A{{'}'}} +
+                                    \frac{{'{'}}B{{'}'}}{{'{'}}A{{'}'}}\cdot\frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}} $
+                                </span>
+                                Comparando la expresión anterior con la fórmula empírica de la recta nos queda: <br>
+                                <span [appMath]>
+                                    $ \begin{{'{'}}align{{'}'}}
+                                    y = ax + b && \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} =
+                                    \frac{{'{'}}1{{'}'}}{{'{'}}A{{'}'}} +
+                                    \frac{{'{'}}B{{'}'}}{{'{'}}A{{'}'}}\cdot\frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}}\\
+                                    y \Rightarrow \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} && b \Rightarrow
+                                    \frac{{'{'}}1{{'}'}}{{'{'}}A{{'}'}}\\
+                                    a \Rightarrow \frac{{'{'}}B{{'}'}}{{'{'}}A{{'}'}} && x \Rightarrow
+                                    \frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}}
+                                    \end{{'{'}}align{{'}'}} $
+                                </span>
+                            </p>
+                            <p>
+                                Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> (Ver
+                                    análisis inicial)</a>. Resulta:
+                                <span [appMath]>
+                                    $ \begin{{'{'}}bmatrix{{'}'}}
+                                    n & \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}} \\
+                                    \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_1{{'}'}} &
+                                    \sum_{{'{'}}i=1{{'}'}}^n
+                                    \left( \frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}} \right)^2 \\
+                                    \end{{'{'}}bmatrix{{'}'}}
+                                    \cdot
+                                    \begin{{'{'}}bmatrix{{'}'}}
+                                    \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}}\\
+                                    \frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}}
+                                    \end{{'{'}}bmatrix{{'}'}}
+                                    =
+                                    \begin{{'{'}}bmatrix{{'}'}}
+                                    \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}y_i{{'}'}}\\
+                                    \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}y_i{{'}'}} \cdot
+                                    \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}}\\
+                                    \end{{'{'}}bmatrix{{'}'}} $
+                                </span>
+                            </p>
+                        </div>
+                        <!-- /.col-md-5 -->
+                        <div class="col-12 col-md-7">
+                            <p>
+                                Tomamos como ejemplo la tabla de valores ingresada. <br>
+                                Ajustamos a un cociente:
+                                <span [appMath]>
+                                    $ \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}1{{'}'}}{{'{'}}A{{'}'}} +
+                                    \frac{{'{'}}B{{'}'}}{{'{'}}A{{'}'}}\cdot\frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}} $
+                                </span>
+                                <span [appMath]>
+                                    $ \begin{{'{'}}align{{'}'}}
+                                    n = {{n}} && \sum_{{'{'}}i=1{{'}'}}^n x_i = {{csx}} && \sum_{{'{'}}i=1{{'}'}}^n y_i
+                                    = {{csy}}
+                                    && \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{csx2}} && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot
+                                    x_i = {{csyx}}
+                                    \end{{'{'}}align{{'}'}}\\
+                                    \begin{{'{'}}bmatrix{{'}'}}
+                                    n & \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}} \\
+                                    \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_1{{'}'}} &
+                                    \sum_{{'{'}}i=1{{'}'}}^n
+                                    \left( \frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}} \right)^2 \\
+                                    \end{{'{'}}bmatrix{{'}'}}
+                                    \cdot
+                                    \begin{{'{'}}bmatrix{{'}'}}
+                                    \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}}\\
+                                    \frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}}
+                                    \end{{'{'}}bmatrix{{'}'}}
+                                    =
+                                    \begin{{'{'}}bmatrix{{'}'}}
+                                    \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}y_i{{'}'}}\\
+                                    \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}y_i{{'}'}} \cdot
+                                    \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}}\\
+                                    \end{{'{'}}bmatrix{{'}'}}
+                                    \Rightarrow
+                                    \begin{{'{'}}bmatrix{{'}'}}
+                                    {{n}} & {{csx}} \\
+                                    {{csx}} & {{csx2}}
+                                    \end{{'{'}}bmatrix{{'}'}}
+                                    \cdot
+                                    \begin{{'{'}}bmatrix{{'}'}}
+                                    \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}}\\
+                                    \frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}}
+                                    \end{{'{'}}bmatrix{{'}'}}
+                                    =
+                                    \begin{{'{'}}bmatrix{{'}'}}
+                                    {{csy}}\\
+                                    {{csyx}}
+                                    \end{{'{'}}bmatrix{{'}'}} $
+                                </span>
+                            </p>
+                            <p>Armamos un sistema de ecuaciones: <br>
+                                <span [appMath]>
+                                    $ \begin{{'{'}}cases{{'}'}}
+                                    {{n}} \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}} +
+                                    {{csx}}\frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}} =
+                                    {{csy}}\\
+                                    {{csx}} \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}} +
+                                    {{csx2}}\frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}} =
+                                    {{csyx}}
+                                    \end{{'{'}}cases{{'}'}} $
+                                </span>
+                            </p>
+                            <p>
+                                Resolviendo el sistema de ecuaciones nos queda: <br>
+                                <span [appMath]>
+                                    $ \begin{{'{'}}align{{'}'}}
+                                    a = {{ca}} && ; && b = {{cb}}
+                                    \end{{'{'}}align{{'}'}} $
+                                </span>
+                            </p>
                             <div [appMath]>
                                 $$
-                                \begin{{'{'}}bmatrix{{'}'}}
-                                n & \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}} \\
-                                \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_1{{'}'}} & \sum_{{'{'}}i=1{{'}'}}^n \left( \frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}} \right)^2 \\
-                                \end{{'{'}}bmatrix{{'}'}}
-                                \cdot
-                                \begin{{'{'}}bmatrix{{'}'}}
-                                \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}}\\
-                                \frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}}
-                                \end{{'{'}}bmatrix{{'}'}}
-                                =
-                                \begin{{'{'}}bmatrix{{'}'}}
-                                \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}y_i{{'}'}}\\
-                                \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}y_i{{'}'}} \cdot \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}}\\
-                                \end{{'{'}}bmatrix{{'}'}}\\
-                                $$
-                            </div>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-6" style="padding: 0; margin: 0; border: 0;">
-                            <span>Tomamos como ejemplo la tabla de valores ingresada. Ajustamos a una potencial:</span>
-                            <div [appMath] class="col-6 col-xs-12">
-                                $$
-                                \frac{{'{'}}1{{'}'}}{{'{'}}y{{'}'}} = \frac{{'{'}}1{{'}'}}{{'{'}}A{{'}'}} + \frac{{'{'}}B{{'}'}}{{'{'}}A{{'}'}}\cdot\frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}}\\
-                                \begin{{'{'}}align{{'}'}}
-                                n = {{n}} && \ \\
-                                \sum_{{'{'}}i=1{{'}'}}^n x_i = {{csx}} && \sum_{{'{'}}i=1{{'}'}}^n y_i = {{csy}}\\
-                                \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{csx2}} && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i = {{csyx}}
-                                \end{{'{'}}align{{'}'}}\\
-                                \begin{{'{'}}bmatrix{{'}'}}
-                                n & \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}} \\
-                                \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_1{{'}'}} & \sum_{{'{'}}i=1{{'}'}}^n \left( \frac{{'{'}}1{{'}'}}{{'{'}}x{{'}'}} \right)^2 \\
-                                \end{{'{'}}bmatrix{{'}'}}
-                                \cdot
-                                \begin{{'{'}}bmatrix{{'}'}}
-                                \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}}\\
-                                \frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}}
-                                \end{{'{'}}bmatrix{{'}'}}
-                                =
-                                \begin{{'{'}}bmatrix{{'}'}}
-                                \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}y_i{{'}'}}\\
-                                \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}y_i{{'}'}} \cdot \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}}\\
-                                \end{{'{'}}bmatrix{{'}'}}\\
-                                \Rightarrow
-                                \begin{{'{'}}bmatrix{{'}'}}
-                                {{n}} & {{csx}} \\
-                                {{csx}} & {{csx2}} 
-                                \end{{'{'}}bmatrix{{'}'}}
-                                \cdot
-                                \begin{{'{'}}bmatrix{{'}'}}
-                                \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}}\\
-                                \frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}}
-                                \end{{'{'}}bmatrix{{'}'}}
-                                =
-                                \begin{{'{'}}bmatrix{{'}'}}
-                                {{csy}}\\
-                                {{csyx}}
-                                \end{{'{'}}bmatrix{{'}'}}
-                                $$
-                            </div>
-                            <span>Armamos un sistema de ecuaciones y lo resolvemos:</span>
-                            <div [appMath] class="col-6 col-xs-12">
-                                $$
-                                \begin{{'{'}}cases{{'}'}}
-                                {{n}} \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}} + {{csx}}\frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}} = {{csy}}\\
-                                {{csx}} \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}} + {{csx2}}\frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}} = {{csyx}}
-                                \end{{'{'}}cases{{'}'}}\\
-                                \begin{{'{'}}align{{'}'}}
-                                a = {{ca}}  && ; && b = {{cb}}
-                                \end{{'{'}}align{{'}'}}\\
                                 \bbox[5px,border:3px solid red]
                                 {{'{'}}
                                 \mathcal y(x) = \frac{{'{'}}{{ca}}x{{'}'}}{{'{'}}x + {{cb}}{{'}'}}
@@ -109,14 +140,14 @@
                                 $$
                             </div>
                         </div>
-                        <!-- /.col -->
+                        <!-- /.col-md-7 -->
                     </div>
                     <!-- /.row -->
                 </div>
                 <!-- /.callout -->
             </div>
             <!-- /.col-lg-12 -->
-            
+
             <div class="col-lg-9">
                 <div class="card card-success card-outline">
                     <div class="card-header">
@@ -131,7 +162,7 @@
                 <!-- /.card -->
             </div>
             <!-- /.col-lg-9 -->
-            
+
             <div class="col-lg-3">
                 <div class="card card-success card-outline">
                     <div class="card-header">
@@ -165,13 +196,13 @@
                 <!-- /.card -->
             </div>
             <!-- /.col-lg-3 -->
-            
+
         </div>
         <!-- ./row-->
-        
+
         <app-error [error]="errMsg" [noDots]="noDots"></app-error>
         <!-- /.error-page -->
-        
+
     </div>
     <!-- /.container-fluid-->
 </section>

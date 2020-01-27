@@ -4,121 +4,107 @@
     <div class="row" *ngIf="dots && n > 1 && !errMsg">
       <div class="col-lg-12">
         <div class="callout callout-info px-5">
-          <h5 class="text-navy"> ANALISIS </h5>
-          <span>La función empírica es una recta:</span>
+          <h5 class="text-navy"> ANALISIS - CUANDO LA FUNCIÓN EMPÍRICA ES UNA RECTA</h5>
           <div class="row">
-            <div class="col-6">
-              <div [appMath]>
-                $$ 
-                \mathcal f (x, a_1, a_2) \Rightarrow y = a_2x + a_1 \Rightarrow \text{{'{'}}ecuaci&oacute;n de
-                la recta{{'}'}} \\
-                \mathcal Entonces: \phi _1 (x)=1 \land \phi _2(x)=x 
-                $$
-                <span>
-                  Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> (Ver análisis inicial)</a>.
-                  Para este caso tenemos:
-                </span>
-              </div>
-              <div [appMath]>
-                $$
-                \begin{{'{'}}cases{{'}'}}
-                \ a_1  \cdot \sum_{{'{'}}i=1{{'}'}}^n 1 + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i = \sum_{{'{'}}i=1{{'}'}}^n y_i  \\
-                \ a_1 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^2 =  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i 
-                \end{{'{'}}cases{{'}'}}\\
-                \Rightarrow
-                \begin{{'{'}}bmatrix{{'}'}}
-                \ n & \sum_{{'{'}}i=1{{'}'}}^n x_i \\
-                \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 \\
-                \end{{'{'}}bmatrix{{'}'}}
-                \cdot
-                \begin{{'{'}}bmatrix{{'}'}}
-                a1\\
-                a2\\
-                \end{{'{'}}bmatrix{{'}'}}
-                =
-                \begin{{'{'}}bmatrix{{'}'}}
-                \sum_{{'{'}}i=1{{'}'}}^n y_i\\
-                \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i\\
-                \end{{'{'}}bmatrix{{'}'}}
-                $$
-              </div>
-              <p>Tomamos como ejemplo la tabla de valores ingresada (Ver en gráfica).
-                <br>Ajustamos a una recta: <em>y = a<sub>1</sub> + a<sub>2</sub>x</em> 
+            <div class="col-12 col-md-8">
+              <p>
+                <span [appMath]> $
+                  \mathcal f (x, a_1, a_2) \Rightarrow y = a_2x + a_1 \Rightarrow $</span>
+                  Ecuación de la recta <br>
+                Entonces:
+                <span [appMath]> $ \phi _1 (x)=1 \land \phi _2(x)=x $</span>
               </p>
-              <div class="row" style="padding: 0; margin: 0; border: 0;">
-                <div [appMath] class="col-md-3 col-xs-12" style="padding: 0; margin: 0; border: 0;">
-                  $$ 
-                  \ n = {{n}} \\
-                  \sum_{{'{'}}i=1{{'}'}}^n x_i = {{csx}}\\
-                  \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{csx2}}
-                  $$                 
-                </div>
-                <div [appMath] class="col-md-3 col-xs-12">
-                  $$
-                  \ \\
-                  \sum_{{'{'}}i=1{{'}'}}^n y_i = {{csy}}\\[2ex]
-                  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i = {{csyx}}
-                  $$
-                </div>
-              </div>
+              <p>
+                Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> (Ver análisis inicial)</a>.
+                Para este caso tenemos: <br>
+                <span [appMath]>
+                  $ \begin{{'{'}}cases{{'}'}}
+                  \ a_1 \cdot \sum_{{'{'}}i=1{{'}'}}^n 1 + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i =
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i \\
+                  \ a_1 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i + a_2 \cdot \sum_{{'{'}}i=1{{'}'}}^n x_i^2 =
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i
+                  \end{{'{'}}cases{{'}'}}
+                  \Rightarrow
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  \ n & \sum_{{'{'}}i=1{{'}'}}^n x_i \\
+                  \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 \\
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \cdot
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  a1\\
+                  a2\\
+                  \end{{'{'}}bmatrix{{'}'}}
+                  =
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i\\
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i\\
+                  \end{{'{'}}bmatrix{{'}'}} $
+                </span>
+              </p>
+              <p>
+                Tomamos como ejemplo la tabla de valores ingresada (Ver en gráfica).
+                <br>Ajustamos a una recta: <span [appMath]>$ y = a_1 + a_2 x $ </span> <br>
+                <span [appMath]>
+                  $ \begin{{'{'}}align{{'}'}}
+                  \ n = {{n}} && \sum_{{'{'}}i=1{{'}'}}^n x_i = {{csx}}
+                  && \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{csx2}}
+                  && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i = {{csyx}}
+                  && \sum_{{'{'}}i=1{{'}'}}^n y_i = {{csy}}
+                  \end{{'{'}}align{{'}'}} \\
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  n & \sum_{{'{'}}i=1{{'}'}}^n x_i \\
+                  \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \cdot
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  a1\\
+                  a2
+                  \end{{'{'}}bmatrix{{'}'}}
+                  =
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i\\
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \Rightarrow
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  {{n}} & {{csx}} \\
+                  {{csx}} & {{csx2}}
+                  \end{{'{'}}bmatrix{{'}'}}
+                  \cdot
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  a_1\\
+                  a_2
+                  \end{{'{'}}bmatrix{{'}'}}
+                  =
+                  \begin{{'{'}}bmatrix{{'}'}}
+                  {{csy}}\\
+                  {{csyx}}
+                  \end{{'{'}}bmatrix{{'}'}} $
+                </span>
+              </p>
             </div>
             <!-- /.col -->
-            <div class="col-6" style="padding: 0; margin: 0; border: 0;">
-              <div [appMath] class="row" style="padding: 0; margin: 0; border: 0;">
-                $$
-                \begin{{'{'}}bmatrix{{'}'}}
-                n & \sum_{{'{'}}i=1{{'}'}}^n x_i \\
-                \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2
-                \end{{'{'}}bmatrix{{'}'}}
-                \cdot
-                \begin{{'{'}}bmatrix{{'}'}}
-                a1\\
-                a2
-                \end{{'{'}}bmatrix{{'}'}}
-                =
-                \begin{{'{'}}bmatrix{{'}'}}
-                \sum_{{'{'}}i=1{{'}'}}^n y_i\\
-                \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i
-                \end{{'{'}}bmatrix{{'}'}}\\
-                \Rightarrow
-                \begin{{'{'}}bmatrix{{'}'}}
-                {{n}} & {{csx}} \\
-                {{csx}} & {{csx2}} 
-                \end{{'{'}}bmatrix{{'}'}}
-                \cdot
-                \begin{{'{'}}bmatrix{{'}'}}
-                a_1\\
-                a_2
-                \end{{'{'}}bmatrix{{'}'}}
-                =
-                \begin{{'{'}}bmatrix{{'}'}}
-                {{csy}}\\
-                {{csyx}}
-                \end{{'{'}}bmatrix{{'}'}}
-                $$
-              </div>
-              <span>Armamos un sistema de ecuaciones y lo resolvemos:</span>
-              <div [appMath] class="col-6 col-xs-12">
-                $$
-                \begin{{'{'}}cases{{'}'}}
-                {{n}}a_1 + {{csx}}a_2 = {{csy}}\\
-                {{csx}}a_1 + {{csx2}}a_2 = {{csyx}}
-                \end{{'{'}}cases{{'}'}}\\
-                $$
-                $$
-                \ {{n}}a_1={{csy}}-{{csx}}a_2 \Rightarrow a_1=\frac{{'{'}}{{csy}}-{{csx}}a_2{{'}'}}{{'{'}}{{n}}{{'}'}} \Rightarrow a_1={{ca1}}\\
-                \ {{csx}}\left( \frac{{'{'}}{{csy}}-{{csx}}a_2{{'}'}}{{'{'}}{{n}}{{'}'}} \right)+{{csx2}}={{csyx}} \Rightarrow a_2 = {{ca2}}
-                $$
-              </div>
-              <h5 class="brand-text text-navy"><em>Ecuación de la Recta:</em></h5>
-              <div [appMath]>
-                $$ 
-                \bbox[5px,border:3px solid red]
+            <div class="col-12 col-md-4">
+              <p>Armamos un sistema de ecuaciones y lo resolvemos: <br>
+                <span [appMath]>
+                  $ \begin{{'{'}}cases{{'}'}}
+                  {{n}}a_1 + {{csx}}a_2 = {{csy}}\\
+                  {{csx}}a_1 + {{csx2}}a_2 = {{csyx}}
+                  \end{{'{'}}cases{{'}'}}\\
+                  \ {{n}}a_1={{csy}}-{{csx}}a_2 \Rightarrow
+                  a_1=\frac{{'{'}}{{csy}}-{{csx}}a_2{{'}'}}{{'{'}}{{n}}{{'}'}}\\
+                  a_1={{ca1}}\\
+                  \ {{csx}}\left( \frac{{'{'}}{{csy}}-{{csx}}a_2{{'}'}}{{'{'}}{{n}}{{'}'}} \right)+{{csx2}}={{csyx}}\\
+                  a_2 = {{ca2}} $
+                </span>
+              </p>
+              <h5 class="text-navy">Ecuación de la Recta:</h5>
+              <span [appMath]>
+                $$ \bbox[5px,border:3px solid red]
                 {{'{'}}
-                \mathcal y(x) = {{ca2}}x + {{ca1}} 
-                {{'}'}}
-                $$
-              </div>
+                \mathcal y(x) = {{ca2}}x + {{ca1}}
+                {{'}'}} $$
+              </span>
             </div>
             <!-- /.col -->
           </div>
@@ -127,7 +113,7 @@
         <!-- /.callout -->
       </div>
       <!-- /.col-lg-12 -->
-      
+
       <div class="col-lg-9">
         <div class="card card-success card-outline">
           <div class="card-header">
@@ -135,7 +121,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-              <app-plot [data]="data"></app-plot>
+            <app-plot [data]="data"></app-plot>
           </div>
           <!-- ./card-body -->
         </div>
@@ -176,13 +162,13 @@
         <!-- /.card -->
       </div>
       <!-- /.col-lg-3 -->
-      
+
     </div>
     <!-- ./row-->
-    
+
     <app-error [error]="errMsg" [noDots]="noDots"></app-error>
     <!-- /.error-page -->
-    
+
   </div>
   <!-- /.container-fluid-->
 </section>
