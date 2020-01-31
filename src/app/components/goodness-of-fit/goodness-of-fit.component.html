@@ -83,23 +83,8 @@
         </div>
         <!-- /.callout -->
       </div>
+
       <!-- /.col-lg-12 -->
-
-      <div class="col-lg-9">
-        <div class="card card-success card-outline">
-          <div class="card-header">
-            <h3 class="card-title text-navy"> GRAFICA <em> f(x) = {{fx}}</em></h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <app-plot [data]="data"></app-plot>
-          </div>
-          <!-- ./card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- /.col-lg-9 -->
-
       <div class="col-lg-3">
         <div class="card card-success card-outline">
           <div class="card-header">
@@ -107,13 +92,49 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-
+            <table #dotsTable class="table table-bordered">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th class="text-center">x</th>
+                  <th class="text-center">y(x)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of dots; let i = index">
+                  <td>{{ i + 1  }}</td>
+                  <td class="text-center">
+                    <span>{{ d.x }}</span>
+                  </td>
+                  <td class="text-center">
+                    <span>{{ d.y }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
           <!-- ./card-body -->
         </div>
         <!-- /.card -->
       </div>
       <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy">Cálculo de la bondad de ajuste</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+
+            
+          </div>
+          <!-- ./card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col-lg-9 -->
+
 
     </div>
     <!-- ./row-->

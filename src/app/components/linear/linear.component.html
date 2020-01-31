@@ -1,7 +1,7 @@
 <!-- Main content -->
 <section class="content px-2">
   <div class="container-fluid">
-    <div class="row" *ngIf="dots && n > 1 && !errMsg">
+    <div class="row" *ngIf="dots && data.values.n > 1 && !errMsg">
       <div class="col-lg-12">
         <div class="callout callout-info px-5">
           <h5 class="text-navy"> ANALISIS - CUANDO LA FUNCIÓN EMPÍRICA ES UNA RECTA</h5>
@@ -46,10 +46,10 @@
                 <br>Ajustamos a una recta: <span [appMath]>$ y = a_1 + a_2 x $ </span> <br>
                 <span [appMath]>
                   $ \begin{{'{'}}align{{'}'}}
-                  \ n = {{n}} && \sum_{{'{'}}i=1{{'}'}}^n x_i = {{csx}}
-                  && \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{csx2}}
-                  && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i = {{csyx}}
-                  && \sum_{{'{'}}i=1{{'}'}}^n y_i = {{csy}}
+                  \ n = {{data.values.n}} && \sum_{{'{'}}i=1{{'}'}}^n x_i = {{data.values.csx}}
+                  && \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{data.values.csx2}}
+                  && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i = {{data.values.csyx}}
+                  && \sum_{{'{'}}i=1{{'}'}}^n y_i = {{data.values.csy}}
                   \end{{'{'}}align{{'}'}} \\
                   \begin{{'{'}}bmatrix{{'}'}}
                   n & \sum_{{'{'}}i=1{{'}'}}^n x_i \\
@@ -67,8 +67,8 @@
                   \end{{'{'}}bmatrix{{'}'}}
                   \Rightarrow
                   \begin{{'{'}}bmatrix{{'}'}}
-                  {{n}} & {{csx}} \\
-                  {{csx}} & {{csx2}}
+                  {{data.values.n}} & {{data.values.csx}} \\
+                  {{data.values.csx}} & {{data.values.csx2}}
                   \end{{'{'}}bmatrix{{'}'}}
                   \cdot
                   \begin{{'{'}}bmatrix{{'}'}}
@@ -77,8 +77,8 @@
                   \end{{'{'}}bmatrix{{'}'}}
                   =
                   \begin{{'{'}}bmatrix{{'}'}}
-                  {{csy}}\\
-                  {{csyx}}
+                  {{data.values.csy}}\\
+                  {{data.values.csyx}}
                   \end{{'{'}}bmatrix{{'}'}} $
                 </span>
               </p>
@@ -88,21 +88,21 @@
               <p>Armamos un sistema de ecuaciones y lo resolvemos: <br>
                 <span [appMath]>
                   $ \begin{{'{'}}cases{{'}'}}
-                  {{n}}a_1 + {{csx}}a_2 = {{csy}}\\
-                  {{csx}}a_1 + {{csx2}}a_2 = {{csyx}}
+                  {{data.values.n}}a_1 + {{data.values.csx}}a_2 = {{data.values.csy}}\\
+                  {{data.values.csx}}a_1 + {{data.values.csx2}}a_2 = {{data.values.csyx}}
                   \end{{'{'}}cases{{'}'}}\\
-                  \ {{n}}a_1={{csy}}-{{csx}}a_2 \Rightarrow
-                  a_1=\frac{{'{'}}{{csy}}-{{csx}}a_2{{'}'}}{{'{'}}{{n}}{{'}'}}\\
-                  a_1={{ca1}}\\
-                  \ {{csx}}\left( \frac{{'{'}}{{csy}}-{{csx}}a_2{{'}'}}{{'{'}}{{n}}{{'}'}} \right)+{{csx2}}={{csyx}}\\
-                  a_2 = {{ca2}} $
+                  \ {{n}}a_1={{data.values.csy}}-{{data.values.csx}}a_2 \Rightarrow
+                  a_1=\frac{{'{'}}{{data.values.csy}}-{{data.values.csx}}a_2{{'}'}}{{'{'}}{{data.values.n}}{{'}'}}\\
+                  a_1={{data.values.ca1}}\\
+                  \ {{data.values.csx}}\left( \frac{{'{'}}{{data.values.csy}}-{{data.values.csx}}a_2{{'}'}}{{'{'}}{{data.values.n}}{{'}'}} \right)+{{data.values.csx2}}={{data.values.csyx}}\\
+                  a_2 = {{data.values.ca2}} $
                 </span>
               </p>
               <h5 class="text-navy">Ecuación de la Recta:</h5>
               <span [appMath]>
                 $$ \bbox[5px,border:3px solid red]
                 {{'{'}}
-                \mathcal y(x) = {{ca2}}x + {{ca1}}
+                \mathcal y(x) = {{data.values.ca2}}x + {{data.values.ca1}}
                 {{'}'}} $$
               </span>
             </div>
@@ -121,7 +121,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <app-plot [data]="data"></app-plot>
+            <app-plot [data]="dt"></app-plot>
           </div>
           <!-- ./card-body -->
         </div>
