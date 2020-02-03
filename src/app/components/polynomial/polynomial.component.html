@@ -1,7 +1,7 @@
 <!-- Main content -->
 <section class="content px-2">
   <div class="container-fluid">
-    <div class="row" *ngIf="dots && n > 1 && !errMsg">
+    <div class="row" *ngIf="dots && data.values.n > 1 && !errMsg">
       <div class="col-12">
         <div class="callout callout-info px-5">
           <h5 class="text-navy"> ANALISIS - CUANDO LA FUNCION EMPIRICA ES UN POLINOMIO DE SEGUNDO GRADO</h5>
@@ -52,11 +52,11 @@
                 <span [appMath]>y = a_3 + a_2x + a_1 x^3</span><br>
                 <span [appMath]>
                   $ \begin{{'{'}}align{{'}'}}
-                  n = {{n}} && \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{csx2}} && \sum_{{'{'}}i=1{{'}'}}^n x_i^4 = {{csx4}} &&
-                  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i = {{csyx}}\\
-                  \sum_{{'{'}}i=1{{'}'}}^n x_i = {{csx}} && \sum_{{'{'}}i=1{{'}'}}^n x_i^3 = {{csx3}} &&
-                  \sum_{{'{'}}i=1{{'}'}}^n y_i = {{csy}} && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2 =
-                  {{csyx2}}
+                  n = {{data.values.n}} && \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{data.values.sx2}} && \sum_{{'{'}}i=1{{'}'}}^n x_i^4 = {{data.values.sx4}} &&
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i = {{data.values.syx}}\\
+                  \sum_{{'{'}}i=1{{'}'}}^n x_i = {{data.values.sx}} && \sum_{{'{'}}i=1{{'}'}}^n x_i^3 = {{data.values.sx3}} &&
+                  \sum_{{'{'}}i=1{{'}'}}^n y_i = {{data.values.sy}} && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i^2 =
+                  {{data.values.syx2}}
                   \end{{'{'}}align{{'}'}} \\
                   \begin{{'{'}}bmatrix{{'}'}}
                   \ n & \sum_{{'{'}}i=1{{'}'}}^n x_i & \sum_{{'{'}}i=1{{'}'}}^n x_i^2 \\
@@ -76,9 +76,9 @@
                   \end{{'{'}}bmatrix{{'}'}}
                   \Rightarrow
                   \begin{{'{'}}bmatrix{{'}'}}
-                  {{n}} & {{csx}} & {{csx2}}\\
-                  {{csx}} & {{csx2}} & {{csx3}} \\
-                  {{csx2}} & {{csx3}} & {{csx4}}
+                  {{data.values.n}} & {{data.values.sx}} & {{data.values.sx2}}\\
+                  {{data.values.sx}} & {{data.values.sx2}} & {{data.values.sx3}} \\
+                  {{data.values.sx2}} & {{data.values.sx3}} & {{data.values.sx4}}
                   \end{{'{'}}bmatrix{{'}'}}
                   \cdot
                   \begin{{'{'}}bmatrix{{'}'}}
@@ -88,9 +88,9 @@
                   \end{{'{'}}bmatrix{{'}'}}
                   =
                   \begin{{'{'}}bmatrix{{'}'}}
-                  {{csy}}\\
-                  {{csyx}}\\
-                  {{csyx2}}
+                  {{data.values.sy}}\\
+                  {{data.values.syx}}\\
+                  {{data.values.syx2}}
                   \end{{'{'}}bmatrix{{'}'}} $
                 </span>
               </p>
@@ -102,25 +102,25 @@
 
                 <span [appMath]>
                   $ \begin{{'{'}}cases{{'}'}}
-                  {{n}}a_1 + {{csx}}a_2 + {{csx2}}a_3 = {{csy}}\\
-                  {{csx}}a_1 + {{csx2}}a_2 + {{csx3}}a_3 = {{csyx}}\\
-                  {{csx2}}a_1 + {{csx3}}a_2 + {{csx4}}a_3 = {{csyx2}}
+                  {{data.values.n}}a_1 + {{data.values.sx}}a_2 + {{data.values.sx2}}a_3 = {{data.values.sy}}\\
+                  {{data.values.sx}}a_1 + {{data.values.sx2}}a_2 + {{data.values.sx3}}a_3 = {{data.values.syx}}\\
+                  {{data.values.sx2}}a_1 + {{data.values.sx3}}a_2 + {{data.values.sx4}}a_3 = {{data.values.syx2}}
                   \end{{'{'}}cases{{'}'}}\\ $
                 </span>
               </p>
               <p>
                 Resolviendo el sistema nos queda: <br>
                 <span [appMath] class="row">
-                  $ a_1={{ca1}}\\
-                  a_2={{ca2}}\\
-                  a_3={{ca3}} $
+                  $ a_1={{data.values.a1}}\\
+                  a_2={{data.values.a2}}\\
+                  a_3={{data.values.a3}} $
                 </span>
               </p>
               <div [appMath]>
                 $$
                 \bbox[5px,border:3px solid red]
                 {{'{'}}
-                \mathcal y(x) = {{ca3}}x^2 + {{ca2}}x + {{ca1}}
+                \mathcal y(x) = {{data.values.a3}}x^2 + {{data.values.a2}}x + {{data.values.a1}}
                 {{'}'}}
                 $$
               </div>
@@ -132,21 +132,6 @@
         <!-- /.callout -->
       </div>
       <!-- /.col-12 -->
-
-      <div class="col-lg-9">
-        <div class="card card-success card-outline">
-          <div class="card-header">
-            <h3 class="card-title text-navy"> GRAFICA <em> f(x) = {{fx}}</em></h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <app-plot [data]="data"></app-plot>
-          </div>
-          <!-- ./card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- /.col-lg-9 -->
 
       <div class="col-lg-3">
         <div class="card card-success card-outline">
@@ -181,6 +166,21 @@
         <!-- /.card -->
       </div>
       <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy"> GRAFICA <span [appMath]> $ f(x) = {{ data.values.a1 }} + {{ data.values.a2 }}x + {{ data.values.a3 }}x^2 $ </span></h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <app-plot [data]="dt"></app-plot>
+          </div>
+          <!-- ./card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col-lg-9 -->
 
     </div>
     <!-- /.row -->

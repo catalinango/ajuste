@@ -122,21 +122,6 @@
       </div>
       <!-- /.col-12 -->
 
-      <div class="col-lg-9">
-        <div class="card card-success card-outline">
-          <div class="card-header">
-            <h3 class="card-title text-navy"> GRAFICA <em> f(x) = {{fx}}</em></h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <app-plot [data]="data"></app-plot>
-          </div>
-          <!-- ./card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- /.col-lg-9 -->
-
       <div class="col-lg-3">
         <div class="card card-success card-outline">
           <div class="card-header">
@@ -170,6 +155,21 @@
         <!-- /.card -->
       </div>
       <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy"> GRAFICA <span> $ f(x) = {{ca1}} \cdot e^{{'{'}}{{ca2}}x{{'}'}} $ </span></h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <app-plot [data]="data"></app-plot>
+          </div>
+          <!-- ./card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col-lg-9 -->
 
     </div>
     <!-- ./row-->

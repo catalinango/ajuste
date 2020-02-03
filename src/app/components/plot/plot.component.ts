@@ -36,7 +36,7 @@ export class PlotComponent implements OnInit, OnDestroy {
           data: this.data.scatterDots
         },
         {
-          label: 'y = ' + this.data.fx,
+          label: 'f(x)',
           data: this.data.lineDots,
           borderColor: '#3c8dbc',
           backgroundColor:'#3c8dbc',

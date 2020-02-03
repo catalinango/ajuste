@@ -12,12 +12,11 @@ export class DotsInputComponent implements OnInit {
   
   dots: Dot[] = 
   [
-    { "x": 0, "y": 1.2},
-    { "x": 1, "y": 0.5},
-    { "x": 2, "y": 2},
-    { "x": 3, "y": 1.8},
-    { "x": 4, "y": 1.2},
-    { "x": 5, "y": 3.6},
+    { "x": 2, "y": 3},
+    { "x": 4, "y": 2},
+    { "x": 5, "y": 10},
+    { "x": 8, "y": 11},
+    { "x": 11, "y": 9}
   ];
   showTable = false;
   noDots: boolean;

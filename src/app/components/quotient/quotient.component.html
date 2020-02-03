@@ -1,7 +1,7 @@
 <!-- Main content -->
 <section class="content px-2">
     <div class="container-fluid">
-        <div class="row" *ngIf="dots && n > 1 && !errMsg">
+        <div class="row" *ngIf="dots && data.values.n > 1 && !errMsg">
             <div class="col-lg-12">
                 <div class="callout callout-info px-5">
                     <h5 class="text-navy"> ANALISIS - CUANDO LA FUNCION EMPIRICA ES UN COCIENTE </h5>
@@ -72,10 +72,10 @@
                                 </span>
                                 <span [appMath]>
                                     $ \begin{{'{'}}align{{'}'}}
-                                    n = {{n}} && \sum_{{'{'}}i=1{{'}'}}^n x_i = {{csx}} && \sum_{{'{'}}i=1{{'}'}}^n y_i
-                                    = {{csy}}
-                                    && \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{csx2}} && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot
-                                    x_i = {{csyx}}
+                                    n = {{data.values.n}} && \sum_{{'{'}}i=1{{'}'}}^n x_i = {{data.values.sx}} && \sum_{{'{'}}i=1{{'}'}}^n y_i
+                                    = {{data.values.sy}}
+                                    && \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{data.values.sx2}} && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot
+                                    x_i = {{data.values.syx}}
                                     \end{{'{'}}align{{'}'}}\\
                                     \begin{{'{'}}bmatrix{{'}'}}
                                     n & \sum_{{'{'}}i=1{{'}'}}^n \frac{{'{'}}1{{'}'}}{{'{'}}x_i{{'}'}} \\
@@ -96,8 +96,8 @@
                                     \end{{'{'}}bmatrix{{'}'}}
                                     \Rightarrow
                                     \begin{{'{'}}bmatrix{{'}'}}
-                                    {{n}} & {{csx}} \\
-                                    {{csx}} & {{csx2}}
+                                    {{data.values.n}} & {{data.values.sx}} \\
+                                    {{data.values.sx}} & {{data.values.sx2}}
                                     \end{{'{'}}bmatrix{{'}'}}
                                     \cdot
                                     \begin{{'{'}}bmatrix{{'}'}}
@@ -106,20 +106,20 @@
                                     \end{{'{'}}bmatrix{{'}'}}
                                     =
                                     \begin{{'{'}}bmatrix{{'}'}}
-                                    {{csy}}\\
-                                    {{csyx}}
+                                    {{data.values.sy}}\\
+                                    {{data.values.syx}}
                                     \end{{'{'}}bmatrix{{'}'}} $
                                 </span>
                             </p>
                             <p>Armamos un sistema de ecuaciones: <br>
                                 <span [appMath]>
                                     $ \begin{{'{'}}cases{{'}'}}
-                                    {{n}} \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}} +
-                                    {{csx}}\frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}} =
-                                    {{csy}}\\
-                                    {{csx}} \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}} +
-                                    {{csx2}}\frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}} =
-                                    {{csyx}}
+                                    {{data.values.n}} \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}} +
+                                    {{data.values.sx}}\frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}} =
+                                    {{data.values.sy}}\\
+                                    {{data.values.sx}} \frac{{'{'}}1{{'}'}}{{'{'}}a{{'}'}} +
+                                    {{data.values.sx2}}\frac{{'{'}}b{{'}'}}{{'{'}}a{{'}'}} =
+                                    {{data.values.syx}}
                                     \end{{'{'}}cases{{'}'}} $
                                 </span>
                             </p>
@@ -127,7 +127,7 @@
                                 Resolviendo el sistema de ecuaciones nos queda: <br>
                                 <span [appMath]>
                                     $ \begin{{'{'}}align{{'}'}}
-                                    a = {{ca}} && ; && b = {{cb}}
+                                    a = {{data.values.a1}} && ; && b = {{data.values.a2}}
                                     \end{{'{'}}align{{'}'}} $
                                 </span>
                             </p>
@@ -135,7 +135,7 @@
                                 $$
                                 \bbox[5px,border:3px solid red]
                                 {{'{'}}
-                                \mathcal y(x) = \frac{{'{'}}{{ca}}x{{'}'}}{{'{'}}x + {{cb}}{{'}'}}
+                                \mathcal y(x) = \frac{{'{'}}{{data.values.a1}}x{{'}'}}{{'{'}}x + {{data.values.a2}}{{'}'}}
                                 {{'}'}}
                                 $$
                             </div>
@@ -147,21 +147,6 @@
                 <!-- /.callout -->
             </div>
             <!-- /.col-lg-12 -->
-
-            <div class="col-lg-9">
-                <div class="card card-success card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title text-navy"> GRAFICA <em> f(x) = {{fx}}</em></h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <app-plot [data]="data"></app-plot>
-                    </div>
-                    <!-- ./card-body -->
-                </div>
-                <!-- /.card -->
-            </div>
-            <!-- /.col-lg-9 -->
 
             <div class="col-lg-3">
                 <div class="card card-success card-outline">
@@ -197,6 +182,20 @@
             </div>
             <!-- /.col-lg-3 -->
 
+            <div class="col-lg-9">
+                <div class="card card-success card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title text-navy"> GRAFICA <span [appMath]>$ f(x) = \frac{{'{'}}{{data.values.a1}}x{{'}'}}{{'{'}}x + {{data.values.a2}}{{'}'}} $</span></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <app-plot [data]="dt"></app-plot>
+                    </div>
+                    <!-- ./card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col-lg-9 -->
         </div>
         <!-- ./row-->
 

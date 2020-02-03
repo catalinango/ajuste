@@ -46,10 +46,10 @@
                 <br>Ajustamos a una recta: <span [appMath]>$ y = a_1 + a_2 x $ </span> <br>
                 <span [appMath]>
                   $ \begin{{'{'}}align{{'}'}}
-                  \ n = {{data.values.n}} && \sum_{{'{'}}i=1{{'}'}}^n x_i = {{data.values.csx}}
-                  && \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{data.values.csx2}}
-                  && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i = {{data.values.csyx}}
-                  && \sum_{{'{'}}i=1{{'}'}}^n y_i = {{data.values.csy}}
+                  \ n = {{data.values.n}} && \sum_{{'{'}}i=1{{'}'}}^n x_i = {{data.values.sx}}
+                  && \sum_{{'{'}}i=1{{'}'}}^n x_i^2 = {{data.values.sx2}}
+                  && \sum_{{'{'}}i=1{{'}'}}^n y_i \cdot x_i = {{data.values.syx}}
+                  && \sum_{{'{'}}i=1{{'}'}}^n y_i = {{data.values.sy}}
                   \end{{'{'}}align{{'}'}} \\
                   \begin{{'{'}}bmatrix{{'}'}}
                   n & \sum_{{'{'}}i=1{{'}'}}^n x_i \\
@@ -67,8 +67,8 @@
                   \end{{'{'}}bmatrix{{'}'}}
                   \Rightarrow
                   \begin{{'{'}}bmatrix{{'}'}}
-                  {{data.values.n}} & {{data.values.csx}} \\
-                  {{data.values.csx}} & {{data.values.csx2}}
+                  {{data.values.n}} & {{data.values.sx}} \\
+                  {{data.values.sx}} & {{data.values.sx2}}
                   \end{{'{'}}bmatrix{{'}'}}
                   \cdot
                   \begin{{'{'}}bmatrix{{'}'}}
@@ -77,8 +77,8 @@
                   \end{{'{'}}bmatrix{{'}'}}
                   =
                   \begin{{'{'}}bmatrix{{'}'}}
-                  {{data.values.csy}}\\
-                  {{data.values.csyx}}
+                  {{data.values.sy}}\\
+                  {{data.values.syx}}
                   \end{{'{'}}bmatrix{{'}'}} $
                 </span>
               </p>
@@ -88,21 +88,21 @@
               <p>Armamos un sistema de ecuaciones y lo resolvemos: <br>
                 <span [appMath]>
                   $ \begin{{'{'}}cases{{'}'}}
-                  {{data.values.n}}a_1 + {{data.values.csx}}a_2 = {{data.values.csy}}\\
-                  {{data.values.csx}}a_1 + {{data.values.csx2}}a_2 = {{data.values.csyx}}
+                  {{data.values.n}}a_1 + {{data.values.sx}}a_2 = {{data.values.sy}}\\
+                  {{data.values.sx}}a_1 + {{data.values.sx2}}a_2 = {{data.values.syx}}
                   \end{{'{'}}cases{{'}'}}\\
-                  \ {{n}}a_1={{data.values.csy}}-{{data.values.csx}}a_2 \Rightarrow
-                  a_1=\frac{{'{'}}{{data.values.csy}}-{{data.values.csx}}a_2{{'}'}}{{'{'}}{{data.values.n}}{{'}'}}\\
-                  a_1={{data.values.ca1}}\\
-                  \ {{data.values.csx}}\left( \frac{{'{'}}{{data.values.csy}}-{{data.values.csx}}a_2{{'}'}}{{'{'}}{{data.values.n}}{{'}'}} \right)+{{data.values.csx2}}={{data.values.csyx}}\\
-                  a_2 = {{data.values.ca2}} $
+                  \ {{data.values.n}}a_1={{data.values.sy}}-{{data.values.sx}}a_2 \Rightarrow
+                  a_1=\frac{{'{'}}{{data.values.sy}}-{{data.values.sx}}a_2{{'}'}}{{'{'}}{{data.values.n}}{{'}'}}\\
+                  a_1={{data.values.a1}}\\
+                  \ {{data.values.sx}}\left( \frac{{'{'}}{{data.values.sy}}-{{data.values.sx}}a_2{{'}'}}{{'{'}}{{data.values.n}}{{'}'}} \right)+{{data.values.sx2}}={{data.values.syx}}\\
+                  a_2 = {{data.values.a2}} $
                 </span>
               </p>
               <h5 class="text-navy">Ecuación de la Recta:</h5>
               <span [appMath]>
                 $$ \bbox[5px,border:3px solid red]
                 {{'{'}}
-                \mathcal y(x) = {{data.values.ca2}}x + {{data.values.ca1}}
+                \mathcal y(x) = {{data.values.a2}}x + {{data.values.a1}}
                 {{'}'}} $$
               </span>
             </div>
@@ -113,21 +113,6 @@
         <!-- /.callout -->
       </div>
       <!-- /.col-lg-12 -->
-
-      <div class="col-lg-9">
-        <div class="card card-success card-outline">
-          <div class="card-header">
-            <h3 class="card-title text-navy"> GRAFICA <em> f(x) = {{fx}}</em></h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <app-plot [data]="dt"></app-plot>
-          </div>
-          <!-- ./card-body -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- /.col-lg-9 -->
 
       <div class="col-lg-3">
         <div class="card card-success card-outline">
@@ -162,6 +147,21 @@
         <!-- /.card -->
       </div>
       <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy"> GRAFICA <span>$ f(x) = {{data.values.a1}} + {{data.values.a2}}x $</span></h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <app-plot [data]="dt"></app-plot>
+          </div>
+          <!-- ./card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col-lg-9 -->
 
     </div>
     <!-- ./row-->
