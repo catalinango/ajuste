@@ -1,0 +1,17 @@
+<div class="error-page" *ngIf="noDots" [hidden]="errMsg">
+    <h2 class="headline text-danger"><i class="fas fa-exclamation-triangle"></i></h2>
+    <div class="error-content">
+        <h3>Oops..<i class="fas fa-exclamation text-danger"></i> <span>&nbsp; Olvidaste ingresar P(x,y). </span></h3>
+        <p>
+            Para poder mostrarte el análisis es necesario que cargues los datos.
+            En el menú lateral encontrarás el link para <a href="#" [routerLink]="['/puntos']"> INGRESAR LOS DATOS.</a>
+        </p>
+    </div>
+</div>
+<div class="error-page" *ngIf="errMsg">
+    <h2 class="headline text-danger"><i class="fas fa-exclamation-triangle"></i></h2>
+    <div class="error-content">
+        <h3>Oops..<i class="fas fa-exclamation text-danger"></i></h3>
+        <h4>{{errMsg}}</h4>
+    </div>
+</div>

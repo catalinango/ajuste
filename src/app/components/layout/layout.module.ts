@@ -6,18 +6,30 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { LayoutRoutes } from './layout.routing';
 
 import { MathModule } from 'src/app/math/math.module';
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { FooterComponent } from './footer/footer.component';
+import { AutofocusDirective } from '../../directives/autofocus.directive';
+
 import { HomeComponent } from '../home/home.component';
-import { LinealComponent } from '../lineal/lineal.component';
-import { LinearPlotComponent } from '../linear-plot/linear-plot.component';
+import { InfoComponent } from '../../components/info/info.component';
+import { DocsComponent } from '../../components/docs/docs.component';
+import { PlotComponent } from '../plot/plot.component';
+import { DotsInputComponent } from '../../components/dots-input/dots-input.component';
+import { LinearComponent } from '../../components/linear/linear.component';
+import { PolynomialComponent } from '../../components/polynomial/polynomial.component';
+import { ExponentialComponent } from '../../components/exponential/exponential.component';
+import { PotentialComponent } from '../../components/potential/potential.component';
+import { QuotientComponent } from '../quotient/quotient.component';
+import { GoodnessOfFitComponent } from '../../components/goodness-of-fit/goodness-of-fit.component';
+import { ErrorComponent } from '../error/error.component';
 
 @NgModule({
-  declarations: [
-    HeaderComponent, SidebarComponent, 
-    FooterComponent, HomeComponent,
-    LinealComponent, LinearPlotComponent
+  declarations: [ 
+    AutofocusDirective, DocsComponent, 
+    HomeComponent, DotsInputComponent, 
+    PlotComponent, LinearComponent, 
+    PolynomialComponent, ExponentialComponent,
+    PotentialComponent, QuotientComponent,
+    GoodnessOfFitComponent,
+    InfoComponent, ErrorComponent
   ],
   imports: [
     CommonModule,
@@ -27,9 +39,13 @@ import { LinearPlotComponent } from '../linear-plot/linear-plot.component';
     MathModule
   ],
   exports: [
-    HeaderComponent, SidebarComponent,
-    FooterComponent, HomeComponent,
-    LinealComponent, LinearPlotComponent
+    AutofocusDirective, DocsComponent, 
+    HomeComponent, DotsInputComponent, 
+    PlotComponent, LinearComponent, 
+    PolynomialComponent, ExponentialComponent,
+    PotentialComponent, QuotientComponent,
+    GoodnessOfFitComponent,
+    InfoComponent, ErrorComponent
   ]
 })
 export class LayoutModule { }

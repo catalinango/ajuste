@@ -33,7 +33,7 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/ionicons/css/ionicons.min.css",
               "node_modules/icheck-bootstrap/icheck-bootstrap.min.css",
-              "node_modules/overlayScrollbars/css/OverlayScrollbars.min.css",
+              "node_modules/overlayscrollbars/css/OverlayScrollbars.min.css",
               "node_modules/admin-lte/dist/css/adminlte.min.css",
               "src/styles.scss"
             ],
@@ -41,7 +41,7 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/fastclick/lib/fastclick.js",
-              "node_modules/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
+              "node_modules/overlayscrollbars/js/jquery.overlayScrollbars.min.js",
               "node_modules/admin-lte/dist/js/adminlte.min.js",
               "node_modules/admin-lte/dist/js/demo.js",
               "node_modules/chart.js/dist/Chart.min.js"
