@@ -24,7 +24,7 @@ export class DotsInputComponent implements OnInit {
   //dots: Dot[];
   errMsg: string;
   @Output() emitEvent: EventEmitter<Dot[]> = new EventEmitter<Dot[]>();
-  @ViewChild('dform', { static: false }) dFormDirective: NgForm;
+  @ViewChild('dform') dFormDirective: NgForm;
   dotsForm: FormGroup;
   formErrors = {
     'x': '',

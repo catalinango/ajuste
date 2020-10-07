@@ -37,7 +37,7 @@ export class MathModule {
 
   // this is needed so service constructor which will bind
   // notifier to window object before module constructor is called
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MathModule> {
     return {
       ngModule: MathModule,
       providers: [{provide: MathImplService, useClass: MathImplService}]
