@@ -29,10 +29,11 @@ export class LinearComponent implements OnInit, OnDestroy {
           this.errMsg = err;
         });
 
-    if (ds === undefined) {
+    if (ds === undefined || ds.length < 1) {
       this.noDots = true;
     }
     else {
+      console.log("lengh: " + ds.length);
       this.data = new LinearData();
       this.dataService.getLinearData(ds).subscribe(
         d => {

@@ -11,10 +11,11 @@ export class LayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $(document).on('click', '.sidebar a', function (e) {
+  /*  $(document).on('click', '.sidebar a', function (e) {
       if($(this).attr('href') != '#') {
         $("body").removeClass('sidebar-open').addClass('sidebar-collapse').trigger('collapsed.pushMenu');
       } 
     });
+    */
    }
 }

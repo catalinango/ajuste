@@ -1,99 +1,113 @@
 <!-- Main content -->
 <section class="content px-2">
-    <div class="container-fluid">
-        <div class="row" *ngIf="dots && !errMsg">
-            <div class="col-6">
-                <div class="card card-secondary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">Ingresar <em>P (x , y)</em></h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <div class="product-info">
-                            <form novalidate [formGroup]="dotsForm" #dform="ngForm" (ngSubmit)="saveDots()">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">X</span>
-                                            </div>
-                                            <input formControlName="x" class="form-control" type="text" name="totalDots"
-                                            appAutofocus #x>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">Y</span>
-                                            </div>
-                                            <input formControlName="y" class="form-control" type="text" name="totalDots"
-                                            #y>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <button type="submit" class="btn btn-info">Agregar</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-            </div>
-            <!-- /.col -->
+  <div class="container-fluid">
+    <div class="row" *ngIf="dots && !errMsg">
+      <div class="col-6">
+        <div class="card card-secondary card-outline">
+          <div class="card-header">
+            <h3 class="card-title">Ingresar <em>P (x , y)</em></h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="product-info">
+              <form novalidate [formGroup]="dotsForm" #dform="ngForm" (ngSubmit)="saveDot()">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">X</span>
+                      </div>
+                      <input formControlName="x" class="form-control" type="text" name="totalDots" appAutofocus #x>
+                      <div class="text-danger" *ngIf="formErrors.x">
+                        {{ formErrors.x }}
+                      </div>
             
-            <div class="col-6" *ngIf="showTable">
-                <div class="card card-info card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">Puntos Ingresados</h3>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th class="text-center">X</th>
-                                    <th class="text-center">Y</th>
-                                    <th class="text-center" style="width: 10px"><small>EDITAR</small>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let dot of dots; let i = index">
-                                    <td>{{ i + 1  }}</td>
-                                    <td class="text-center">
-                                        <span>{{ dot.x }}</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <span>{{ dot.y }}</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <small><i class="fas fa-edit"></i></small>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                  </div>
+                  <div class="col-4">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Y</span>
+                      </div>
+                      <input formControlName="y" class="form-control" type="text" name="totalDots" #y>
+                      <div class="text-danger" *ngIf="formErrors.y">
+                        {{ formErrors.y }}
+                      </div>
                     </div>
-                    <div class="card-footer">
-                        <button (click)="deleteDots()" type="button" class="btn btn-secondary float-right"
-                        style="margin-right: 5px;">
-                        Borrar Puntos
-                    </button>
+                  </div>
+                  <div class="col-4">
+                    <button type="submit" class="btn btn-block btn-success" [disabled]="dotsForm.invalid">Agregar</button>
+                  </div>
                 </div>
-                <!-- /.card-body -->
+              </form>
             </div>
-            <!-- /.card -->
+          </div>
+          <!-- /.card-body -->
+          <div class="row card-footer">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+              <button type="button" (click)="loadDotsSet()" class="btn btn-block btn-info">Cargar Set de Prueba</button>
+            </div>
+          </div><!-- /.card-footer -->
+        </div><!-- /.card -->
+      </div><!-- /.col -->
+
+      <div class="col-6" *ngIf="showTable">
+        <div class="card card-info card-outline">
+          <div class="card-header">
+            <h3 class="card-title">Puntos Ingresados</h3>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th class="text-center">X</th>
+                  <th class="text-center">Y</th>
+                  <th class="text-center" style="width: 10px"><small>EDITAR</small>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let dot of dots; let i = index">
+                  <td>{{ i + 1  }}</td>
+                  <td class="text-center">
+                    <span>{{ dot.x }}</span>
+                  </td>
+                  <td class="text-center">
+                    <span>{{ dot.y }}</span>
+                  </td>
+                  <td class="text-center">
+                    <small (click)="dotEdit(i)"><i class="fas fa-edit"></i></small>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer">
+            <button [routerLink]="['/lineal']" type="button" class="btn btn-success float-left"
+            *ngIf="dots" style="margin-left: 5px;">
+              AJUSTE LINEAL
+            </button>
+
+            <button (click)="deleteDots()" type="button" class="btn btn-secondary float-right"
+              style="margin-right: 5px;">
+              Borrar Puntos
+            </button>
+          </div>
+          <!-- /.card-body -->
         </div>
-        <!-- /.col -->
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
     </div>
     <!-- /.row -->
-    
+
     <app-error [error]="errMsg" [hidden]="dots"></app-error>
     <!-- ./error-page -->
-    
-</div>
-<!-- ./container-fluid -->
+
+  </div>
+  <!-- ./container-fluid -->
 
 </section>
 <!-- /.content -->

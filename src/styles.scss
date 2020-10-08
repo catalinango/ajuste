@@ -1,3 +1,43 @@
+//Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+//@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700');
+//@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic');
+
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+// Optional
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/code";
+@import "../node_modules/bootstrap/scss/grid";
 
 html, body { height: 100%; }
+html {
+  font-size: 0.75rem;
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 1.2rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.4rem;
+  }
+  #canvas-div{
+    height: 400px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1rem;
+  }
+}

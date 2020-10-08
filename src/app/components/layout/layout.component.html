@@ -1,163 +1,158 @@
-<body class="hold-transition sidebar-collapse layout-fixed accent-maroon" style="height: auto;">
-    <!-- Site wrapper -->
-    <div class="wrapper">
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-dark navbar-info">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" id="pushmenu" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link" [routerLink]="['/']">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link" [routerLink]="['/docs']">Documentación</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link" [routerLink]="['/info']">Información del Sistema</a>
-                </li>
-                <!-- /. only xs -->
-                <li class="nav-item d-block d-inline d-sm-none">
-                    <a href="#" class="nav-link" [routerLink]="['/']"><i class="fas fa-home"></i></a>
-                </li>
-                <li class="nav-item d-block d-inline d-sm-none">
-                    <a href="#" class="nav-link" [routerLink]="['/docs']"><i class="fas fa-file-invoice"></i></a>
-                </li>
-                <li class="nav-item d-block d-inline d-sm-none">
-                    <a href="#" class="nav-link" [routerLink]="['/info']"><i class="fas fa-info-circle"></i></a>
-                </li>
-                <!-- /. only xs -->
-            </ul>
-        </nav>
-        <!-- /.navbar -->
+<body class="hold-transition fixed fixed-sidebar accent-maroon" style="height: auto;">
+  <!-- Site wrapper -->
+  <div class="wrapper">
 
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar elevation-4 sidebar-light-navy">
-            <!-- Brand Logo -->
-            <a href="https://www.ucalp.edu.ar/" target="_blank" class="brand-link">
-                <img src="../../../../assets/img/ucalp.png" alt="" class="brand-image img-circle elevation-2">
-                <span class="brand-text font-weight-light text-navy"><strong>&nbsp;U C A L P</strong></span>
-            </a>
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-dark navbar-info">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-bars"></i></a>
+        </li>
+      </ul>
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link" [routerLink]="['/']">Home</a>
+        </li>
+        <!-- /. only xs -->
+        <li class="nav-item d-block d-inline d-sm-none">
+          <a href="#" class="nav-link" [routerLink]="['/']"><i class="fas fa-home"></i></a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <!--   <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
-                    </div>
-                    <div class="info">
-                        <a class="d-block"><span class="brand-text font-weight-light text-navy">ING. EN
-                                SISTEMAS</span></a>
-                        <a class="d-block"><span class="brand-text font-weight-light text-navy">DE
-                                INFORMACION</span></a>
-                    </div>
-                </div>
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-light-navy elevation-3">
+      <!-- Brand Logo -->
+      <a href="https://www.ucalp.edu.ar/" target="_blank" class="brand-link">
+        <img src="../../../../assets/img/ucalp.png" alt="UCALP" class="brand-image img-circle elevation-2">
+        <span class="brand-text font-weight-light text-navy"><strong>&nbsp;U C A L P</strong></span>
+      </a>
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <li class="nav-item">
-                            <a href="#" [routerLink]="['/puntos']" class="nav-link active">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p> Ingresar Datos </p>
-                            </a>
-                        </li>
-                    </ul>
-                    <br>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user (optional) -->
 
-                    <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <li class="nav-item">
-                            <a href="#" [routerLink]="['/lineal']" class="nav-link">
-                                <i class="nav-icon fas fa-chart-bar"></i>
-                                <p> LINEAL
-                                    <!--  <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" [routerLink]="['/polinomico']" class="nav-link">
-                                <i class="nav-icon fas fa-chart-line"></i>
-                                <p> POLINOMICO </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" [routerLink]="['/exponencial']" class="nav-link">
-                                <i class="nav-icon fas fa-chart-bar"></i>
-                                <p> EXPONENCIAL </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" [routerLink]="['/potencial']" class="nav-link">
-                                <i class="nav-icon fas fa-chart-line"></i>
-                                <p> POTENCIAL </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" [routerLink]="['/cociente']" class="nav-link">
-                                <i class="nav-icon fas fa-chart-line"></i>
-                                <p> COCIENTE </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" [routerLink]="['/bondad']" class="nav-link">
-                                <i class="nav-icon fas fa-calculator"></i>
-                                <p> Bondad del Ajuste </p>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
-                <br>
-                <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex"></div>
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <!--   <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
-                    </div>
-                    <div class="info">
-                        <a class="d-block"><span
-                                class="brand-text font-weight-light text-navy"><strong>DOCENTE</strong></span></a>
-                        <a class="d-block"><span class="brand-text font-weight-light text-navy">ING. CHANCEL
-                                MYRIAN</span></a>
-                    </div>
-                </div>
-
-            </div>
-            <!-- /.sidebar -->
-        </aside>
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1><span class="font-weight-light text-navy">ANALISIS NUMÉRICO</span></h1>
-                            <span class="font-weight-light text-navy">AJUSTE POR MINIMOS CUADRADOS</span>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
-
-            <router-outlet></router-outlet>
-
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <!--   <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
+          </div>
+          <div class="info">
+            <a class="d-block"><span class="brand-text font-weight-light text-navy">ING. EN
+                SISTEMAS</span></a>
+            <a class="d-block"><span class="brand-text font-weight-light text-navy">DE
+                INFORMACION</span></a>
+          </div>
         </div>
-        <!-- /.content-wrapper -->
 
-        <footer class="main-footer text-sm">
-            <div class="float-right d-none d-sm-block">
-                <span class="font-weight-light text-navy"> <strong>ALUMNA </strong> GUERRERO CATALINA </span>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="#" [routerLink]="['/puntos']" class="nav-link active">
+                <i class="nav-icon fas fa-edit"></i>
+                <p> Ingresar Datos </p>
+              </a>
+            </li>
+            <li class="nav-header">AJUSTE</li>
+            <li class="nav-item">
+              <a href="#" [routerLink]="['/lineal']" class="nav-link">
+                <i class="nav-icon fas fa-chart-line"></i>
+                <p> Lineal </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" [routerLink]="['/polinomico']" class="nav-link">
+                <i class="nav-icon fas fa-chart-line"></i>
+                <p> Polinómico </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" [routerLink]="['/exponencial']" class="nav-link">
+                <i class="nav-icon fas fa-chart-line"></i>
+                <p> Exponencial </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" [routerLink]="['/potencial']" class="nav-link">
+                <i class="nav-icon fas fa-chart-line"></i>
+                <p> Potencial </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" [routerLink]="['/cociente']" class="nav-link">
+                <i class="nav-icon fas fa-chart-line"></i>
+                <p> Cociente </p>
+              </a>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="#" [routerLink]="['/bondad']" class="nav-link">
+                <i class="nav-icon fas fa-th-large"></i>
+                <p> Bondad del Ajuste
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" [routerLink]="['/bondad-lineal']" class="nav-link ">
+                    <i class="fas fa-calculator nav-icon"></i>
+                    <p>Cálculo Lineal</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <br>
+              <!-- Sidebar user (optional) -->
+              <div class="user-panel mt-3 pb-3 mb-3 d-flex"></div>
+              <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                  <!--   <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
+                </div>
+                <div class="info">
+                  <a class="d-block"><span class="brand-text font-weight-light"><strong>DOCENTE</strong></span></a>
+                  <a class="d-block"><span class="brand-text font-weight-light"><strong>Ing. Myrian
+                        Chancel</strong></span></a>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+        </nav><!-- /.sidebar-menu -->
+      </div><!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1><span class="font-weight-light text-navy">ANALISIS NUMÉRICO</span></h1>
+              <span class="font-weight-light text-navy">AJUSTE POR MINIMOS CUADRADOS</span>
             </div>
-            <span class="font-weight-light text-navy"> <strong> Universidad Católica de La Plata 2020 </strong></span>
-        </footer>
-
-        <div id="sidebar-overlay"></div>
-
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- Main content -->
+      
+        <router-outlet></router-outlet>
+        
     </div>
-    <!-- ./wrapper -->
+    <!-- /.content-wrapper -->
+
+    <footer class="main-footer text-sm">
+      <div class="float-right d-none d-sm-block">
+        <span class="font-weight-light text-navy"> <strong>ALUMNA </strong> GUERRERO CATALINA </span>
+      </div>
+      <span class="font-weight-light text-navy"> <strong> Universidad Católica de La Plata 2020 </strong></span>
+    </footer>
+
+    <div id="sidebar-overlay"></div>
+
+  </div>
+  <!-- ./wrapper -->
 </body>

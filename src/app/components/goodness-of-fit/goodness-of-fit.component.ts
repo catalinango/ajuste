@@ -31,11 +31,10 @@ export class GoodnessOfFitComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     
-    let ds = new Array<Dot>();
-    
+    let ds = new Array<Dot>();  
     this.dataService.getDots().subscribe( d => { ds = d }, err => { this.errMsg = err; });
     
-    if (ds === undefined) { this.noDots = true; }
+    if (ds === undefined || ds.length < 1) { this.noDots = true; }
     else {
       console.log("Dots in Linear: " + JSON.stringify(ds));
       this.dots = ds;

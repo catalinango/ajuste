@@ -2,184 +2,152 @@
 <section class="content px-2">
   <div class="container-fluid">
     <div class="row" *ngIf="dots !== undefined && data.values.n > 1 && !errMsg">
-      <div class="col-12">
+
+      <!-- Text -->
+      <div class="col-md-7 card card-info card-outline">
+        <div class="card-header">
+          <h3 class="card-title text-navy"> ANALISIS - CUANDO LA FUNCION EMPIRICA ES POTENCIAL</h3>
+        </div><!-- /.card-header -->
+        <div class="card-body">
+          <span [appMath]>
+            $ \mathcal f (x; a_1; a_2) \Rightarrow y = a_1x^{{'{'}}a_2{{'}'}} $
+          </span>
+          <p>
+            En este caso la función no es lineal por lo cual debemos linealizarla: <br>
+            <span [appMath]>
+              $ ln \ y = ln \ a_1 + ln \ x^{{'{'}}a_2{{'}'}} \Rightarrow ln \ y = ln \ a_1 + a_2 \ ln \ x $
+            </span>
+          </p>
+          <p>
+            Comparando la expresión anterior con la fórmula empírica de la recta nos queda: <br>
+            <span [appMath]>
+              $ \begin{{'{'}}align{{'}'}}
+              y = a_1 + a_2x && ln \ y = ln \ a_1 + a_2 \ln \ x \\
+              y \Rightarrow ln \ y && a_2 = a_2\\
+              a_1 \Rightarrow ln \ a_1 && x \Rightarrow ln \ x
+              \end{{'{'}}align{{'}'}} $
+            </span>
+          </p>
+          <p>
+            Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> (Ver análisis
+              inicial)</a>. Resulta: <br>
+            <span [appMath]>
+              $ \begin{{'{'}}bmatrix{{'}'}}
+              n & \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i \\
+              \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i & \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i^2 \\
+              \end{{'{'}}bmatrix{{'}'}}
+              \cdot
+              \begin{{'{'}}bmatrix{{'}'}}
+              ln \ a_1\\
+              a_2\\
+              \end{{'{'}}bmatrix{{'}'}}
+              =
+              \begin{{'{'}}bmatrix{{'}'}}
+              \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i\\
+              \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot ln \ x_i\\
+              \end{{'{'}}bmatrix{{'}'}} $
+            </span>
+          </p>
+          <p>
+            Tomamos como ejemplo la tabla de valores ingresada. <br>
+            Ajustamos a una exponencial: <span [appMath]> $ y = a_1 x^{{'{'}}a_2{{'}'}} $</span>
+          </p>
+          <p>
+            <span [appMath]>
+              $ \begin{{'{'}}align{{'}'}}
+              n = {{data.values.n}} && \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i =
+              {{data.values.sx}} && \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i^2 =
+              {{data.values.sx2}} && \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i =
+              {{data.values.sy}} && \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot ln \ x_i =
+              {{data.values.syx}}
+              \end{{'{'}}align{{'}'}} \\
+              \begin{{'{'}}bmatrix{{'}'}}
+              n & \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i \\
+              \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i & \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i^2
+              \end{{'{'}}bmatrix{{'}'}}
+              \cdot
+              \begin{{'{'}}bmatrix{{'}'}}
+              ln \ a_1\\
+              a_2
+              \end{{'{'}}bmatrix{{'}'}}
+              =
+              \begin{{'{'}}bmatrix{{'}'}}
+              \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i\\
+              \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot ln \ x_i
+              \end{{'{'}}bmatrix{{'}'}}
+              \Rightarrow
+              \begin{{'{'}}bmatrix{{'}'}}
+              {{data.values.n}} & {{data.values.sx}} \\
+              {{data.values.sx}} & {{data.values.sx2}}
+              \end{{'{'}}bmatrix{{'}'}}
+              \cdot
+              \begin{{'{'}}bmatrix{{'}'}}
+              ln \ a_1\\
+              a_2
+              \end{{'{'}}bmatrix{{'}'}}
+              =
+              \begin{{'{'}}bmatrix{{'}'}}
+              {{data.values.sy}}\\
+              {{data.values.syx}}
+              \end{{'{'}}bmatrix{{'}'}} $
+            </span>
+          </p>
+          <p>
+            Armamos un sistema de ecuaciones y lo resolvemos:<br>
+            <span [appMath]>
+              $ \begin{{'{'}}cases{{'}'}}
+              {{data.values.n}} \ ln \ a_1 + {{data.values.sx}}a_2 = {{data.values.sy}}\\
+              {{data.values.sx}} \ ln \ a_1 + {{data.values.sx2}}a_2 = {{data.values.syx}}
+              \end{{'{'}}cases{{'}'}} \\
+              a_2 = {{data.values.a2}}\\
+              ln \ a_1=\frac{{'{'}}{{data.values.sy}}-({{data.values.sx}} \cdot
+              {{data.values.a2}}){{'}'}}{{'{'}}{{data.values.n}}{{'}'}}
+              \Rightarrow ln \ a_1={{data.values.a1}}\\
+              a_1=e^{{'{'}}{{data.values.a1}} {{'}'}}\Rightarrow a_1 = {{data.values.a1}} $
+            </span>
+          </p>
+          <div [appMath]>
+            $$
+            \bbox[5px,border:3px solid red]
+            {{'{'}}
+            \mathcal y(x) = {{data.values.a1}} \cdot x^{{'{'}}{{data.values.a2}}{{'}'}}
+            {{'}'}}
+            $$
+          </div>
+        </div><!-- ./card-body -->
+      </div><!-- /.col-md-7 /.card -->
+
+      <div class="col-md-5">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy"> GRAFICA <span>$ f(x) = {{data.values.a1}} \cdot
+                x^{{'{'}}{{data.values.a2}}{{'}'}} $</span></h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <app-plot [data]="dt"></app-plot>
+          </div><!-- ./card-body -->
+        </div><!-- /.card -->
+
         <div class="callout callout-info">
-          <h5 class="text-navy"> ANALISIS - CUANDO LA FUNCION EMPIRICA ES POTENCIAL</h5>
-          <div class="row">
-            <div class="col-12 col-md-5">
-              <p>
-                <span [appMath]>
-                  $ \mathcal f (x; a_1; a_2) \Rightarrow y = a_1x^{{'{'}}a_2{{'}'}} $
-                </span>
-              </p>
-              <p>
-                En este caso la función no es lineal por lo cual debemos linealizarla: <br>
-                <span [appMath]>
-                  $ ln \ y = ln \ a_1 + ln \ x^{{'{'}}a_2{{'}'}} \Rightarrow ln \ y = ln \ a_1 + a_2 \ ln \ x $
-                </span>
-              </p>
-              <p>
-                Comparando la expresión anterior con la fórmula empírica de la recta nos queda: <br>
-                <span [appMath]>
-                  $ \begin{{'{'}}align{{'}'}}
-                  y = a_1 + a_2x && ln \ y = ln \ a_1 + a_2 \ln \ x \\
-                  y \Rightarrow ln \ y && a_2 = a_2\\
-                  a_1 \Rightarrow ln \ a_1 && x \Rightarrow ln \ x
-                  \end{{'{'}}align{{'}'}} $
-                </span>
-              </p>
-              <p>
-                Tomando en cuenta el Análisis Inicial <a href="#" [routerLink]="['/home']"> (Ver análisis
-                  inicial)</a>. Resulta: <br>
-                  <span [appMath]>
-                    $ \begin{{'{'}}bmatrix{{'}'}}
-                    n & \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i \\
-                    \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i & \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i^2 \\
-                    \end{{'{'}}bmatrix{{'}'}}
-                    \cdot
-                    \begin{{'{'}}bmatrix{{'}'}}
-                    ln \ a_1\\
-                    a_2\\
-                    \end{{'{'}}bmatrix{{'}'}}
-                    =
-                    \begin{{'{'}}bmatrix{{'}'}}
-                    \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i\\
-                    \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot ln \ x_i\\
-                    \end{{'{'}}bmatrix{{'}'}} $
-                  </span>
-                </p>
-                <p>
-                  Tomamos como ejemplo la tabla de valores ingresada. <br>
-                  Ajustamos a una exponencial: <span [appMath]> $ y = a_1 x^{{'{'}}a_2{{'}'}} $</span>
-                </p>
-              </div>
-              <!-- /.col-md-5 -->
-              <div class="col-12 col-md-7">
-                <p>
-                  <span [appMath]>
-                    $ \begin{{'{'}}align{{'}'}}
-                    n = {{data.values.n}} && \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i = 
-                    {{data.values.sx}} && \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i^2 =
-                    {{data.values.sx2}} && \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i = 
-                    {{data.values.sy}} && \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot ln \ x_i =
-                    {{data.values.syx}}
-                    \end{{'{'}}align{{'}'}} \\
-                    \begin{{'{'}}bmatrix{{'}'}}
-                    n & \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i \\
-                    \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i & \sum_{{'{'}}i=1{{'}'}}^n ln \ x_i^2
-                    \end{{'{'}}bmatrix{{'}'}}
-                    \cdot
-                    \begin{{'{'}}bmatrix{{'}'}}
-                    ln \ a_1\\
-                    a_2
-                    \end{{'{'}}bmatrix{{'}'}}
-                    =
-                    \begin{{'{'}}bmatrix{{'}'}}
-                    \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i\\
-                    \sum_{{'{'}}i=1{{'}'}}^n ln \ y_i \cdot ln \ x_i
-                    \end{{'{'}}bmatrix{{'}'}}
-                    \Rightarrow
-                    \begin{{'{'}}bmatrix{{'}'}}
-                    {{data.values.n}} & {{data.values.sx}} \\
-                    {{data.values.sx}} & {{data.values.sx2}}
-                    \end{{'{'}}bmatrix{{'}'}}
-                    \cdot
-                    \begin{{'{'}}bmatrix{{'}'}}
-                    ln \ a_1\\
-                    a_2
-                    \end{{'{'}}bmatrix{{'}'}}
-                    =
-                    \begin{{'{'}}bmatrix{{'}'}}
-                    {{data.values.sy}}\\
-                    {{data.values.syx}}
-                    \end{{'{'}}bmatrix{{'}'}} $
-                  </span>
-                </p>
-                <p>
-                  Armamos un sistema de ecuaciones y lo resolvemos:<br>
-                  <span [appMath]>
-                    $ \begin{{'{'}}cases{{'}'}}
-                    {{data.values.n}} \ ln \ a_1 + {{data.values.sx}}a_2 = {{data.values.sy}}\\
-                    {{data.values.sx}} \ ln \ a_1 + {{data.values.sx2}}a_2 = {{data.values.syx}}
-                    \end{{'{'}}cases{{'}'}} \\
-                    a_2 = {{data.values.a2}}\\
-                    ln \ a_1=\frac{{'{'}}{{data.values.sy}}-({{data.values.sx}} \cdot {{data.values.a2}}){{'}'}}{{'{'}}{{data.values.n}}{{'}'}}
-                    \Rightarrow ln \ a_1={{data.values.a1}}\\
-                    a_1=e^{{'{'}}{{data.values.a1}} {{'}'}}\Rightarrow a_1 = {{data.values.a1}} $
-                  </span>
-                </p>
-                <div [appMath]>
-                  $$
-                  \bbox[5px,border:3px solid red]
-                  {{'{'}}
-                  \mathcal y(x) = {{data.values.a1}} \cdot x^{{'{'}}{{data.values.a2}}{{'}'}}
-                  {{'}'}}
-                  $$
-                </div>
-              </div>
-              <!-- /.col-md-7 -->
-            </div>
-            <!-- /.row -->
-          </div>
-          <!-- /.callout -->
-        </div>
-        <!-- /.col-12 -->
-        
-        <div class="col-lg-3">
-          <div class="card card-success card-outline">
-            <div class="card-header">
-              <h3 class="card-title text-navy"> Datos Analizados</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table #dotsTable class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th style="width: 10px">#</th>
-                    <th class="text-center">x</th>
-                    <th class="text-center">y(x)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let d of dots; let i = index">
-                    <td>{{ i + 1  }}</td>
-                    <td class="text-center">
-                      <span>{{ d.x }}</span>
-                    </td>
-                    <td class="text-center">
-                      <span>{{ d.y }}</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <!-- ./card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        
-        <!-- /.col-lg-3 -->
-        <div class="col-lg-9">
-          <div class="card card-success card-outline">
-            <div class="card-header">
-              <h3 class="card-title text-navy"> GRAFICA <span>$ f(x) = {{data.values.a1}} \cdot x^{{'{'}}{{data.values.a2}}{{'}'}} $</span></h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <app-plot [data]="dt"></app-plot>
-            </div>
-            <!-- ./card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col-lg-9 -->
-        
-      </div>
-      <!-- ./row-->
-      
-      <app-error [error]="errMsg" [noDots]="noDots"></app-error>
-      <!-- /.error-page -->
-      
-    </div>
-    <!-- /.container-fluid-->
-  </section>
+          <h5 class="card-title text-navy"> Datos Analizados</h5>
+          <br>
+          <ul class="list-group list-group-horizontal-md">
+            <li class="list-group-item flex-fill font-weight-bold">X</li>
+            <li *ngFor="let d of dots" class="list-group-item flex-fill">{{ d.x }}</li>
+          </ul>
+          <ul class="list-group list-group-horizontal-md">
+            <li class="list-group-item flex-fill font-weight-bold">Y</li>
+            <li *ngFor="let d of dots" class="list-group-item flex-fill">{{ d.y }}</li>
+          </ul>
+        </div><!-- /.callout -->
+      </div><!-- /.col-md-5 -->
+
+    </div><!-- ./row-->
+
+    <app-error [error]="errMsg" [noDots]="noDots"></app-error>
+    <!-- /.error-page -->
+
+  </div>
+  <!-- /.container-fluid-->
+</section>

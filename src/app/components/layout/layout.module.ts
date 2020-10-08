@@ -9,8 +9,6 @@ import { MathModule } from 'src/app/math/math.module';
 import { AutofocusDirective } from '../../directives/autofocus.directive';
 
 import { HomeComponent } from '../home/home.component';
-import { InfoComponent } from '../../components/info/info.component';
-import { DocsComponent } from '../../components/docs/docs.component';
 import { PlotComponent } from '../plot/plot.component';
 import { DotsInputComponent } from '../../components/dots-input/dots-input.component';
 import { LinearComponent } from '../../components/linear/linear.component';
@@ -20,16 +18,17 @@ import { PotentialComponent } from '../../components/potential/potential.compone
 import { QuotientComponent } from '../quotient/quotient.component';
 import { GoodnessOfFitComponent } from '../../components/goodness-of-fit/goodness-of-fit.component';
 import { ErrorComponent } from '../error/error.component';
+import { LinearGofComponent } from '../linear-gof/linear-gof.component';
 
 @NgModule({
   declarations: [ 
-    AutofocusDirective, DocsComponent, 
+    AutofocusDirective, 
     HomeComponent, DotsInputComponent, 
     PlotComponent, LinearComponent, 
     PolynomialComponent, ExponentialComponent,
     PotentialComponent, QuotientComponent,
-    GoodnessOfFitComponent,
-    InfoComponent, ErrorComponent
+    GoodnessOfFitComponent, ErrorComponent,
+    LinearGofComponent
   ],
   imports: [
     CommonModule,
@@ -39,13 +38,13 @@ import { ErrorComponent } from '../error/error.component';
     MathModule
   ],
   exports: [
-    AutofocusDirective, DocsComponent, 
+    AutofocusDirective, 
     HomeComponent, DotsInputComponent, 
     PlotComponent, LinearComponent, 
     PolynomialComponent, ExponentialComponent,
     PotentialComponent, QuotientComponent,
-    GoodnessOfFitComponent,
-    InfoComponent, ErrorComponent
+    GoodnessOfFitComponent, ErrorComponent, 
+    LinearGofComponent
   ]
 })
 export class LayoutModule { }

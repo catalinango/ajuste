@@ -29,7 +29,7 @@ export class PolynomialComponent implements OnInit, OnDestroy {
         this.errMsg = err;
       });
       
-      if (ds === undefined) {
+      if (ds === undefined || ds.length < 1) {
         this.noDots = true;
         console.log("ds undefined")
       }

@@ -30,7 +30,7 @@ export class QuotientComponent implements OnInit {
         this.errMsg = err;
       });
       
-      if (ds === undefined) {
+      if (ds === undefined || ds.length < 1) {
         this.noDots = true;
       }
       else {
