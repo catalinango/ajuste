@@ -8,6 +8,7 @@ import { PotentialComponent } from '../potential/potential.component';
 import { QuotientComponent } from '../quotient/quotient.component';
 import { GoodnessOfFitComponent } from '../goodness-of-fit/goodness-of-fit.component';
 import { LinearGofComponent } from '../linear-gof/linear-gof.component';
+import { GofAllComponent } from '../gof-all/gof-all.component';
 
 export const LayoutRoutes: Routes = [
     { path: 'home',  component: HomeComponent },
@@ -18,5 +19,6 @@ export const LayoutRoutes: Routes = [
     { path: 'potencial', component: PotentialComponent },
     { path: 'cociente', component: QuotientComponent },
     { path: 'bondad', component: GoodnessOfFitComponent },
-    { path: 'bondad-lineal', component: LinearGofComponent}
+    { path: 'bondad-lineal', component: LinearGofComponent},
+    { path: 'bondad-todos', component: GofAllComponent}
 ]

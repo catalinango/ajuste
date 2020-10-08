@@ -6,11 +6,11 @@ import { NonLinearData } from '../non-linear-data';
 import { GoodnessData } from '../goodness-data';
 
 @Component({
-  selector: 'app-goodness-of-fit',
-  templateUrl: './goodness-of-fit.component.html',
-  styleUrls: ['./goodness-of-fit.component.scss']
+  selector: 'app-gof-all',
+  templateUrl: './gof-all.component.html',
+  styleUrls: ['./gof-all.component.scss']
 })
-export class GoodnessOfFitComponent implements OnInit, OnDestroy {
+export class GofAllComponent implements OnInit {
 
   noDots: boolean;
   errMsg: string;

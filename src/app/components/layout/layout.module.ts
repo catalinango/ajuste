@@ -19,6 +19,7 @@ import { QuotientComponent } from '../quotient/quotient.component';
 import { GoodnessOfFitComponent } from '../../components/goodness-of-fit/goodness-of-fit.component';
 import { ErrorComponent } from '../error/error.component';
 import { LinearGofComponent } from '../linear-gof/linear-gof.component';
+import { GofAllComponent } from '../gof-all/gof-all.component';
 
 @NgModule({
   declarations: [ 
@@ -28,7 +29,7 @@ import { LinearGofComponent } from '../linear-gof/linear-gof.component';
     PolynomialComponent, ExponentialComponent,
     PotentialComponent, QuotientComponent,
     GoodnessOfFitComponent, ErrorComponent,
-    LinearGofComponent
+    LinearGofComponent, GofAllComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +45,7 @@ import { LinearGofComponent } from '../linear-gof/linear-gof.component';
     PolynomialComponent, ExponentialComponent,
     PotentialComponent, QuotientComponent,
     GoodnessOfFitComponent, ErrorComponent, 
-    LinearGofComponent
+    LinearGofComponent, GofAllComponent
   ]
 })
 export class LayoutModule { }

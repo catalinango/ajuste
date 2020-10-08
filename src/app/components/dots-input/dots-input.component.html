@@ -43,12 +43,6 @@
             </div>
           </div>
           <!-- /.card-body -->
-          <div class="row card-footer">
-            <div class="col-md-6"></div>
-            <div class="col-md-6">
-              <button type="button" (click)="loadDotsSet()" class="btn btn-block btn-info">Cargar Set de Prueba</button>
-            </div>
-          </div><!-- /.card-footer -->
         </div><!-- /.card -->
       </div><!-- /.col -->
 
@@ -87,7 +81,7 @@
           <div class="card-footer">
             <button [routerLink]="['/lineal']" type="button" class="btn btn-success float-left"
             *ngIf="dots" style="margin-left: 5px;">
-              AJUSTE LINEAL
+              CONTINUAR
             </button>
 
             <button (click)="deleteDots()" type="button" class="btn btn-secondary float-right"

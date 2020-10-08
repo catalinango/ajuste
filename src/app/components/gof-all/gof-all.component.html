@@ -1,0 +1,558 @@
+<!-- Main content -->
+<section class="content px-2">
+  <div class="container-fluid">
+    <h5 class="text-navy"> BONDAD DEL AJUSTE </h5>
+    <div class="row" *ngIf="dots && n > 1 && !errMsg">
+      <!-- LINEAL CASE -->
+      <div class="col-md-4">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy"> Bondad de Ajuste - Recta:
+              <span [appMath]>$ f(x) = {{linearData.values.a1}} + {{linearData.values.a2}}x $</span>
+            </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div [appMath]>
+              $ y' = {{linearData.values.a1}} + {{linearData.values.a2}}x\\
+              \overline y = \frac{{'{'}} \sum_{{'{'}}i=1{{'}'}}^n y{{'}'}}{{'{'}}n{{'}'}} =
+              \frac{{'{'}}{{linearGD.sy}}{{'}'}}{{'{'}}{{n}}{{'}'}} =
+              {{ linearGD.sy / n }} $
+            </div>
+            <br>
+            <table class="table table-sm table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center">x</th>
+                  <th class="text-center">y</th>
+                  <th class="text-center"><span [appMath]>$ y' = f(x) $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y - y') $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y - y'_i)^2 $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y'_i - \overline y)^2 $</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let dt of linearGD.li">
+                  <td class="text-center"><span>{{ dt.x }}</span></td>
+                  <td class="text-center"><span>{{ dt.y }}</span></td>
+                  <td class="text-center"><span>{{ dt.y1.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y2.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y3.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y4.toFixed(2) }}</span></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="text-center"><span>{{ linearGD.sy3.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ linearGD.sy4.toFixed(2) }}</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <span [appMath]>
+              $ S_{{'{'}}yx{{'}'}}^2
+              = \frac{{'{'}}{{linearGD.sy3.toFixed(2)}}{{'}'}}{{'{'}}{{n}}{{'}'}}
+              = {{(linearGD.sy3 / n).toFixed(2)}} $
+            </span>
+            &nbsp;&nbsp;;&nbsp;&nbsp;
+            <span [appMath]>
+              $ S_{{'{'}}y'{{'}'}}^2
+              = \frac{{'{'}}{{linearGD.sy4.toFixed(2)}}{{'}'}}{{'{'}}{{n}}{{'}'}}
+              = {{(linearGD.sy4 / n).toFixed(2)}} $
+            </span>
+            <p>
+              A partir de los valores predichos se puede obtener:
+            </p>
+            <ul>
+              <li>Varianza de los errores:
+                <span [appMath]>
+                  $ S_{{'{'}}yx{{'}'}}^2 = {{ (linearGD.sy3 / n).toFixed(2) }}$
+                </span>
+              </li>
+              <li>Varianza de las puntuaciones predichas:
+                <span [appMath]>$ S_{{'{'}}y'{{'}'}}^2 = {{ (linearGD.sy4 / n).toFixed(2) }}$
+                </span>
+              </li>
+              <li>
+                <p>
+                  Descomposición de la varianza y: <br>
+                  <span [appMath]>
+                    $ S_y^2 = \frac{{'{'}}\sum (y_i - \overline y)^2 {{'}'}}{{'{'}}{{n}}{{'}'}} =
+                    \frac{{'{'}} {{linearGD.sy5.toFixed(2)}} {{'}'}}{{'{'}}{{n}}{{'}'}} = {{ linearGD.rd.toFixed(2) }}\\
+                    S_y^2 = S_{{'{'}}y'{{'}'}}^2 + S_{{'{'}}yx{{'}'}}^2 \\
+                    {{ linearGD.rd.toFixed(2) }} = {{ (linearGD.sy4 / n).toFixed(2) }}
+                    + {{ (linearGD.sy3 / n).toFixed(2) }} $
+                  </span>
+                </p>
+              </li>
+              <li>
+                <p>
+                  Coeficiente de determinación:
+                  <span [appMath]>
+                    $ R^2 = \frac{{'{'}} S_{{'{'}}y'{{'}'}}^2 {{'}'}}{{'{'}} S_y^2 {{'}'}} =
+                    \frac{{'{'}} {{ linearGD.rn.toFixed(2) }} {{'}'}}{{'{'}}{{ linearGD.rd.toFixed(2) }} {{'}'}} =
+                    {{ linearGD.r2.toFixed(2)}} $
+                  </span> <br>
+                 </p>
+              </li>
+            </ul>
+          </div>
+          <!-- ./card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+
+      <!-- POLYNOMIAL CASE -->
+      <div class="col-md-4">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy"> Bondad de Ajuste - Polinomio:
+              <span [appMath]>$ f(x) = {{polynomialData.values.a1}} + {{polynomialData.values.a2}}x +
+                {{ polynomialData.values.a3}}x^2 $</span>
+            </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div [appMath]>
+              $ y' = {{polynomialData.values.a1}} + {{polynomialData.values.a2}}x + {{ polynomialData.values.a3}}x^2 \\
+              \overline y = \frac{{'{'}} \sum_{{'{'}}i=1{{'}'}}^n y{{'}'}}{{'{'}}n{{'}'}} =
+              \frac{{'{'}}{{polynomialData.values.sy}}{{'}'}}{{'{'}}{{n}}{{'}'}} =
+              {{ polynomialData.values.sy / n }} $
+            </div>
+            <br>
+            <table class="table table-sm table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center">x</th>
+                  <th class="text-center">y</th>
+                  <th class="text-center"><span [appMath]>$ y' = f (x) $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y - y') $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y - y'_i)^2 $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y'_i - \overline y)^2 $</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let dt of polynomialGD.li">
+                  <td class="text-center"><span>{{ dt.x }}</span></td>
+                  <td class="text-center"><span>{{ dt.y }}</span></td>
+                  <td class="text-center"><span>{{ dt.y1.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y2.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y3.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y4.toFixed(2) }}</span></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="text-center"><span>{{ polynomialGD.sy3.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ polynomialGD.sy4.toFixed(2) }}</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <span [appMath]>
+              $ S_{{'{'}}yx{{'}'}}^2
+              = \frac{{'{'}}{{polynomialGD.sy3.toFixed(2)}}{{'}'}}{{'{'}}{{n}}{{'}'}}
+              = {{(polynomialGD.sy3 / n).toFixed(2)}} $
+              &nbsp;&nbsp;;&nbsp;&nbsp;
+            </span>
+            <span [appMath]>
+              $ S_{{'{'}}y'{{'}'}}^2
+              = \frac{{'{'}}{{polynomialGD.sy4.toFixed(2)}}{{'}'}}{{'{'}}{{n}}{{'}'}}
+              = {{(polynomialGD.sy4 / n).toFixed(2)}} $
+            </span>
+            <p>
+              A partir de los valores predichos se puede obtener:
+            </p>
+            <ul>
+              <li>Varianza de los errores:
+                <span [appMath]>
+                  $ S_{{'{'}}yx{{'}'}}^2 = {{ (polynomialGD.sy3 / n).toFixed(2) }}$
+                </span>
+              </li>
+              <li>Varianza de las puntuaciones predichas:
+                <span [appMath]>$ S_{{'{'}}y'{{'}'}}^2 = {{ (polynomialGD.sy4 / n).toFixed(2) }}$
+                </span>
+              </li>
+              <li>
+                <p>
+                  Descomposición de la varianza y: <br>
+                  <span [appMath]>
+                    $ S_y^2 = \frac{{'{'}}\sum (y_i - \overline y)^2 {{'}'}}{{'{'}}{{n}}{{'}'}} =
+                    \frac{{'{'}} {{polynomialGD.sy5.toFixed(2)}} {{'}'}}{{'{'}}{{n}}{{'}'}} =
+                    {{ polynomialGD.rd.toFixed(2) }}\\
+                    S_y^2 = S_{{'{'}}y'{{'}'}}^2 + S_{{'{'}}yx{{'}'}}^2 \\
+                    {{ polynomialGD.rd.toFixed(2) }} = {{ (polynomialGD.rn).toFixed(2) }}
+                    + {{ (polynomialGD.sy3 / n).toFixed(2) }} $
+                  </span>
+                </p>
+              </li>
+              <li>
+                <p>
+                  Coeficiente de determinación:
+                  <span [appMath]>
+                    $ R^2 = \frac{{'{'}} S_{{'{'}}y'{{'}'}}^2 {{'}'}}{{'{'}} S_y^2 {{'}'}} =
+                    \frac{{'{'}} {{ polynomialGD.rn.toFixed(2) }} {{'}'}}{{'{'}}{{ polynomialGD.rd.toFixed(2) }}
+                    {{'}'}}
+                    = {{ polynomialGD.r2.toFixed(2)}} $
+                  </span> <br>
+                 </p>
+              </li>
+            </ul>
+          </div>
+          <!-- ./card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+
+      <!-- EXPONENTIAL CASE -->
+      <div class="col-md-4">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy"> Bondad de Ajuste - Exponente:
+              <span [appMath]>$ f(x) = {{exponentialData.values.a1}} \cdot
+                e^{{'{'}}{{exponentialData.values.a2}}x{{'}'}} $</span>
+            </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div [appMath]>
+              $ y' = {{exponentialData.values.a1}} \cdot e^{{'{'}}{{exponentialData.values.a2}}x{{'}'}}\\
+              \overline y = \frac{{'{'}} \sum_{{'{'}}i=1{{'}'}}^n y{{'}'}}{{'{'}}n{{'}'}} =
+              \frac{{'{'}}{{exponentialGD.sy}}{{'}'}}{{'{'}}{{n}}{{'}'}} =
+              {{ exponentialGD.sy / n }} $
+            </div>
+            <br>
+            <table class="table table-sm table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center">x</th>
+                  <th class="text-center">y</th>
+                  <th class="text-center"><span [appMath]>$ y' = f (x) $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y - y') $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y - y'_i)^2 $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y'_i - \overline y)^2 $</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let dt of exponentialGD.li">
+                  <td class="text-center"><span>{{ dt.x }}</span></td>
+                  <td class="text-center"><span>{{ dt.y }}</span></td>
+                  <td class="text-center"><span>{{ dt.y1.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y2.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y3.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y4.toFixed(2) }}</span></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="text-center"><span>{{ exponentialGD.sy4.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ exponentialGD.sy3.toFixed(2) }}</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <span [appMath]>
+              $ S_{{'{'}}yx{{'}'}}^2
+              = \frac{{'{'}}{{exponentialGD.sy3.toFixed(2)}}{{'}'}}{{'{'}}{{n}}{{'}'}}
+              = {{(exponentialGD.sy3 / n).toFixed(2)}} $
+            </span>
+            &nbsp;&nbsp;;&nbsp;&nbsp;
+            <span [appMath]>
+              $ S_{{'{'}}y'{{'}'}}^2
+              = \frac{{'{'}}{{exponentialGD.sy4.toFixed(2)}}{{'}'}}{{'{'}}{{n}}{{'}'}}
+              = {{(exponentialGD.sy4 / n).toFixed(2)}} $
+            </span>
+            <p>
+              A partir de los valores predichos se puede obtener:
+            </p>
+            <ul>
+              <li>Varianza de los errores:
+                <span [appMath]>
+                  $ S_{{'{'}}yx{{'}'}}^2 = {{ (exponentialGD.sy3 / n).toFixed(2) }}$
+                </span>
+              </li>
+              <li>Varianza de las puntuaciones predichas:
+                <span [appMath]>$ S_{{'{'}}y'{{'}'}}^2 = {{ (exponentialGD.sy4 / n).toFixed(2) }}$
+                </span>
+              </li>
+              <li>
+                <p>
+                  Descomposición de la varianza y: <br>
+                  <span [appMath]>
+                    $ S_y^2 = \frac{{'{'}}\sum (y_i - \overline y)^2 {{'}'}}{{'{'}}{{n}}{{'}'}} =
+                    \frac{{'{'}} {{exponentialGD.sy5.toFixed(2)}} {{'}'}}{{'{'}}{{n}}{{'}'}} =
+                    {{ exponentialGD.rd.toFixed(2) }}\\
+                    S_y^2 = S_{{'{'}}y'{{'}'}}^2 + S_{{'{'}}yx{{'}'}}^2 \\
+                    {{ exponentialGD.rd.toFixed(2) }} = {{ (exponentialGD.sy4 / n).toFixed(2) }}
+                    + {{ (exponentialGD.sy3 / n).toFixed(2) }} $
+                  </span>
+                </p>
+              </li>
+              <li>
+                <p>
+                  Coeficiente de determinación:
+                  <span [appMath]>
+                    $ R^2 = \frac{{'{'}} S_{{'{'}}y'{{'}'}}^2 {{'}'}}{{'{'}} S_y^2 {{'}'}} =
+                    \frac{{'{'}} {{ exponentialGD.rn.toFixed(2) }} {{'}'}}{{'{'}}{{ exponentialGD.rd.toFixed(2) }}
+                    {{'}'}} = {{ exponentialGD.r2.toFixed(2)}} $
+                  </span> <br>
+                 </p>
+              </li>
+            </ul>
+          </div>
+          <!-- ./card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+
+      <!-- POTENTIAL CASE -->
+      <div class="col-md-4">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy"> Bondad de Ajuste - Potencia:
+              <span [appMath]>$ f(x) = {{potentialData.values.a1}} \cdot x^{{'{'}}{{potentialData.values.a2}}{{'}'}}
+                $</span>
+            </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div [appMath]>
+              $ y' = {{potentialData.values.a1}} \cdot x^{{'{'}}{{potentialData.values.a2}}{{'}'}} \\
+              \overline y = \frac{{'{'}} \sum_{{'{'}}i=1{{'}'}}^n y{{'}'}}{{'{'}}n{{'}'}} =
+              \frac{{'{'}}{{potentialData.values.sy}}{{'}'}}{{'{'}}{{n}}{{'}'}} =
+              {{ potentialData.values.sy / n }} $
+            </div>
+            <br>
+            <table class="table table-sm table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center">x</th>
+                  <th class="text-center">y</th>
+                  <th class="text-center"><span [appMath]>$ y' = f (x) $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y - y') $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y - y'_i)^2 $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y'_i - \overline y)^2 $</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let dt of potentialGD.li">
+                  <td class="text-center"><span>{{ dt.x }}</span></td>
+                  <td class="text-center"><span>{{ dt.y }}</span></td>
+                  <td class="text-center"><span>{{ dt.y1.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y2.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y3.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y4.toFixed(2) }}</span></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="text-center"><span>{{ potentialGD.sy3.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ potentialGD.sy4.toFixed(2) }}</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <span [appMath]>
+              $ S_{{'{'}}yx{{'}'}}^2
+              = \frac{{'{'}}{{potentialGD.sy3.toFixed(2)}}{{'}'}}{{'{'}}{{n}}{{'}'}}
+              = {{(potentialGD.sy3 / n).toFixed(2)}} $
+            </span>
+            &nbsp;&nbsp;;&nbsp;&nbsp;
+            <span [appMath]>
+              $ S_{{'{'}}y'{{'}'}}^2
+              = \frac{{'{'}}{{potentialGD.sy4.toFixed(2)}}{{'}'}}{{'{'}}{{n}}{{'}'}}
+              = {{(potentialGD.sy4 / n).toFixed(2)}} $
+            </span>
+
+            <p>
+              A partir de los valores predichos se puede obtener:
+            </p>
+            <ul>
+              <li>Varianza de los errores:
+                <span [appMath]>
+                  $ S_{{'{'}}yx{{'}'}}^2 = {{ (potentialGD.sy3 / n).toFixed(2) }}$
+                </span>
+              </li>
+              <li>Varianza de las puntuaciones predichas:
+                <span [appMath]>$ S_{{'{'}}y'{{'}'}}^2 = {{ (potentialGD.sy4 / n).toFixed(2) }}$
+                </span>
+              </li>
+              <li>
+                <p>
+                  Descomposición de la varianza y: <br>
+                  <span [appMath]>
+                    $ S_y^2 = \frac{{'{'}}\sum (y_i - \overline y)^2 {{'}'}}{{'{'}}{{n}}{{'}'}} =
+                    \frac{{'{'}} {{potentialGD.sy5.toFixed(2)}} {{'}'}}{{'{'}}{{n}}{{'}'}} =
+                    {{ potentialGD.rd.toFixed(2) }} \\
+                    S_y^2 = S_{{'{'}}y'{{'}'}}^2 + S_{{'{'}}yx{{'}'}}^2 \\
+                    {{ potentialGD.rd.toFixed(2) }} = {{ (potentialGD.sy4 / n).toFixed(2) }}
+                    + {{ (potentialGD.sy3 / n).toFixed(2) }} $
+                  </span>
+                </p>
+              </li>
+              <li>
+                <p>
+                  Coeficiente de determinación:
+                  <span [appMath]>
+                    $ R^2 = \frac{{'{'}} S_{{'{'}}y'{{'}'}}^2 {{'}'}}{{'{'}} S_y^2 {{'}'}} =
+                    \frac{{'{'}} {{ potentialGD.rn.toFixed(2) }} {{'}'}}{{'{'}}{{ potentialGD.rd.toFixed(2) }} {{'}'}} =
+                    {{ potentialGD.r2.toFixed(2)}} $
+                  </span> <br>
+                  </p>
+              </li>
+            </ul>
+          </div>
+          <!-- ./card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+
+      <!-- QUOTIENT CASE -->
+      <div class="col-md-4">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy"> Bondad de Ajuste - Cociente:
+              <span [appMath]>$ f(x) = \frac{{'{'}}{{quotientData.values.a1}}x{{'}'}}{{'{'}}x +
+                {{quotientData.values.a2}}{{'}'}} $</span>
+            </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div [appMath]>
+              $ y' = \frac{{'{'}}{{quotientData.values.a1}}x{{'}'}}{{'{'}}x + {{quotientData.values.a2}}{{'}'}} \\
+              \overline y = \frac{{'{'}} \sum_{{'{'}}i=1{{'}'}}^n y{{'}'}}{{'{'}}n{{'}'}} =
+              \frac{{'{'}}{{quotientData.values.sy}}{{'}'}}{{'{'}}{{n}}{{'}'}} =
+              {{ quotientData.values.sy / n }} $
+            </div>
+            <br>
+            <table class="table table-sm table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center">x</th>
+                  <th class="text-center">y</th>
+                  <th class="text-center"><span [appMath]>$ y' = f (x) $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y - y') $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y - y'_i)^2 $</span></th>
+                  <th class="text-center"><span [appMath]>$ (y'_i - \overline y)^2 $</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let dt of quotientGD.li">
+                  <td class="text-center"><span>{{ dt.x }}</span></td>
+                  <td class="text-center"><span>{{ dt.y }}</span></td>
+                  <td class="text-center"><span>{{ dt.y1.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y2.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y3.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ dt.y4.toFixed(2) }}</span></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="text-center"><span>{{ quotientGD.sy3.toFixed(2) }}</span></td>
+                  <td class="text-center"><span>{{ quotientGD.sy4.toFixed(2) }}</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <span [appMath]>
+              $ S_{{'{'}}yx{{'}'}}^2
+              = \frac{{'{'}}{{quotientGD.sy3.toFixed(2)}}{{'}'}}{{'{'}}{{n}}{{'}'}}
+              = {{(quotientGD.sy3 / n).toFixed(2)}} $
+            </span>
+            &nbsp;&nbsp;;&nbsp;&nbsp;
+            <span [appMath]>
+              $ S_{{'{'}}y'{{'}'}}^2
+              = \frac{{'{'}}{{quotientGD.sy4.toFixed(2)}}{{'}'}}{{'{'}}{{n}}{{'}'}}
+              = {{(quotientGD.sy4 / n).toFixed(2)}} $
+            </span>
+
+            <p>
+              A partir de los valores predichos se puede obtener:
+            </p>
+            <ul>
+              <li>Varianza de los errores:
+                <span [appMath]>
+                  $ S_{{'{'}}yx{{'}'}}^2 = {{ (quotientGD.sy3 / n).toFixed(2) }}$
+                </span>
+              </li>
+              <li>Varianza de las puntuaciones predichas:
+                <span [appMath]>$ S_{{'{'}}y'{{'}'}}^2 = {{ (quotientGD.sy4 / n).toFixed(2) }}$
+                </span>
+              </li>
+              <li>
+                <p>
+                  Descomposición de la varianza y: <br>
+                  <span [appMath]>
+                    $ S_y^2 = \frac{{'{'}}\sum (y_i - \overline y)^2 {{'}'}}{{'{'}}{{n}}{{'}'}} =
+                    \frac{{'{'}} {{quotientGD.sy5.toFixed(2)}} {{'}'}}{{'{'}}{{n}}{{'}'}} =
+                    {{ quotientGD.rd.toFixed(2) }} \\
+                    S_y^2 = S_{{'{'}}y'{{'}'}}^2 + S_{{'{'}}yx{{'}'}}^2 \\
+                    {{ quotientGD.rd.toFixed(2) }} = {{ (quotientGD.sy4 / n).toFixed(2) }}
+                    + {{ (quotientGD.sy3 / n).toFixed(2) }} $
+                  </span>
+                </p>
+              </li>
+              <li>
+                <p>
+                  Coeficiente de determinación:
+                  <span [appMath]>
+                    $ R^2 = \frac{{'{'}} S_{{'{'}}y'{{'}'}}^2 {{'}'}}{{'{'}} S_y^2 {{'}'}} =
+                    \frac{{'{'}} {{ quotientGD.rn.toFixed(2) }} {{'}'}}{{'{'}}{{ quotientGD.rd.toFixed(2) }} {{'}'}} =
+                    {{ quotientGD.r2.toFixed(2)}} $
+                  </span> 
+                </p>
+              </li>
+            </ul>
+          </div>
+          <!-- ./card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+
+      <!-- SUMMARY -->
+      <div class="col-md-4">
+        <div class="card card-success card-outline">
+          <div class="card-header">
+            <h3 class="card-title text-navy"> COMPARATIVA </h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            Coeficiente de determinación R<sup>2</sup> para cada ajuste:
+            <ul>
+              <li>Ajuste a una recta: <span [appMath]>$ R^2 = {{ linearGD.r2.toFixed(2) }} $</span></li>
+              <li>Ajuste a un polinomio: <span [appMath]>$ R^2 = {{ polynomialGD.r2.toFixed(2) }} $</span></li>
+              <li>Ajuste a un exponente: <span [appMath]>$ R^2 = {{ exponentialGD.r2.toFixed(2) }} $</span></li>
+              <li>Ajuste a una potencia: <span [appMath]>$ R^2 = {{ potentialGD.r2.toFixed(2) }} $</span></li>
+              <li>Ajuste a un cociente: <span [appMath]>$ R^2 = {{ quotientGD.r2.toFixed(2) }} $</span></li>
+            </ul>
+          </div>
+          <!-- ./card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+
+    </div>
+    <!-- ./row-->
+
+    <app-error [error]="errMsg" [noDots]="noDots"></app-error>
+    <!-- /.error-page -->
+
+  </div>
+  <!-- /.container-fluid-->
+</section>

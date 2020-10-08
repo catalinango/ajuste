@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
 import { Dot } from "../dot";
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
@@ -26,6 +26,7 @@ export class DotsInputComponent implements OnInit {
   errMsg: string;
   @Output() emitEvent: EventEmitter<Dot[]> = new EventEmitter<Dot[]>();
   @ViewChild('dform') dFormDirective: NgForm;
+  @ViewChild('x') dxForm: ElementRef;  
   dotsForm: FormGroup;
   formErrors = {
     'x': '',
@@ -83,8 +84,11 @@ export class DotsInputComponent implements OnInit {
     d.x = Number(d.x.toString().replace(/,/g, '.'));
     d.y = Number(d.y.toString().replace(/,/g, '.'));
     this.dots.push(d);
+    this.dots.sort((a, b) => Number(a.x) - Number(b.x));
     this.showTable = true;
     this.dFormDirective.reset({ x: 0, y: 0 });
+    this.dxForm.nativeElement.focus();
+    this.dxForm.nativeElement.select();
     this.dataService.setDots(this.dots);
     this.dataService.getDots().subscribe(d => console.log("Dots in DataService: " + JSON.stringify(d)));
   }
@@ -133,6 +137,8 @@ export class DotsInputComponent implements OnInit {
     if (index > -1) {
       this.dots.splice(index, 1);
     }
+    this.dxForm.nativeElement.focus();
+    this.dxForm.nativeElement.select();
     this.dataService.setDots(this.dots);
     this.dataService.getDots().subscribe(d => console.log("Dots in DataService: " + JSON.stringify(d)));
   }
