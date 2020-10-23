@@ -1,6 +1,22 @@
 # Ajuste
+_Regression Calculator and Grapher_
+
+Ajuste is a Client Web Aplication built to complete an assignment for the subject _"Análisis Numérico"_.
+
+## Description
+Using the _Least squares_ method, this app will calculate the following regressions:
+- Linear
+- Non linear (Polinomial - Exponential - Potential - Quotient)
+- The Coefficient of Determination for each regression.
+
+You can see it online at: _<http://www.catalinango.com/ajuste/home>_
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
+
+### What is the Least square method?
+The _least squares_ method is a statistical procedure to find the best fit for a set of data points by minimizing the sum of the offsets or residuals of points from the plotted curve.
+
+Least squares regression is used to predict the behavior of dependent variables.
 
 ## Development server
 
