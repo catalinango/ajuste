@@ -9,7 +9,7 @@ Using the _Least squares_ method, this app will calculate the following regressi
 - Non linear (Polinomial - Exponential - Potential - Quotient)
 - The Coefficient of Determination for each regression.
 
-Live demo: _<http://www.catalinango.com.ar/ajuste>_
+Live demo: _<https://www.catalinango.com.ar/ajuste>_
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
 
