@@ -1,7 +1,7 @@
 # Ajuste
 _Regression Calculator and Grapher_
 
-Ajuste is a Client Web Aplication built to complete an assignment for the subject _"Análisis Numérico"_.
+Ajuste is a Front-end Web Application to perform mathematical calculations and show results in graphic.
 
 ## Description
 Using the _Least squares_ method, this app will calculate the following regressions:
